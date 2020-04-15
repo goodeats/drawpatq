@@ -10,7 +10,8 @@ export default class Triangle extends React.Component {
       top: 0,
       left: 0,
       borderWidth: 0,
-      transform: {}
+      borderColor: "",
+      transform: {},
     };
   }
 
@@ -23,6 +24,7 @@ export default class Triangle extends React.Component {
       top: this.setRandomPos(),
       left: this.setRandomPos(true),
       borderWidth: this.setWidth(),
+      borderColor: this.setBorderColor(),
       transform: this.setTransform()
     });
   }
@@ -44,6 +46,12 @@ export default class Triangle extends React.Component {
     return this.state.width * Math.sqrt(3);
   }
 
+  setBorderColor(){
+    // https://www.paulirish.com/2009/random-hex-color-code-snippets/
+    const hexCode = Math.floor(Math.random() * 16777215).toString(16);
+    return 'transparent transparent #' + hexCode + ' transparent';
+  }
+
   setTransform(){
     // at 120deg an equilateral triangle appears upright
     const rotation = this.getRandomInt(120)
@@ -58,7 +66,7 @@ export default class Triangle extends React.Component {
           top: this.state.top,
           left: this.state.left,
           borderWidth: this.state.borderWidth,
-          borderColor: "transparent transparent #fff transparent",
+          borderColor: this.state.borderColor,
           transform: this.state.transform
         }}
       ></div>

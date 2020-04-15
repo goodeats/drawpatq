@@ -13,6 +13,7 @@
   width: 0;
   height: 0;
   border-style: solid;
+  /* equilateral height */
   border-width: 0 100px 173.2px 100px;
   /* 2020 color of the year https://www.pantone.com/color-finder/19-4052-TCX */
   border-color: transparent transparent #0F4C81 transparent;
