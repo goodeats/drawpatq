@@ -8,6 +8,8 @@ function App() {
       <header className="App-header">
         <h1>Drawpatq!</h1>
         <Triangle />
+        <Triangle />
+        <Triangle />
       </header>
     </div>
   );
