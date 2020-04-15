@@ -6,9 +6,10 @@ export default class Triangle extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      width: 100,
+      width: this.getRandomInt(300),
       top: 0,
-      borderWidth: 0
+      left: 0,
+      borderWidth: 0,
     };
   }
 
@@ -18,14 +19,15 @@ export default class Triangle extends React.Component {
 
   setTriangleStyles(){
     this.setState({
-      top: this.setPosTop(),
-      borderWidth: this.setWidth()
+      top: this.setRandomPos(),
+      left: this.setRandomPos(true),
+      borderWidth: this.setWidth(),
     });
   }
 
-  setPosTop(){
-    const setPosPercentage = this.getRandomInt(100);
-    return 'calc(' + setPosPercentage + '% - 173px)';
+  setRandomPos(left = false){
+    const percentage = this.getRandomInt(100);
+    return "calc(" + percentage + "% - " + this.equilateralHeight(this.state.width) + "px)";
   }
 
   getRandomInt(max) {
@@ -33,10 +35,10 @@ export default class Triangle extends React.Component {
   }
 
   setWidth(){
-    return '0 ' + this.state.width + 'px ' + this.equilateralHeight() + 'px ' + this.state.width + 'px';
+    return '0 ' + this.state.width + 'px ' + this.equilateralHeight(this.state.width) + 'px ' + this.state.width + 'px';
   }
 
-  equilateralHeight(){
+  equilateralHeight(width){
     return this.state.width * Math.sqrt(3);
   }
 
@@ -46,7 +48,7 @@ export default class Triangle extends React.Component {
         class="Triangle Triangle-equilateral"
         style={{
           top: this.state.top,
-          left: "0",
+          left: this.state.left,
           borderWidth: this.state.borderWidth,
           borderColor: "transparent transparent #fff transparent",
         }}
