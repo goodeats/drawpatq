@@ -6,7 +6,7 @@ export default class Triangle extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      width: this.getRandomInt(200, 50),
+      width: this.getRandomInt(40, 10),
       top: 0,
       left: 0,
       borderWidth: 0,

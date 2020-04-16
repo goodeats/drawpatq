@@ -7,9 +7,9 @@ function App() {
     <div className="App">
       <header className="App-header">
         <h1>Drawpatq!</h1>
-        <Triangle />
-        <Triangle />
-        <Triangle />
+        {Array.from(Array(10000), (e, i) => {
+          return <Triangle />;
+        })}
       </header>
     </div>
   );
