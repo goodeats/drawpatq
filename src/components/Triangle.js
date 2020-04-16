@@ -5,8 +5,10 @@ export default class Triangle extends React.Component {
 
   constructor(props){
     super(props)
+    const upperWidth = this.props.upperWidth || 40;
+    const lowerWidth = this.props.lowerWidth || 10;
     this.state = {
-      width: this.getRandomInt(40, 10),
+      width: this.getRandomInt(upperWidth, lowerWidth),
       top: 0,
       left: 0,
       borderWidth: 0,
@@ -15,23 +17,23 @@ export default class Triangle extends React.Component {
     };
   }
 
-  componentWillMount(){
+  componentDidMount(){
     this.setTriangleStyles()
   }
 
   setTriangleStyles(){
     this.setState({
       top: this.setRandomPos(),
-      left: this.setRandomPos(true),
+      left: this.setRandomPos(),
       borderWidth: this.setWidth(),
       borderColor: this.setBorderColor(),
       transform: this.setTransform()
     });
   }
 
-  setRandomPos(left = false){
-    const percentage = this.getRandomInt(100);
-    return "calc(" + percentage + "% - " + this.equilateralHeight(this.state.width) + "px)";
+  // this calc works to fill the triangles on the edges of the whole view
+  setRandomPos(){
+    return "calc(" + Math.random() * 100 + "% - " + this.equilateralHeight(this.state.width) / 2 + "px)";
   }
 
   getRandomInt(max, min = 0) {
@@ -61,7 +63,7 @@ export default class Triangle extends React.Component {
   render(){
     return (
       <div
-        class="Triangle Triangle-equilateral"
+        className="Triangle Triangle-equilateral"
         style={{
           top: this.state.top,
           left: this.state.left,

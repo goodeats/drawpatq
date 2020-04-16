@@ -1,3 +1,8 @@
+body {
+  /* no scroll */
+  overflow: hidden;
+}
+
 .App {
   text-align: center;
 }
@@ -14,14 +19,23 @@
 }
 
 .App-header {
-  background-color: #282c34;
   min-height: 100vh;
+  min-width: 100vh;
+
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  overflow: hidden;
+
+  background-color: #fff;
   font-size: calc(10px + 2vmin);
   color: white;
+}
+
+.App-header-h1 {
+  z-index: 1;
 }
 
 .App-link {
