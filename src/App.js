@@ -1,14 +1,15 @@
 import React from 'react';
 import './App.css';
-import Canvas from './components/Canvas';
+import Header from "./components/Header";
+import Canvas from "./components/Canvas";
+import ReloadButton from "./components/ReloadButton";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <h1 className="App-header-h1">10,000 Triangles</h1>
-      </header>
+      <Header title={'10,000 Triangles'} />
       <Canvas />
+      <ReloadButton />
     </div>
   );
 }
