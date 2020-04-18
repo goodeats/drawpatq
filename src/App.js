@@ -5,11 +5,14 @@ import Canvas from "./components/Canvas";
 import ReloadButton from "./components/ReloadButton";
 
 function App() {
+
   return (
     <div className="App">
-      <Header title={'10,000 Triangles'} />
-      <Canvas />
-      <ReloadButton />
+      <Header title={"10,000 Triangles"} />
+      <main className="App-main">
+        <Canvas />
+        <ReloadButton />
+      </main>
     </div>
   );
 }

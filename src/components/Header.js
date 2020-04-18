@@ -1,30 +1,22 @@
 import React from "react";
 
 export default class Header extends React.Component {
-  constructor(props){
-    super(props)
-    this.state = {
-    };
-  }
 
   render() {
 
-
     // https://medium.com/@dmitrynozhenko/9-ways-to-implement-css-in-react-js-ccea4d543aa3
     const header = {
-      height: '100vh',
       width: '100%',
-
+      position: 'absolute',
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
       justifyContent: 'center',
-
       overflow: 'hidden',
-
-      backgroundColor: '#fff',
+      backgroundColor: 'rgba(0,0,0,-0.5)', // TODO: show title on mouse move
       fontSize: 'calc(10px + 2vmin)',
-      color: '#000',
+      color: '#fff',
+      zIndex: '1'
     };
 
     const h1 = {
