@@ -13,6 +13,7 @@ export default class Triangle extends React.Component {
       left: 0,
       borderWidth: 0,
       borderColor: "",
+      opacity: 1,
       transform: {},
     };
   }
@@ -27,6 +28,7 @@ export default class Triangle extends React.Component {
       left: this.setRandomPos(),
       borderWidth: this.setWidth(),
       borderColor: this.setBorderColor(),
+      opacity: this.setOpacity(),
       transform: this.setTransform()
     });
   }
@@ -49,9 +51,16 @@ export default class Triangle extends React.Component {
   }
 
   setBorderColor(){
-    // https://www.paulirish.com/2009/random-hex-color-code-snippets/
-    const hexCode = Math.floor(Math.random() * 16777215).toString(16);
-    return 'transparent transparent #' + hexCode + ' transparent';
+    return 'transparent transparent #' + this.getRandomHex() + ' transparent';
+  }
+
+  // https://www.paulirish.com/2009/random-hex-color-code-snippets/
+  getRandomHex(){
+    return Math.floor(Math.random() * 16777215).toString(16);
+  }
+
+  setOpacity(){
+    return Math.random();
   }
 
   setTransform(){
@@ -69,7 +78,8 @@ export default class Triangle extends React.Component {
           left: this.state.left,
           borderWidth: this.state.borderWidth,
           borderColor: this.state.borderColor,
-          transform: this.state.transform
+          opacity: this.state.opacity,
+          transform: this.state.transform,
         }}
       ></div>
     );
