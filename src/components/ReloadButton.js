@@ -41,7 +41,11 @@ export default class ReloadButton extends React.Component {
 
     return (
       <button style={button} onClick={this.handleClick}>
-        🔀
+        {/* TODO: go more indepth on a11y
+          https://medium.com/@seanmcp/%EF%B8%8F-how-to-use-emojis-in-react-d23bbf608bf7 */}
+        <span role="img" aria-label="refresh">
+          🔀
+        </span>
       </button>
     );
   }
