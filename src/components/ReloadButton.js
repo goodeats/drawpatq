@@ -2,6 +2,9 @@ import React from "react";
 
 export default class ReloadButton extends React.Component {
 
+  // do this
+  // https://marcysutton.com/links-vs-buttons-in-modern-web-applications
+
   // TODO: display ux:
   // have hidden unless mouse move
   // or mobile screen tap (toggle)

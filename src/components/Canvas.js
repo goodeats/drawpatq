@@ -1,15 +1,25 @@
 import React from "react";
+import styled from "styled-components";
 import Triangle from "./shapes/Triangle";
+import SquareContainer from "./shapes/SquareContainer";
+
+const CanvasComponent = styled.div`
+  display: flex;
+`;
 
 export default class Canvas extends React.Component {
 
   render() {
     return (
-      <div>
-        {Array.from(Array(10000), (e, i) => {
+      <CanvasComponent>
+        {Array.from(Array(4), (e, i) => {
+          return <SquareContainer key={i} />;
+        })}
+
+        {Array.from(Array(0), (e, i) => {
           return <Triangle key={i} lowerWidth={10} upperWidth={20} />;
         })}
-      </div>
+      </CanvasComponent>
     );
   }
 }
