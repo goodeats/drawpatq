@@ -5,7 +5,7 @@ import Square from './Square';
 const SquareContainerComponent = styled.div`
   position: relative;
   top: 100px;
-  width: 100px;
+  /* width: 100px; */
   height: ${(props) => props.style.height || "100vh"};
 
   background: ${(props) => props.style.backgroundColor || 'none'};
@@ -15,9 +15,9 @@ export default class SquareContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      squareCount: 0,
+      squareCount: 3,
       style: {
-
+        height: 10
       },
     };
   }
@@ -36,12 +36,14 @@ export default class SquareContainer extends React.Component {
   }
 
   setSquareCount(){
-    // https://stackoverflow.com/a/40806673
-    this.intervalId = setInterval(function(){
-      var newCount = this.state.squareCount += 1;
-      this.setState({ squareCount: newCount });
-      if (this.state.squareCount > 3) clearInterval(this.intervalId);
-    }.bind(this), 333);
+    // would be fun to introduce multiple squares at different intervals
+    // for now, going with one square
+    // // https://stackoverflow.com/a/40806673
+    // this.intervalId = setInterval(function(){
+    //   var newCount = this.state.squareCount += 1;
+    //   this.setState({ squareCount: newCount });
+    //   if (this.state.squareCount > 3) clearInterval(this.intervalId);
+    // }.bind(this), 333);
   }
 
   setHeight() {
@@ -58,7 +60,7 @@ export default class SquareContainer extends React.Component {
     return (
       <SquareContainerComponent style={this.state.style}>
         {Array.from(Array(this.state.squareCount), (e, i) => {
-          return <Square key={i} height={5} backgroundColor={"random"} />;
+          return <Square key={i} height={150} backgroundColor={'random'} />;
         })}
       </SquareContainerComponent>
     );

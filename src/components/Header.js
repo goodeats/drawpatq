@@ -15,7 +15,7 @@ export default class Header extends React.Component {
       overflow: 'hidden',
       backgroundColor: 'rgba(0,0,0,-0.5)', // TODO: show title on mouse move
       fontSize: 'calc(10px + 2vmin)',
-      color: '#fff',
+      color: '#000',
       zIndex: '1'
     };
 

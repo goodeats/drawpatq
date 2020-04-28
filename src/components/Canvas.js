@@ -12,7 +12,7 @@ export default class Canvas extends React.Component {
   render() {
     return (
       <CanvasComponent>
-        {Array.from(Array(4), (e, i) => {
+        {Array.from(Array(3), (e, i) => {
           return <SquareContainer key={i} />;
         })}
 

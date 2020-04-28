@@ -8,7 +8,7 @@ function App() {
 
   return (
     <div className="App">
-      <Header title={"10,000 Triangles"} />
+      <Header title={"Squares"} />
       <main className="App-main">
         <Canvas />
         <ReloadButton />
