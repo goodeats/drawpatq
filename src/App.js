@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import Header from "./components/Header";
 import Canvas from "./components/Canvas";
-import ReloadButton from "./components/ReloadButton";
+import Footer from "./components/Footer";
 
 function App() {
 
@@ -10,9 +10,7 @@ function App() {
     <div className="App">
       <Header title={"Squares"} />
       <Canvas />
-      <footer>
-        <ReloadButton />
-      </footer>
+      <Footer />
     </div>
   );
 }

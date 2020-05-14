@@ -1,15 +1,16 @@
 import React from "react";
+import ReloadButton from "./Footer/ReloadButton";
 
-export default class Header extends React.Component {
-
+export default class Footer extends React.Component {
   render() {
-
     // https://medium.com/@dmitrynozhenko/9-ways-to-implement-css-in-react-js-ccea4d543aa3
-    const header = {
+    const footer = {
+      height: "auto",
       width: "100%",
-      position: "absolute",
-      top: "0",
-      left: "0",
+      position: 'absolute',
+      bottom: '0',
+      left: '0',
+      marginBottom: "0",
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
@@ -21,14 +22,12 @@ export default class Header extends React.Component {
       zIndex: "1",
     };
 
-    const h1 = {
-      zIndex: '1'
-    };
-
     return (
-      <header style={header}>
-        <h1 style={h1}>{this.props.title}</h1>
-      </header>
+      <footer style={footer}>
+        <nav>
+          <ReloadButton />
+        </nav>
+      </footer>
     );
   }
 }
