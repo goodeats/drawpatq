@@ -9,10 +9,10 @@ function App() {
   return (
     <div className="App">
       <Header title={"Squares"} />
-      <main className="App-main">
-        <Canvas />
+      <Canvas />
+      <footer>
         <ReloadButton />
-      </main>
+      </footer>
     </div>
   );
 }

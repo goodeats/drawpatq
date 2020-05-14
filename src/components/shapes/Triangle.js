@@ -28,7 +28,7 @@ export default class Triangle extends React.Component {
       left: this.setRandomPos(),
       borderWidth: this.setWidth(),
       borderColor: this.setBorderColor(),
-      opacity: this.setOpacity(),
+      opacity: 1 || this.setOpacity(),
       transform: this.setTransform()
     });
   }
