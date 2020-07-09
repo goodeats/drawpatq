@@ -24,7 +24,10 @@ export default class App extends React.Component {
     return (
       <div className="App">
         <Header title={"PPPAAATTT"} />
-        <Canvas navPosition={this.state.navPosition} shape={'squares'} />
+        <Canvas navPosition={this.state.navPosition} />
+        <Canvas navPosition={this.state.navPosition} />
+        <Canvas navPosition={this.state.navPosition} />
+        <Canvas navPosition={this.state.navPosition} />
         <Canvas navPosition={this.state.navPosition} />
         <Footer
           navPosition={this.state.navPosition}
