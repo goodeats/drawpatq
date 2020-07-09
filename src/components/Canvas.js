@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import Triangle from "./shapes/Triangle";
-import SquareContainer from "./shapes/SquareContainer";
+import Triangle from "./Canvas/shapes/Triangle";
+import SquareContainer from "./Canvas/shapes/SquareContainer";
+import Logo from "./Canvas/text/Logo";
 
 const CanvasComponent = styled.main`
   display: flex;
@@ -15,7 +16,7 @@ export default class Canvas extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      shape: this.props.shape || 'triangles',
+      shape: this.props.shape,
       count: 10 * this.props.navPosition
     }
   }
@@ -27,15 +28,19 @@ export default class Canvas extends React.Component {
   render() {
     return (
       <CanvasComponent>
-        {this.state.shape === 'squares' &&
+        {this.props.shape === 'squares' &&
           Array.from(Array(this.state.count), (e, i) => {
           return <SquareContainer key={i} />;
         })}
 
-        {this.state.shape === 'triangles' &&
+        {this.props.shape === 'triangles' &&
           Array.from(Array(this.state.count * this.props.navPosition), (e, i) => {
           return <Triangle key={i} lowerWidth={40} upperWidth={60} />;
         })}
+
+        {this.props.category === 'text' &&
+          <Logo lowerWidth={40} upperWidth={60} />
+        }
       </CanvasComponent>
     );
   }
