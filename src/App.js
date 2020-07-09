@@ -4,15 +4,33 @@ import Header from "./components/Header";
 import Canvas from "./components/Canvas";
 import Footer from "./components/Footer";
 
-function App() {
+export default class App extends React.Component {
 
-  return (
-    <div className="App">
-      <Header title={"Squares"} />
-      <Canvas />
-      <Footer />
-    </div>
-  );
+  constructor(props){
+    super(props);
+    this.state = {
+      navPosition: 0,
+      showNavBackward: false,
+      showNavForward: true
+    };
+    this.navigate = this.navigate.bind(this);
+  }
+
+  navigate(navPosition){
+    this.setState({navPosition: parseInt(navPosition)});
+  }
+
+  render(){
+    return (
+      <div className="App">
+        <Header title={"Pat"} />
+        <Canvas navPosition={this.state.navPosition} />
+        <Footer
+          navPosition={this.state.navPosition}
+          onNavigate={this.navigate}
+        />
+      </div>
+    );
+  }
+
 }
-
-export default App;

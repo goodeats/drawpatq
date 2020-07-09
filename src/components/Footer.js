@@ -1,7 +1,36 @@
 import React from "react";
 import ReloadButton from "./Footer/ReloadButton";
+import NavButton from "./Footer/NavButton";
 
 export default class Footer extends React.Component {
+
+  constructor(props){
+    super(props);
+    this.state = {
+      navPosition: 0,
+      showNavBackward: false,
+      showNavForward: true
+
+    };
+    this.navBack = this.navBack.bind(this);
+    this.navForward = this.navForward.bind(this);
+  }
+
+  navBack(){
+    const navPosition = (Math.max(this.state.navPosition -= 1, 0));
+    this.setState({ navPosition: navPosition });
+    this.props.onNavigate(navPosition);
+
+    if (navPosition === 1) this.setState({ showNavBackward: false});
+  }
+
+  navForward(){
+    const navPosition = (this.state.navPosition += 1);
+    this.setState({ navPosition: navPosition });
+    this.props.onNavigate(navPosition);
+    if (navPosition > 1) this.setState({ showNavBackward: true });
+  }
+
   render() {
     // https://medium.com/@dmitrynozhenko/9-ways-to-implement-css-in-react-js-ccea4d543aa3
     const footer = {
@@ -25,7 +54,17 @@ export default class Footer extends React.Component {
     return (
       <footer style={footer}>
         <nav>
+          <NavButton
+            direction="back"
+            disabled={this.state.showNavBackward}
+            onClick={this.navBack}
+          />
           <ReloadButton />
+          <NavButton
+            direction="forward"
+            disabled={this.state.showNavForward}
+            onClick={this.navForward}
+          />
         </nav>
       </footer>
     );

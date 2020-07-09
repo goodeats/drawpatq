@@ -15,9 +15,13 @@ export default class Canvas extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      shape: 'squares',
-      count: 10
+      shape: 'triangles',
+      count: 10 * this.props.navPosition
     }
+  }
+
+  componentDidMount(){
+    this.setState({ count: Math.max(10 * this.props.navPosition, 1) });
   }
 
   render() {
@@ -29,8 +33,8 @@ export default class Canvas extends React.Component {
         })}
 
         {this.state.shape === 'triangles' &&
-          Array.from(Array(this.state.count), (e, i) => {
-          return <Triangle key={i} lowerWidth={10} upperWidth={20} />;
+          Array.from(Array(this.state.count * this.props.navPosition), (e, i) => {
+          return <Triangle key={i} lowerWidth={40} upperWidth={60} />;
         })}
       </CanvasComponent>
     );
