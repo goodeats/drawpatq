@@ -109,14 +109,15 @@ export default class Square extends React.Component {
     return Math.random() * (Math.floor(max) - Math.floor(min)) + min;
   }
 
-  onMouseOver = () => {
+  changeBackground = () => {
     this.setStyle('backgroundColor', Colors.getRandomHex());
   }
 
   render() {
     return (
       <SquareComponent
-        onMouseOver={this.onMouseOver}
+        onMouseOver={this.changeBackground}
+        onClick={this.changeBackground}
         style={this.state.style}
         testContent={this.state.testContent}
       />
