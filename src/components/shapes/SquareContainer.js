@@ -15,7 +15,7 @@ export default class SquareContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      squareCount: 3,
+      squareCount: this.props.count,
       style: {
         height: 10
       },

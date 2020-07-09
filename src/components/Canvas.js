@@ -15,7 +15,7 @@ export default class Canvas extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      shape: 'triangles',
+      shape: this.props.shape || 'triangles',
       count: 10 * this.props.navPosition
     }
   }
