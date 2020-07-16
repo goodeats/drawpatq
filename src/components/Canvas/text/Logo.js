@@ -1,5 +1,6 @@
 import React from "react";
 import styled, { keyframes } from "styled-components";
+import Letter from './Letter';
 
 // I kind of love this
 // https://github.com/styled-components/styled-components/issues/1746#issuecomment-434224968
@@ -39,6 +40,9 @@ const LogoComponent = styled.div`
 `;
 
 export default class Logo extends React.Component {
+
+  LOGO_TEXT = 'PPPAAATTT'
+
   constructor(props) {
     super(props);
     this.state = {
@@ -50,7 +54,8 @@ export default class Logo extends React.Component {
   }
 
   componentDidMount() {
-    console.log('here')
+    // console.log('hello from Logo')
+
   }
 
   // https://dev.to/walecloud/updating-react-nested-state-properties-ga6
@@ -63,7 +68,14 @@ export default class Logo extends React.Component {
 
   render() {
     return (
-      <LogoComponent style={this.state.style}>PPPAAATTT</LogoComponent>
+      <LogoComponent style={this.state.style}>
+        <div>
+          <Letter letter={"P"} />
+          <Letter letter={"P"} />
+          <Letter letter={"P"} />
+        </div>
+      </LogoComponent>
     );
+
   }
 }
