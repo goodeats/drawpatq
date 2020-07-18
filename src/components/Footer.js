@@ -14,6 +14,7 @@ export default class Footer extends React.Component {
     };
     this.navBack = this.navBack.bind(this);
     this.navForward = this.navForward.bind(this);
+    this.onKeyPressed = this.onKeyPressed.bind(this);
   }
 
   navBack(){
@@ -29,6 +30,15 @@ export default class Footer extends React.Component {
     this.setState({ navPosition: navPosition });
     this.props.onNavigate(navPosition);
     if (navPosition > 1) this.setState({ showNavBackward: true });
+  }
+
+  onKeyPressed(e){
+    const key = e.key;
+    if (key === 'ArrowRight'){
+      this.navForward();
+    } else if (key === 'ArrowLeft'){
+      this.navBack();
+    }
   }
 
   render() {
@@ -52,14 +62,17 @@ export default class Footer extends React.Component {
     };
 
     return (
-      <footer style={footer}>
+      <footer
+        style={footer}
+        onKeyDown={(e) => this.onKeyPressed(e)}
+        tabIndex={'0'}
+      >
         <nav>
           <NavButton
             direction="back"
             disabled={this.state.showNavBackward}
             onClick={this.navBack}
           />
-          <ReloadButton />
           <NavButton
             direction="forward"
             disabled={this.state.showNavForward}

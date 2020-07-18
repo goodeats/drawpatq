@@ -25,6 +25,7 @@ export default class NavButton extends React.Component {
     // https://css-tricks.com/snippets/css/transparent-background-images/ #=> interesting!
     // generate the image from here https://stackoverflow.com/questions/5845238/javascript-generate-transparent-1x1-pixel-in-dataurl-format
     const a = {
+      display: 'none', // hiding for keydowns instead of button clicks // bigger canvas
       margin: "20px",
       background: "rgba(255, 255, 255, -1)",
       borderRadius: "20px",
