@@ -18,9 +18,10 @@ export default class Letter extends React.Component {
     super(props);
     this.state = {
       style: {
-        fontSize: '100px',
-        lineHeight: '100px',
-        color: '#000',
+        fontSize: "100px",
+        lineHeight: "100px",
+        color: "#000",
+        fontFamily: "Helvetica,sans-serif", // in honor of https://designisonefilm.com/
       },
     };
   }
