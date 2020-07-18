@@ -9,7 +9,8 @@ const LetterComponent = styled.span`
   top: 100px;
   left: 0; */
   font-size: 100px;
-  font-size: ${(props) => props.style.height + props.style.units};
+  font-size: ${(props) => props.style.fontSize};
+  line-height: ${(props) => props.style.lineheight || '100px'};
 `;
 
 export default class Letter extends React.Component {
@@ -17,14 +18,15 @@ export default class Letter extends React.Component {
     super(props);
     this.state = {
       style: {
-        units: "px",
+        fontSize: '100px',
+        lineHeight: '100px',
+        color: '#000',
       },
     };
   }
 
   componentDidMount() {
-    console.log("hello from Letter");
-    console.log(this.props.letter)
+    this.setLetterComponentStyles();
   }
 
   // https://dev.to/walecloud/updating-react-nested-state-properties-ga6
@@ -35,12 +37,14 @@ export default class Letter extends React.Component {
     this.setState({ style: currentStyle });
   }
 
-  yo(){
-    console.log(this.props.letter)
-    return true;
+  setLetterComponentStyles(){
+    const styles = this.props.styles;
+    if (styles.fontSize) this.setStyle("fontSize", styles.fontSize);
+    if (styles.lineHeight) this.setStyle("lineHeight", styles.lineHeight);
+    if (styles.color) this.setStyle("color", styles.color);
   }
 
   render() {
-    return this.yo() && <LetterComponent style={this.state.style}>{this.props.letter}</LetterComponent>;
+    return <LetterComponent style={this.state.style}>{this.props.letter}</LetterComponent>;
   }
 }

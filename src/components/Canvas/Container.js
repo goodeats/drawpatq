@@ -5,13 +5,19 @@ import styled from "styled-components";
 // https://github.com/styled-components/styled-components/issues/1746#issuecomment-434224968
 
 const ContainerComponent = styled.div`
-  content: ${(props) => props.style.height + props.style.units};
-  height: ${(props) => props.style.height + props.style.units};
-  width: ${(props) => props.style.width + props.style.units};
+  content: ${(props) => props.style.height || 'initial'};
+  height: ${(props) => props.style.height};
+  width: ${(props) => props.style.width || 'initial'};
+  /* TODO: restore these when new component created */
   position: ${(props) => props.style.position || "absolute"};
   top: ${(props) => props.style.top || 0};
   left: ${(props) => props.style.left || 0};
   background: ${(props) => props.style.background || "red"};
+  text-align: center;
+
+  /* TODO: create FlexContainer, etc. for inherited class */
+  /* display: flex;
+  align-items: center; */
 `;
 
 export default class Container extends React.Component {
@@ -21,25 +27,25 @@ export default class Container extends React.Component {
     super(props);
     this.state = {
       style: {
-        height: "100",
-        width: "100",
+        height: "100px",
+        width: "100px",
         background: "red",
-        units: "px",
       },
     };
   }
 
   componentDidMount() {
-    console.log('hello from Container')
     this.setContainerComponentStyles();
   }
 
   setContainerComponentStyles(){
-    const props = this.props;
-    if (props.height) this.setStyle("height", props.height || 100);
-    if (props.width) this.setStyle("width", props.width || 100);
-    if (props.position) this.setStyle("position", props.position);
-    if (props.background) this.setStyle("background", props.background);
+    const styles = this.props.styles;
+    if (styles.height) this.setStyle("height", styles.height);
+    if (styles.width) this.setStyle("width", styles.width);
+    if (styles.position) this.setStyle("position", styles.position);
+    if (styles.top) this.setStyle("top", styles.top);
+    if (styles.left) this.setStyle("left", styles.left);
+    if (styles.background) this.setStyle("background", styles.background);
   }
 
   // https://dev.to/walecloud/updating-react-nested-state-properties-ga6
