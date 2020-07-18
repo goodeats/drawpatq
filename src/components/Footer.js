@@ -34,9 +34,9 @@ export default class Footer extends React.Component {
 
   onKeyPressed(e){
     const key = e.key;
-    if (key === 'ArrowRight'){
+    if (key === "ArrowRight" || key === "ArrowUp") {
       this.navForward();
-    } else if (key === 'ArrowLeft'){
+    } else if (key === "ArrowLeft" || key === "ArrowDown") {
       this.navBack();
     }
   }
