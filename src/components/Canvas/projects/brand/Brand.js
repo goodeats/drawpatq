@@ -31,7 +31,7 @@ const rotate = keyframes`
 `;
 
 export default class Brand extends React.Component {
-  BRAND_TEXT = "PPPAAATTT";
+  BRAND_TEXT = "PATPATPAT";
   BRAND_HEIGHT = 200;
   BRAND_WIDTH = this.equilateralWidth(this.BRAND_HEIGHT);
 
@@ -102,7 +102,7 @@ export default class Brand extends React.Component {
             letter={letter}
             index={i}
             styles={{
-              color: "#222",
+              color: "#000",
             }}
           />
         }
