@@ -10,7 +10,7 @@ const LetterComponent = styled.span`
   left: 0; */
   font-size: 100px;
   font-size: ${(props) => props.style.fontSize};
-  line-height: ${(props) => props.style.lineheight || '100px'};
+  line-height: ${(props) => props.style.lineheight || "100px"};
 `;
 
 export default class Letter extends React.Component {
@@ -38,11 +38,21 @@ export default class Letter extends React.Component {
     this.setState({ style: currentStyle });
   }
 
+  feelingAdventurous(){
+    if (!this.props.feelingAdventurous) return;
+    if (this.props.index === 1){
+      this.setStyle("text-decoration", "underline");
+    } else {
+      this.setStyle("text-decoration", "overline");
+    }
+  }
+
   setLetterComponentStyles(){
     const styles = this.props.styles;
     if (styles.fontSize) this.setStyle("fontSize", styles.fontSize);
     if (styles.lineHeight) this.setStyle("lineHeight", styles.lineHeight);
     if (styles.color) this.setStyle("color", styles.color);
+    this.feelingAdventurous();
   }
 
   render() {

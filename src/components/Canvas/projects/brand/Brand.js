@@ -1,5 +1,5 @@
 import React from "react";
-import styled, { keyframes } from "styled-components";
+import { keyframes } from "styled-components";
 import Container from "../../Container";
 import Letter from "../../text/Letter";
 
@@ -31,9 +31,9 @@ const rotate = keyframes`
 `;
 
 export default class Brand extends React.Component {
-  BRAND_TEXT = "PAT"; // "PPPAAATTT";
+  BRAND_TEXT = "PPPAAATTT";
   BRAND_HEIGHT = 200;
-  BRAND_WIDTH = 300;
+  BRAND_WIDTH = this.equilateralWidth(this.BRAND_HEIGHT);
 
   constructor(props) {
     super(props);
@@ -49,6 +49,10 @@ export default class Brand extends React.Component {
     console.log('hello from Brand')
   }
 
+  equilateralWidth(height){
+    return height * 2 / Math.sqrt(3);
+  }
+
   // https://dev.to/walecloud/updating-react-nested-state-properties-ga6
   setStyle(attr, value) {
     const { style } = { ...this.state };
@@ -57,24 +61,48 @@ export default class Brand extends React.Component {
     this.setState({ style: currentStyle });
   }
 
+  setLetterHeight(index){
+    return this.BRAND_HEIGHT / 2;
+  }
+
+  setLetterWidth(index){
+    return this.BRAND_WIDTH / 2;
+  }
+
+  setLetterTop(index, letterHeight){
+    return index === 0 ? "0" : "50%";
+  }
+
+  setLetterLeft(index, letterWidth){
+    if (index === 0){
+      return letterWidth / 2;
+    } else {
+      return index === 1 ? "0" : letterWidth;
+    }
+  }
+
+  // P
   renderLetterContainer(letter, i){
-    const letterHeight = this.BRAND_HEIGHT / 2;
-    const letterWidth = this.BRAND_WIDTH / 3;
-    const letterTop = i === 1 ? 0 : letterHeight;
+    const letterHeight = this.setLetterHeight(i);
+    const letterWidth = this.setLetterWidth(i);
+    const letterTop = this.setLetterTop(i, letterHeight);
+    const letterLeft = this.setLetterLeft(i, letterWidth);
+
     return (
       <Container
         key={i}
         styles={{
           width: letterWidth + "px",
           top: letterTop,
-          left: i * letterWidth,
-          background: "#000",
+          left: letterLeft,
+          background: "none",
         }}
         content={
           <Letter
             letter={letter}
+            index={i}
             styles={{
-              color: "#fff",
+              color: "#222",
             }}
           />
         }
@@ -82,27 +110,102 @@ export default class Brand extends React.Component {
     );
   }
 
-  // front and center
-  renderBrand(){
+  setClusterHeight(index){
+    return this.BRAND_HEIGHT;
+  }
 
+  setClusterWidth(index){
+    return this.BRAND_WIDTH;
+  }
+
+  setClusterLetterTop(index, letterHeight){
+    return index === 0 ? '0' : '50%';
+  }
+
+  setClusterLetterLeft(index, letterWidth){
+    if (index === 0){
+      return "calc(50% - " + letterWidth / 2 + "px)"
+    } else {
+      return index === 1 ? '0' : 'initial'; // go off right for last one
+    }
+  }
+
+  setClusterLetterRight(index, letterWidth){
+    return index === 2 ? '0' : 'intial';
+  }
+
+  // "PPPAAATTT" => ["PPP", "AAA", "TTT"]
+  splitBrandText(){
+    // https://stackoverflow.com/a/8359929 mad lad
+    return this.BRAND_TEXT.match(/.{1,3}/g);
+  }
+
+  // cluster letter has sub triangle with 3 of same letter
+  //    P
+  //   P P
+  renderClusterLetter(text, index){
+    const clusterHeight = this.setClusterHeight(index);
+    const clusterWidth = this.setClusterWidth(index);
+    const clusterTop = this.setClusterLetterTop(index, clusterHeight);
+    const clusterLeft = this.setClusterLetterLeft(index, clusterWidth);
+    const clusterRight = this.setClusterLetterRight(index, clusterWidth);
     return (
       <Container
         styles={{
-          height: this.BRAND_HEIGHT + 'px',
-          width: this.BRAND_WIDTH + 'px',
-          top: "calc(50% - " + this.BRAND_HEIGHT / 2 + "px)",
-          left: "calc(50% - " + this.BRAND_WIDTH / 2 + "px)",
-          background: '#000'
+          height: clusterHeight,
+          width: clusterWidth,
+          top: clusterTop,
+          left: clusterLeft,
+          right: clusterRight,
+          background: "none",
         }}
         content={
           <div>
-            {this.BRAND_TEXT.split("").map((letter, i) => {
+            {text.split("").map((letter, i) => {
               return this.renderLetterContainer(letter, i);
             })}
           </div>
         }
       />
     );
+  }
+
+  // cluster has all 3 letters in their triangles
+  //    P
+  //   P P
+  //  A   T
+  // A A T T
+
+  renderCluster(){
+    const height = this.BRAND_HEIGHT;
+    const width = this.BRAND_WIDTH;
+    return (
+      <Container
+        styles={{
+          height: height * 2,
+          width: width * 2,
+          top: "calc(50% - " + height + "px)",
+          left: "calc(50% - " + width + "px)",
+          background: 'none'
+        }}
+        content={
+          <div>
+            {this.splitBrandText().map((v, i) => {
+              return this.renderClusterLetter(v, i);
+            })}
+          </div>
+        }
+      />
+    );
+  }
+
+  // front and center
+  renderBrand(){
+    return (
+      <div>
+        {this.renderCluster()}
+      </div>
+    )
   }
 
   render() {

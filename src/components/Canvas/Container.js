@@ -5,13 +5,14 @@ import styled from "styled-components";
 // https://github.com/styled-components/styled-components/issues/1746#issuecomment-434224968
 
 const ContainerComponent = styled.div`
-  content: ${(props) => props.style.height || 'initial'};
+  content: ${(props) => props.style.height || "initial"};
   height: ${(props) => props.style.height};
-  width: ${(props) => props.style.width || 'initial'};
+  width: ${(props) => props.style.width || "initial"};
   /* TODO: restore these when new component created */
   position: ${(props) => props.style.position || "absolute"};
   top: ${(props) => props.style.top || 0};
   left: ${(props) => props.style.left || 0};
+  right: ${(props) => props.style.right || 'initial'};
   background: ${(props) => props.style.background || "red"};
   text-align: center;
 
@@ -45,6 +46,7 @@ export default class Container extends React.Component {
     if (styles.position) this.setStyle("position", styles.position);
     if (styles.top) this.setStyle("top", styles.top);
     if (styles.left) this.setStyle("left", styles.left);
+    if (styles.right) this.setStyle("right", styles.right);
     if (styles.background) this.setStyle("background", styles.background);
   }
 
