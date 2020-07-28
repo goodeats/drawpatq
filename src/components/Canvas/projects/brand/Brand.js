@@ -1,5 +1,4 @@
 import React from "react";
-import { keyframes } from "styled-components";
 import Container from "../../Container";
 import Letter from "../../text/Letter";
 
@@ -15,23 +14,8 @@ import Letter from "../../text/Letter";
 // animations
 // animations randomized
 
-// keyframe must be declared first
-const rotate = keyframes`
-  /* 0% {
-    transform: rotate(0deg) scale(1);
-  }
-
-  50% {
-    transform: rotate(360deg) scale(0.2);
-  }
-
-  100% {
-    transform: rotate(0deg) scale(1);
-  } */
-`;
-
 export default class Brand extends React.Component {
-  BRAND_TEXT = "PATPATPAT";
+  BRAND_TEXT = "PPPAAATTT";
   BRAND_HEIGHT = 200;
   BRAND_WIDTH = this.equilateralWidth(this.BRAND_HEIGHT);
 
@@ -46,7 +30,7 @@ export default class Brand extends React.Component {
   }
 
   componentDidMount() {
-    console.log('hello from Brand')
+    // console.log('hello from Brand')
   }
 
   equilateralWidth(height){
@@ -102,7 +86,7 @@ export default class Brand extends React.Component {
             letter={letter}
             index={i}
             styles={{
-              color: "#000",
+              color: "#fff",
             }}
           />
         }
@@ -151,6 +135,7 @@ export default class Brand extends React.Component {
     const clusterRight = this.setClusterLetterRight(index, clusterWidth);
     return (
       <Container
+        key={index}
         styles={{
           height: clusterHeight,
           width: clusterWidth,
@@ -179,14 +164,17 @@ export default class Brand extends React.Component {
   renderCluster(){
     const height = this.BRAND_HEIGHT;
     const width = this.BRAND_WIDTH;
+    const background = '#000';
+    const borderWidth = height / 4;
     return (
       <Container
         styles={{
           height: height * 2,
           width: width * 2,
-          top: "calc(50% - " + height + "px)",
-          left: "calc(50% - " + width + "px)",
-          background: 'none'
+          top: "calc(50% - " + (height + borderWidth) + "px)",
+          left: "calc(50% - " + (width + borderWidth) + "px)",
+          background: background,
+          border: borderWidth + "px solid" + background,
         }}
         content={
           <div>
