@@ -10,7 +10,7 @@ export default class Header extends React.Component {
       position: "absolute",
       top: "0",
       left: "0",
-      display: "flex",
+      display: "none",
       flexDirection: "column",
       alignItems: "center",
       justifyContent: "center",

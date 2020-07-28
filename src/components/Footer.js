@@ -1,5 +1,4 @@
 import React from "react";
-import ReloadButton from "./Footer/ReloadButton";
 import NavButton from "./Footer/NavButton";
 
 export default class Footer extends React.Component {
@@ -18,7 +17,7 @@ export default class Footer extends React.Component {
   }
 
   navBack(){
-    const navPosition = (Math.max(this.state.navPosition -= 1, 0));
+    const navPosition = Math.max(this.state.navPosition - 1, 0);
     this.setState({ navPosition: navPosition });
     this.props.onNavigate(navPosition);
 
@@ -26,7 +25,7 @@ export default class Footer extends React.Component {
   }
 
   navForward(){
-    const navPosition = (this.state.navPosition += 1);
+    const navPosition = this.state.navPosition + 1;
     this.setState({ navPosition: navPosition });
     this.props.onNavigate(navPosition);
     if (navPosition > 1) this.setState({ showNavBackward: true });
