@@ -16,6 +16,10 @@ export default class App extends React.Component {
     this.navigate = this.navigate.bind(this);
   }
 
+  componentDidMount(){
+    console.log('welcome to pppaaattt')
+  }
+
   navigate(navPosition){
     this.setState({navPosition: parseInt(navPosition)});
   }
@@ -23,7 +27,7 @@ export default class App extends React.Component {
   render(){
     return (
       <div className="App">
-        {/* <Header title={"PPPAAATTT"} /> */}
+        {<Header title={"PPPAAATTT"} />}
         <Canvas navPosition={this.state.navPosition} category={'brand'} />
         <Canvas navPosition={this.state.navPosition} shape={'triangles'} />
         <Canvas navPosition={this.state.navPosition} shape={'triangles'} />
