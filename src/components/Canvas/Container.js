@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 
-// I kind of love this
 // https://github.com/styled-components/styled-components/issues/1746#issuecomment-434224968
 
 const ContainerComponent = styled.div`

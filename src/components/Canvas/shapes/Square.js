@@ -2,7 +2,6 @@ import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import Colors from '../../../utils/Colors';
 
-// I kind of love this
 // https://github.com/styled-components/styled-components/issues/1746#issuecomment-434224968
 
 // keyframe must be declared first
