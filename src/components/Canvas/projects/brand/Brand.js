@@ -1,6 +1,7 @@
 import React from "react";
 import Container from "../../Container";
 import Letter from "../../text/Letter";
+import styled from "styled-components";
 
 // Concept:
 
@@ -14,6 +15,20 @@ import Letter from "../../text/Letter";
 // animations
 // animations randomized
 
+const BackgroundComponent = styled.div`
+  content: ${(props) => props.style.height || "initial"};
+  height: ${(props) => props.style.height};
+  width: ${(props) => props.style.width || "initial"};
+  /* TODO: restore these when new component created */
+  position: ${(props) => props.style.position || "absolute"};
+  top: ${(props) => props.style.top || 0};
+  left: ${(props) => props.style.left || 0};
+  right: ${(props) => props.style.right || "initial"};
+  background: ${(props) => props.style.background || "red"};
+  border: ${(props) => props.style.border || "none"};
+  text-align: center;
+`;
+
 export default class Brand extends React.Component {
   BRAND_TEXT = "PPPAAATTT";
   BRAND_HEIGHT = 200;
@@ -23,8 +38,10 @@ export default class Brand extends React.Component {
     super(props);
     this.state = {
       style: {
-        backgroundColor: "blank",
-        units: "px",
+        height: '100%',
+        width: '100%',
+        backgroundColor: "red",
+        zIndex: -1
       },
     };
   }
@@ -196,10 +213,17 @@ export default class Brand extends React.Component {
     )
   }
 
+  renderBackground(){
+    return (
+      <BackgroundComponent style={this.state.style} />
+    );
+  }
+
   render() {
     return (
       <div>
         {this.renderBrand()}
+        {this.renderBackground()}
       </div>
     );
   }
