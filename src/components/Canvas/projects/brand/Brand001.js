@@ -38,20 +38,20 @@ export default class Brand extends React.Component {
     super(props);
     this.state = {
       style: {
-        height: '100%',
-        width: '100%',
+        height: "100%",
+        width: "100%",
         backgroundColor: "red",
-        zIndex: -1
+        zIndex: -1,
       },
     };
   }
 
   componentDidMount() {
-    // console.log('hello from Brand')
+    // console.log('hello from Brand 1')
   }
 
-  equilateralWidth(height){
-    return height * 2 / Math.sqrt(3);
+  equilateralWidth(height) {
+    return (height * 2) / Math.sqrt(3);
   }
 
   // https://dev.to/walecloud/updating-react-nested-state-properties-ga6
@@ -62,20 +62,20 @@ export default class Brand extends React.Component {
     this.setState({ style: currentStyle });
   }
 
-  setLetterHeight(index){
+  setLetterHeight(index) {
     return this.BRAND_HEIGHT / 2;
   }
 
-  setLetterWidth(index){
+  setLetterWidth(index) {
     return this.BRAND_WIDTH / 2;
   }
 
-  setLetterTop(index, letterHeight){
+  setLetterTop(index, letterHeight) {
     return index === 0 ? "0" : "50%";
   }
 
-  setLetterLeft(index, letterWidth){
-    if (index === 0){
+  setLetterLeft(index, letterWidth) {
+    if (index === 0) {
       return letterWidth / 2;
     } else {
       return index === 1 ? "0" : letterWidth;
@@ -83,7 +83,7 @@ export default class Brand extends React.Component {
   }
 
   // P
-  renderLetterContainer(letter, i){
+  renderLetterContainer(letter, i) {
     const letterHeight = this.setLetterHeight(i);
     const letterWidth = this.setLetterWidth(i);
     const letterTop = this.setLetterTop(i, letterHeight);
@@ -111,32 +111,32 @@ export default class Brand extends React.Component {
     );
   }
 
-  setClusterHeight(index){
+  setClusterHeight(index) {
     return this.BRAND_HEIGHT;
   }
 
-  setClusterWidth(index){
+  setClusterWidth(index) {
     return this.BRAND_WIDTH;
   }
 
-  setClusterLetterTop(index, letterHeight){
-    return index === 0 ? '0' : '50%';
+  setClusterLetterTop(index, letterHeight) {
+    return index === 0 ? "0" : "50%";
   }
 
-  setClusterLetterLeft(index, letterWidth){
-    if (index === 0){
-      return "calc(50% - " + letterWidth / 2 + "px)"
+  setClusterLetterLeft(index, letterWidth) {
+    if (index === 0) {
+      return "calc(50% - " + letterWidth / 2 + "px)";
     } else {
-      return index === 1 ? '0' : 'initial'; // go off right for last one
+      return index === 1 ? "0" : "initial"; // go off right for last one
     }
   }
 
-  setClusterLetterRight(index, letterWidth){
-    return index === 2 ? '0' : 'intial';
+  setClusterLetterRight(index, letterWidth) {
+    return index === 2 ? "0" : "intial";
   }
 
   // "PPPAAATTT" => ["PPP", "AAA", "TTT"]
-  splitBrandText(){
+  splitBrandText() {
     // https://stackoverflow.com/a/8359929 mad lad
     return this.BRAND_TEXT.match(/.{1,3}/g);
   }
@@ -144,7 +144,7 @@ export default class Brand extends React.Component {
   // cluster letter has sub triangle with 3 of same letter
   //    P
   //   P P
-  renderClusterLetter(text, index){
+  renderClusterLetter(text, index) {
     const clusterHeight = this.setClusterHeight(index);
     const clusterWidth = this.setClusterWidth(index);
     const clusterTop = this.setClusterLetterTop(index, clusterHeight);
@@ -178,10 +178,10 @@ export default class Brand extends React.Component {
   //  A   T
   // A A T T
 
-  renderCluster(){
+  renderCluster() {
     const height = this.BRAND_HEIGHT;
     const width = this.BRAND_WIDTH;
-    const background = '#000';
+    const background = "#000";
     const borderWidth = height / 4;
     return (
       <Container
@@ -205,18 +205,12 @@ export default class Brand extends React.Component {
   }
 
   // front and center
-  renderBrand(){
-    return (
-      <div>
-        {this.renderCluster()}
-      </div>
-    )
+  renderBrand() {
+    return <div>{this.renderCluster()}</div>;
   }
 
-  renderBackground(){
-    return (
-      <BackgroundComponent style={this.state.style} />
-    );
+  renderBackground() {
+    return <BackgroundComponent style={this.state.style} />;
   }
 
   render() {
