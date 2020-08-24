@@ -14,6 +14,7 @@ const ContainerComponent = styled.div`
   right: ${(props) => props.style.right || "initial"};
   background: ${(props) => props.style.background || "red"};
   border: ${(props) => props.style.border || "none"};
+  cursor: ${(props) => props.style.cursor || "auto"};
   text-align: center;
 
   /* TODO: create FlexContainer, etc. for inherited class */
@@ -49,6 +50,7 @@ export default class Container extends React.Component {
     if (styles.right) this.setStyle("right", styles.right);
     if (styles.background) this.setStyle("background", styles.background);
     if (styles.border) this.setStyle("border", styles.border);
+    if (styles.cursor) this.setStyle("cursor", styles.cursor);
   }
 
   // https://dev.to/walecloud/updating-react-nested-state-properties-ga6

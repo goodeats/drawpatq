@@ -33,6 +33,7 @@ export default class Brand extends React.Component {
 
   componentDidMount() {
     // console.log('hello from Brand')
+    // document.getElementsByTagName("footer")[0].focus();
   }
 
   equilateralWidth(height){
@@ -177,6 +178,7 @@ export default class Brand extends React.Component {
           left: "calc(50% - " + (width + borderWidth) + "px)",
           background: background,
           border: borderWidth + "px solid" + background,
+          // cursor: 'pointer' # TODO: make brand clickable to navigate
         }}
         content={
           <div>
@@ -189,13 +191,17 @@ export default class Brand extends React.Component {
     );
   }
 
+  // TODO: a way to help activate the nav scrolling
+  handleClick(e){
+    document.getElementsByTagName('footer')[0].focus();
+    // console.log(document.activeElement);
+  }
+
   // front and center
   renderBrand(){
     return (
-      <div>
-        {this.renderCluster()}
-      </div>
-    )
+      <div onClick={(e) => this.handleClick(e)}>{this.renderCluster()}</div>
+    );
   }
 
   render() {

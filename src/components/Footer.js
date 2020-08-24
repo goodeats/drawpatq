@@ -8,8 +8,8 @@ export default class Footer extends React.Component {
     this.state = {
       navPosition: 0,
       showNavBackward: false,
-      showNavForward: true
-
+      showNavForward: true,
+      inFocus: false
     };
     this.navBack = this.navBack.bind(this);
     this.navForward = this.navForward.bind(this);
@@ -40,6 +40,18 @@ export default class Footer extends React.Component {
     }
   }
 
+  // TODO: clicking brand logo should focus on footer to navigate by L/R arrow keys
+  // the idea was to make it easy ux on mobile and desktop to cycle through brands
+  handleFocus(){
+    // console.log('focus')
+    // this.setState({inFocus: true})
+  }
+
+  handleBlur(){
+    // console.log('Blur')
+    // this.setState({inFocus: false})
+  }
+
   render() {
     // https://medium.com/@dmitrynozhenko/9-ways-to-implement-css-in-react-js-ccea4d543aa3
     const footer = {
@@ -57,6 +69,7 @@ export default class Footer extends React.Component {
       backgroundColor: "rgba(0,0,0,-0.5)", // TODO: show title on mouse move
       fontSize: "calc(10px + 2vmin)",
       color: "#000",
+      outline: 'none',
       zIndex: "1",
     };
 
@@ -64,18 +77,22 @@ export default class Footer extends React.Component {
       <footer
         style={footer}
         onKeyDown={(e) => this.onKeyPressed(e)}
-        tabIndex={'0'}
+        onFocus={this.handleFocus()}
+        onBlur={this.handleBlur()}
+        tabIndex={"0"}
       >
         <nav>
           <NavButton
             direction="back"
             disabled={this.state.showNavBackward}
             onClick={this.navBack}
+            visible={this.state.inFocus}
           />
           <NavButton
             direction="forward"
             disabled={this.state.showNavForward}
             onClick={this.navForward}
+            visible={this.state.inFocus}
           />
         </nav>
       </footer>
