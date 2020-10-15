@@ -5,6 +5,7 @@ import SquareContainer from "./Canvas/shapes/SquareContainer";
 import Brand000 from "./Canvas/projects/brand/Brand000";
 import Brand001 from "./Canvas/projects/brand/Brand001";
 import Brand002 from "./Canvas/projects/brand/Brand002";
+// import Brand003 from "./Canvas/projects/brand/Brand003";
 
 const CanvasComponent = styled.main`
   display: flex;
@@ -30,7 +31,8 @@ export default class Canvas extends React.Component {
     this.setState({ count: Math.max(10 * this.props.navPosition, 1) });
   }
 
-  BRANDS = [<Brand000 />, <Brand001 />, <Brand002 />];
+  BRANDS = [<Brand000 />, <Brand001 />, <Brand002 />];//, <Brand003/>];
+  // BRANDS = [<Brand003/>];
 
   getBrandIndex(){
     const navPos = this.props.navPosition;
