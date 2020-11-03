@@ -20,7 +20,10 @@ const ListComponent = styled.ul`
   padding: 20px;
   list-style: none;
   text-align: center;
-  overflow-y: auto;
+
+  /* for smooth scrolling */
+  overflow-y: scroll; /* has to be scroll, not auto */
+  -webkit-overflow-scrolling: touch;
 `;
 
 const ListItemComponent = styled.li`
