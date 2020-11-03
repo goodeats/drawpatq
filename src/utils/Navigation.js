@@ -6,6 +6,7 @@ import ColorTriangles from '../components/Canvas/projects/triangles/ColorTriangl
 import ShadedTriangles from '../components/Canvas/projects/triangles/ShadedTriangles';
 import TintedTriangles from '../components/Canvas/projects/triangles/TintedTriangles';
 import ShadedAndTintedTriangles from '../components/Canvas/projects/triangles/ShadedAndTintedTriangles';
+import AlignedTriangles from "../components/Canvas/projects/triangles/AlignedTriangles";
 
 const Navigation = {
   hello: function () {
@@ -20,6 +21,7 @@ const Navigation = {
     ['shaded triangles', <ShadedTriangles />],
     ['tinted triangles', <TintedTriangles />],
     ['shades and tints', <ShadedAndTintedTriangles />],
+    ['in a row', <AlignedTriangles />],
     // in a line
     // clusters
     // groups of colors
