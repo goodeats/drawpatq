@@ -4,7 +4,7 @@ import Colors from '../../../../utils/Colors';
 import Styles from '../../../../utils/Styles';
 import Maths from '../../../../utils/Maths';
 
-export default class AlignedTriangles extends React.Component {
+export default class ClusteredTriangles extends React.Component {
 
   constructor(props) {
     super(props)
@@ -21,12 +21,10 @@ export default class AlignedTriangles extends React.Component {
         maxShade: 0.3
       },
       count: 200,
-      position: {
-        minTop: 20,
-        maxTop: 80,
-        minLeft: 20,
-        maxLeft: 80
-      }
+      minTop: 20,
+      maxTop: 80,
+      minLeft: 20,
+      maxLeft: 80,
     };
   }
 
@@ -45,10 +43,10 @@ export default class AlignedTriangles extends React.Component {
     const colorState = this.state.color;
     const attributes = this.state.attributes;
 
-    const minTop = this.state.position.minTop;
-    const maxTop = this.state.position.maxTop;
-    const minLeft = this.state.position.minLeft;
-    const maxLeft = this.state.position.maxLeft;
+    const minTop = this.state.minTop;
+    const maxTop = this.state.maxTop;
+    const minLeft = this.state.minLeft;
+    const maxLeft = this.state.maxLeft;
 
     const xAxis = Maths.randomNumber(maxLeft, minLeft) + '%';
     const yAxis = Maths.randomNumber(maxTop, minTop) + '%';

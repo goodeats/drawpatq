@@ -5,6 +5,7 @@ import Navigation from '../utils/Navigation';
 import Title from './Title';
 
 const CanvasListComponent = styled.main`
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -19,6 +20,7 @@ const ListComponent = styled.ul`
   padding: 20px;
   list-style: none;
   text-align: center;
+  overflow-y: auto;
 `;
 
 const ListItemComponent = styled.li`
@@ -47,9 +49,7 @@ export default class CanvasList extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-
-    }
+    this.state = {}
     this.handleClick = this.handleClick.bind(this);
   }
 
@@ -77,7 +77,6 @@ export default class CanvasList extends React.Component {
             )
           })}
         </ListComponent>
-
       </CanvasListComponent>
     );
   }
