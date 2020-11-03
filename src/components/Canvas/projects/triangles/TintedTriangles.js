@@ -26,7 +26,7 @@ export default class TintdTriangles extends React.Component {
     return (
       <div>
         {Array.from(Array(500), (e, i) => {
-          const tintFactor = Maths.randomNumber(minTint, maxTint);
+          const tintFactor = Maths.randomNumber(maxTint, minTint);
           colorState.tintFactor = tintFactor;
           const color = Colors.getRandomRgbaTint(colorState)
           return <Triangle key={i} lowerWidth={20} upperWidth={40} color={color}/>;

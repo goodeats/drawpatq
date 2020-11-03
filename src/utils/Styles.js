@@ -7,14 +7,14 @@ const Styles = {
   },
 
   setTint: function (colorState) {
-    const tintFactor = Maths.randomNumber(colorState.minTint, colorState.maxTint);
+    const tintFactor = Maths.randomNumber(colorState.maxTint, colorState.minTint);
     colorState.tintFactor = tintFactor;
 
     return Colors.getRandomRgbaTint(colorState)
   },
 
   setShade: function (colorState) {
-    const shadeFactor = Maths.randomNumber(colorState.minShade, colorState.maxShade);
+    const shadeFactor = Maths.randomNumber(colorState.maxShade, colorState.minShade);
     colorState.shadeFactor = shadeFactor;
 
     return Colors.getRandomRgbaShade(colorState)

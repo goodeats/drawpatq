@@ -26,7 +26,7 @@ export default class ShadedTriangles extends React.Component {
     return (
       <div>
         {Array.from(Array(500), (e, i) => {
-          const shadeFactor = Maths.randomNumber(minShade, maxShade);
+          const shadeFactor = Maths.randomNumber(maxShade, minShade);
           colorState.shadeFactor = shadeFactor;
           const color = Colors.getRandomRgbaShade(colorState)
           return <Triangle key={i} lowerWidth={20} upperWidth={40} color={color}/>;

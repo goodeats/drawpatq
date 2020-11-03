@@ -40,7 +40,7 @@ export default class Triangle extends React.Component {
   // this calc works to fill the triangles on the edges of the whole view
   // the furthest off the view can only be half
   setRandomPos(){
-    return "calc(" + Maths.randomNumber(100) + "% - " + this.state.height / 2 + "px)";
+    return "calc(" + Maths.randomNumber(100, 0) + "% - " + this.state.height / 2 + "px)";
   }
 
   // setting to equilateral

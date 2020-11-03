@@ -24,7 +24,6 @@ const Navigation = {
     ['shades and tints', <ShadedAndTintedTriangles />],
     ['in a row', <AlignedTriangles />],
     ['clustered', <ClusteredTriangles />],
-    // clusters
     // groups of colors
     // rainbow
     // moving random absolute positions

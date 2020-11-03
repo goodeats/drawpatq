@@ -53,6 +53,11 @@ export default class CanvasList extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
+  componentDidMount(){
+    // preload => uncomment when in dev
+    // this.props.onSelect('triangles')
+  }
+
   handleClick(e){
     e.preventDefault();
     this.props.onSelect(e.target.innerText)
