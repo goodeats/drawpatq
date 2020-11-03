@@ -7,6 +7,10 @@ const Maths = {
   // https://www.geeksforgeeks.org/how-to-generate-random-number-in-given-range-using-javascript/
   randomNumber: function(min, max){
     return Math.random() * (max - min) + min;
+  },
+
+  getRandomInt: function(max, min = 0) {
+    return Math.random() * (Math.floor(max) - Math.floor(min)) + min;
   }
 };
 

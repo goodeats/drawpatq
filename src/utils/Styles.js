@@ -20,6 +20,10 @@ const Styles = {
     return Colors.getRandomRgbaShade(colorState)
   },
 
+  setOpacity: function (){
+    return Math.random();
+  },
+
 };
 
 export default Styles;
