@@ -62,6 +62,7 @@ export default class Footer extends React.Component {
       left: '0',
       marginBottom: "0",
       display: "flex",
+      display: "none", // hiding footer 👈👉
       flexDirection: "column",
       alignItems: "center",
       justifyContent: "center",

@@ -16,7 +16,7 @@ import Letter from "../../text/Letter";
 
 export default class Brand extends React.Component {
   BRAND_TEXT = "PPPAAATTT";
-  BRAND_HEIGHT = 200;
+  BRAND_HEIGHT = this.props.height || 100;
   BRAND_WIDTH = this.equilateralWidth(this.BRAND_HEIGHT);
 
   constructor(props) {
@@ -89,7 +89,8 @@ export default class Brand extends React.Component {
             letter={letter}
             index={i}
             styles={{
-              color: "#fff",
+              color: "#000",
+              fontSize: this.BRAND_HEIGHT / 2
             }}
           />
         }
@@ -167,18 +168,14 @@ export default class Brand extends React.Component {
   renderCluster(){
     const height = this.BRAND_HEIGHT;
     const width = this.BRAND_WIDTH;
-    const background = '#000';
-    const borderWidth = height / 4;
     return (
       <Container
         styles={{
           height: height * 2,
           width: width * 2,
-          top: "calc(50% - " + (height + borderWidth) + "px)",
-          left: "calc(50% - " + (width + borderWidth) + "px)",
-          background: background,
-          border: borderWidth + "px solid" + background,
-          // cursor: 'pointer' # TODO: make brand clickable to navigate
+          top: 0,
+          left: 0,
+          // background: '#fff'
         }}
         content={
           <div>
@@ -191,17 +188,8 @@ export default class Brand extends React.Component {
     );
   }
 
-  // TODO: a way to help activate the nav scrolling
-  handleClick(e){
-    document.getElementsByTagName('footer')[0].focus();
-    // console.log(document.activeElement);
-  }
-
-  // front and center
   renderBrand(){
-    return (
-      <div onClick={(e) => this.handleClick(e)}>{this.renderCluster()}</div>
-    );
+    return this.renderCluster();
   }
 
   render() {

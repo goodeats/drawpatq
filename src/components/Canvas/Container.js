@@ -12,7 +12,7 @@ const ContainerComponent = styled.div`
   top: ${(props) => props.style.top || 0};
   left: ${(props) => props.style.left || 0};
   right: ${(props) => props.style.right || "initial"};
-  background: ${(props) => props.style.background || "red"};
+  background: ${(props) => props.style.background || "none"};
   border: ${(props) => props.style.border || "none"};
   cursor: ${(props) => props.style.cursor || "auto"};
   text-align: center;
@@ -29,9 +29,9 @@ export default class Container extends React.Component {
     super(props);
     this.state = {
       style: {
-        height: "100px",
-        width: "100px",
-        background: "red",
+        // height: "100px",
+        // width: "100px",
+        // background: "red",
       },
     };
   }

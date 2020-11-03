@@ -9,7 +9,6 @@ const LetterComponent = styled.span`
   left: 0; */
   font-size: 100px;
   font-size: ${(props) => props.style.fontSize};
-  line-height: ${(props) => props.style.lineheight || "100px"};
 `;
 
 export default class Letter extends React.Component {
@@ -17,8 +16,7 @@ export default class Letter extends React.Component {
     super(props);
     this.state = {
       style: {
-        fontSize: "100px",
-        lineHeight: "100px",
+        fontSize: this.props.fontSize || "100px",
         color: "#000",
         fontFamily: "Helvetica,sans-serif", // in honor of https://designisonefilm.com/
       },

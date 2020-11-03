@@ -1,43 +1,37 @@
 import React from 'react';
 import './App.css';
-import Header from "./components/Header";
 import Canvas from "./components/Canvas";
-import Footer from "./components/Footer";
+import CanvasList from "./components/CanvasList";
+import Watermark from "./components/Watermark";
 
 export default class App extends React.Component {
 
   constructor(props){
     super(props);
     this.state = {
-      navPosition: 0,
-      showNavBackward: false,
-      showNavForward: true
+      selectedCanvas: null
     };
-    this.navigate = this.navigate.bind(this);
+    this.goHome = this.goHome.bind(this);
+    this.selectCanvas = this.selectCanvas.bind(this);
   }
 
   componentDidMount(){
     console.log('welcome to pppaaattt')
   }
 
-  navigate(navPosition){
-    this.setState({navPosition: parseInt(navPosition)});
-  }
+  goHome(){ this.setState({ selectedCanvas: null }); }
+  selectCanvas(selectedCanvas){ this.setState({ selectedCanvas }); }
 
   render(){
+    const selectedCanvas = this.state.selectedCanvas;
+
     return (
       <div className="App">
-        {<Header title={"PPPAAATTT"} />}
-        <Canvas navPosition={this.state.navPosition} category={'brand'} />
-        <Canvas navPosition={this.state.navPosition} shape={'triangles'} />
-        <Canvas navPosition={this.state.navPosition} shape={'triangles'} />
-        <Canvas navPosition={this.state.navPosition} shape={'triangles'} />
-        <Canvas navPosition={this.state.navPosition} shape={'triangles'} />
-        <Canvas navPosition={this.state.navPosition} shape={'triangles'} />
-        <Footer
-          navPosition={this.state.navPosition}
-          onNavigate={this.navigate}
-        />
+        {selectedCanvas && <Watermark onClick={this.goHome} />}
+        {selectedCanvas ?
+          <Canvas title={selectedCanvas} /> :
+          <CanvasList onSelect={this.selectCanvas} />
+        }
       </div>
     );
   }

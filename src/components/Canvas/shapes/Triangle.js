@@ -1,5 +1,6 @@
 import React from 'react';
 import './Triangle.css';
+import Colors from '../../../utils/Colors';
 
 export default class Triangle extends React.Component {
 
@@ -51,12 +52,8 @@ export default class Triangle extends React.Component {
   }
 
   setBorderColor(){
-    return 'transparent transparent #' + this.getRandomHex() + ' transparent';
-  }
-
-  // https://www.paulirish.com/2009/random-hex-color-code-snippets/
-  getRandomHex(){
-    return Math.floor(Math.random() * 16777215).toString(16);
+    const color = this.props.color || Colors.getRandomHex();
+    return `transparent transparent ${color} transparent`;
   }
 
   setOpacity(){

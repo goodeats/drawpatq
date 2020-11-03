@@ -1,0 +1,13 @@
+const Distance = {
+  hello: function () {
+    console.log("hi from distance");
+  },
+
+  // 100 => ~115.47...
+  equilateralWidth(height) {
+    return (height * 2) / Math.sqrt(3);
+  }
+
+};
+
+export default Distance;
