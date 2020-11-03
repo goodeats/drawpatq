@@ -4,6 +4,7 @@ import LittleTriangles from '../components/Canvas/projects/triangles/LittleTrian
 import TooManyTriangles from '../components/Canvas/projects/triangles/TooManyTriangles';
 import ColorTriangles from '../components/Canvas/projects/triangles/ColorTriangles';
 import ShadedTriangles from '../components/Canvas/projects/triangles/ShadedTriangles';
+import TintedTriangles from '../components/Canvas/projects/triangles/TintedTriangles';
 
 const Navigation = {
   hello: function () {
@@ -16,6 +17,7 @@ const Navigation = {
     ['too many triangles', <TooManyTriangles />],
     ['transparent triangles', <ColorTriangles />],
     ['shaded triangles', <ShadedTriangles />],
+    ['tinted triangles', <TintedTriangles />],
     // slightly different shades, tints
     // in a line
     // clusters

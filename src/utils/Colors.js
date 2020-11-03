@@ -38,11 +38,18 @@ const Colors = {
   },
 
   // https://stackoverflow.com/questions/6615002/given-an-rgb-value-how-do-i-create-a-tint-or-shade
-  getRandomRgbaShade: function(options){
+  getRandomRgbaShade: function (options) {
     const shadeFactor = options.shadeFactor;
     const r = this.getShadedColorValue(options.r, shadeFactor);
     const g = this.getShadedColorValue(options.g, shadeFactor);
     const b = this.getShadedColorValue(options.b, shadeFactor);
+    return `rgba(${r}, ${g}, ${b}, ${options.a})`
+  },
+  getRandomRgbaTint: function (options) {
+    const tintFactor = options.tintFactor;
+    const r = this.getTintedColorValue(options.r, tintFactor);
+    const g = this.getTintedColorValue(options.g, tintFactor);
+    const b = this.getTintedColorValue(options.b, tintFactor);
     return `rgba(${r}, ${g}, ${b}, ${options.a})`
   },
 
