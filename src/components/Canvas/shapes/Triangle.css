@@ -17,4 +17,7 @@
   border-width: 0 100px 173.2px 100px;
   /* 2020 color of the year https://www.pantone.com/color-finder/19-4052-TCX */
   border-color: transparent transparent #0F4C81 transparent;
+  /* current setup has this fun fact above no longer desired, but need to display certain failure, so... */
+  /* some gold for your busted triangle */
+  border-color: transparent transparent gold transparent;
 }
