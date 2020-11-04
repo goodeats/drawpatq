@@ -5,23 +5,39 @@ import Navigation from '../utils/Navigation';
 import Title from './Title';
 
 const CanvasListComponent = styled.main`
-  height: 100vh;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0%;
+
+  /* https://stackoverflow.com/a/27461685 */
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  > div {
-    flex: 1;
-  }
+  overflow: hidden;
+`;
+
+const ListContainterComponent = styled.div`
+  overflow: hidden;
+  flex-grow: 1;
+  position: relative;
 `;
 
 const ListComponent = styled.ul`
+  height: auto;
   width: 100%;
-  padding: 20px;
+  padding: 20px 0;
   list-style: none;
   text-align: center;
 
   /* for smooth scrolling */
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+
+  /* flex: 0 1 auto; */
+  overflow: auto;
   overflow-y: scroll; /* has to be scroll, not auto */
   -webkit-overflow-scrolling: touch;
 `;
@@ -70,21 +86,23 @@ export default class CanvasList extends React.Component {
     return (
       <CanvasListComponent>
         <Title title={'pppaaattt'} />
-        <ListComponent>
-          {Navigation.projectTitles().map((listItem, key) => {
-            return (
-              <ListItemLinkComponent
-                key={key}
-                href={'#'}
-                onClick={this.handleClick}
-              >
-                <ListItemComponent>
-                  {listItem}
-                </ListItemComponent>
-              </ListItemLinkComponent>
-            )
-          })}
-        </ListComponent>
+        <ListContainterComponent>
+          <ListComponent>
+            {Navigation.projectTitles().map((listItem, key) => {
+              return (
+                <ListItemLinkComponent
+                  key={key}
+                  href={'#'}
+                  onClick={this.handleClick}
+                >
+                  <ListItemComponent>
+                    {listItem}
+                  </ListItemComponent>
+                </ListItemLinkComponent>
+              )
+            })}
+          </ListComponent>
+        </ListContainterComponent>
       </CanvasListComponent>
     );
   }
