@@ -10,6 +10,10 @@ const Distance = {
   // 100 => ~173.21...
   equilateralHeight: function(width) {
     return width * Math.sqrt(3);
+  },
+
+  positionAtIndex: function (length, index, count){
+    return length * (index / count);
   }
 
 };

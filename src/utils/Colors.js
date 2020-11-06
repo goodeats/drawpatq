@@ -11,6 +11,11 @@ const Colors = {
     console.log("hi from colors");
   },
 
+  // for debugging
+  logColor: function(color, title = 'color'){
+    return `${title} -- r: ${color.r}, g: ${color.g}, b: ${color.b}`
+  },
+
   // https://www.paulirish.com/2009/random-hex-color-code-snippets/
   getRandomHex: function () {
     return '#' + Math.floor(Math.random() * 16777215).toString(16);

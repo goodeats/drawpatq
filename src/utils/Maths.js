@@ -11,7 +11,14 @@ const Maths = {
 
   getRandomInt: function(max, min = 0) {
     return Math.random() * (Math.floor(max) - Math.floor(min)) + min;
-  }
+  },
+
+  isEven: function (int) {
+    return int % 2 === 0;
+  },
+  isOdd: function (int) {
+    return int % 2 !== 0;
+  },
 };
 
 export default Maths;

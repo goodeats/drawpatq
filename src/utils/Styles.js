@@ -6,6 +6,33 @@ const Styles = {
     console.log("hi from styles");
   },
 
+  defaultStyle: function(){
+    const steez = {
+      a: 1,
+      minTint: 0.1,
+      maxTint: 0.3,
+      minShade: 0.1,
+      maxShade: 0.3
+    // r: 255, g: 255, b: 0
+    }
+    return steez;
+  },
+
+  buildColor: function (styleBuild, options = {}) {
+    return Object.assign(this.defaultStyle(), styleBuild);
+  },
+
+  setColor: function (colorState, effect){
+    switch (effect) {
+      case 'tint':
+        return Styles.setTint(colorState);
+      case 'shade':
+        return Styles.setShade(colorState);
+      default:
+        return Colors.getRandomRgba(colorState)
+    }
+  },
+
   setTint: function (colorState) {
     const tintFactor = Maths.randomNumber(colorState.maxTint, colorState.minTint);
     colorState.tintFactor = tintFactor;
