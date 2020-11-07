@@ -1,13 +1,20 @@
 import React from 'react';
-import styled from "styled-components";
-import Container from "../../Container";
-import StripeTriange from './USATriangles/StripeTriangle';
 import Triangle from '../../shapes/Triangle';
 import Styles from '../../../../utils/Styles';
 import Maths from '../../../../utils/Maths';
 import Arrays from '../../../../utils/Arrays';
 import Distance from '../../../../utils/Distance';
+import Stripes from './USATriangles/Stripes';
+import styled from 'styled-components';
 
+const USAComponent = styled.div`
+  position: absolute;
+  height: 60%;
+  width: 60%;
+  top: 20%;
+  left: 20%;
+  background: red;
+`;
 export default class USATriangles extends React.Component {
 
   // https://flagcolor.com/american-flag-colors/
@@ -24,19 +31,22 @@ export default class USATriangles extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      attributes: ['none', 'shade', 'tint'],
+      attributes: ["none", "shade", "tint"],
       count: 100,
       position: {
         minTop: 20,
         maxTop: 80,
         minLeft: 20,
-        maxLeft: 80
+        maxLeft: 80,
+        height: 60, // make equal to diff of min/max top
+        width: 60, // make equal to diff of min/max left
+        background: 'gold'
       },
       stripeCount: 13,
       blueCount: 500,
       starLineCount: 11,
       starClusterCount: 4,
-      starPadding: 3
+      starPadding: 3,
     };
   }
 
@@ -44,60 +54,6 @@ export default class USATriangles extends React.Component {
     const attribute = Arrays.rotateNextIndex(this.state.attributes, index);
     return Styles.setColor(colorState, attribute);
   }
-
-  getStripeYAxis(top, height, stripeIndex, stripeCount){
-    const stripePosition = Distance.positionAtIndex(height, stripeIndex, stripeCount)
-    const yAxis = stripePosition + top;
-    return yAxis + '%';
-  }
-
-  renderStripeTriangle(index, colorState, position){
-    // position along stripe
-    const left = Maths.randomNumber(position.maxLeft, position.minLeft) + '%';
-
-    // shade/tint stripe triangles
-    const color = this.setColor(index, colorState);
-
-    return (
-      <StripeTriange
-        key={`stripe-${index}`}
-        top={position.yAxis}
-        left={left}
-        lowerWidth={10}
-        upperWidth={20}
-        color={color}
-      />
-    );
-  }
-
-  renderStripe(position, colorState){
-    return Array.from(Array(this.state.count), (e, index) => {
-      return this.renderStripeTriangle(index, colorState, position)
-    })
-  }
-
-  renderStripes(){
-    let position = this.state.position;
-    const height = position.maxTop - position.minTop;
-
-    const stripeCount = this.state.stripeCount;
-
-    return(
-      <div>
-        {Array.from(Array(stripeCount), (e, stripeIndex) => {
-          // stripe position
-          position.yAxis = this.getStripeYAxis(position.minTop, height, stripeIndex, stripeCount);
-
-          // stripe color
-          const isRed = Maths.isEven(stripeIndex); // first red stripe at index 0 🤓
-          const colorState = isRed ? this.COLOR_STATE_RED : this.COLOR_STATE_WHITE;
-
-          return this.renderStripe(position, colorState)
-        })}
-      </div>
-    )
-  }
-
   renderBlueBackground(position){
     return(
       <div id="container-blue-background">
@@ -164,7 +120,7 @@ export default class USATriangles extends React.Component {
       top: 0,
       left: position.xAxis,
     };
-    console.log(position.xAxis)
+    // console.log(position.xAxis)
 
     return (
       <div
@@ -286,10 +242,14 @@ export default class USATriangles extends React.Component {
 
   render() {
     return (
-      <div>
-        {this.renderStripes()}
+      <USAComponent id="usa">
+        <Stripes
+          position={this.state.position}
+          red={this.COLOR_STATE_RED}
+          white={this.COLOR_STATE_WHITE}
+        />
         {this.renderBlue()}
-      </div>
+      </USAComponent>
     );
   }
 }
