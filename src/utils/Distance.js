@@ -20,6 +20,10 @@ const Distance = {
     return "calc(" + Maths.randomNumber(max, min) + "% - " + length / 2 + denomination + ")";
   },
 
+  paddedLength: function(length, padding){
+    return length - padding * 2;
+  },
+
   positionAtIndex: function (length, index, count){
     return length * (index / count);
   },
