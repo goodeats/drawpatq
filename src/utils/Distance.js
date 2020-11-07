@@ -14,6 +14,11 @@ const Distance = {
 
   positionAtIndex: function (length, index, count){
     return length * (index / count);
+  },
+  positionAtIndexOnAxis: function(length, index, count, padding = 0){
+    const position = this.positionAtIndex(length, index, count)
+    const axis = position + padding;
+    return axis + '%';
   }
 
 };

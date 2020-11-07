@@ -52,10 +52,11 @@ export default class ClusteredTriangles extends React.Component {
     const attributes = this.state.attributes;
     const colorState = this.state.color;
 
-    const minTop = this.state.position.minTop;
-    const maxTop = this.state.position.maxTop;
-    const minLeft = this.state.position.minLeft;
-    const maxLeft = this.state.position.maxLeft;
+    const position = this.state.position;
+    const minTop = position.minTop;
+    const maxTop = position.maxTop;
+    const minLeft = position.minLeft;
+    const maxLeft = position.maxLeft;
 
     return (
       <Container
