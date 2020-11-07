@@ -3,7 +3,11 @@ import './Triangle.css';
 import Colors from '../../../utils/Colors';
 import Maths from '../../../utils/Maths';
 import Distance from '../../../utils/Distance';
+import styled from 'styled-components';
 
+const TriangleComponent = styled.div`
+  position: absolute;
+`;
 export default class Triangle extends React.Component {
 
   UPPER_WIDTH = this.props.upperWidth || 40;
@@ -63,7 +67,7 @@ export default class Triangle extends React.Component {
 
   render(){
     return (
-      <div
+      <TriangleComponent
         className="Triangle Triangle-equilateral"
         style={{
           top: this.state.top,
@@ -73,7 +77,7 @@ export default class Triangle extends React.Component {
           opacity: this.state.opacity,
           transform: this.state.transform,
         }}
-      ></div>
+      />
     );
   }
 }

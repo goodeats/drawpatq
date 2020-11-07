@@ -1,8 +1,8 @@
 import React from "react";
 import Stripe from "./Stripe";
 // import Styles from "../../../../../utils/Styles";
-import Maths from "../../../../../utils/Maths";
-import Distance from "../../../../../utils/Distance";
+import Maths from "../../../../../../utils/Maths";
+import Distance from "../../../../../../utils/Distance";
 import styled from "styled-components";
 
 const StripeComponent = styled.div`

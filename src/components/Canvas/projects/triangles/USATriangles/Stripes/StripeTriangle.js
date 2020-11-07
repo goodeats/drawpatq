@@ -1,5 +1,5 @@
 import React from "react";
-import Triangle from "../../../shapes/Triangle";
+import Triangle from "../../../../shapes/Triangle";
 
 // the many triangles that fill in a red or white stripe
 

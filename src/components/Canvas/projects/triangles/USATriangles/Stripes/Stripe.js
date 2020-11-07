@@ -1,7 +1,7 @@
 import React from "react";
 import StripeTriangle from "./StripeTriangle";
-import Styles from "../../../../../utils/Styles";
-import Arrays from "../../../../../utils/Arrays";
+import Styles from "../../../../../../utils/Styles";
+import Arrays from "../../../../../../utils/Arrays";
 import styled from "styled-components";
 
 const StripeComponent = styled.div`
