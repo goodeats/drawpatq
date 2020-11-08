@@ -52,7 +52,6 @@ export default class Square extends React.Component {
 
   componentDidMount(){
     this.setHeight();
-    console.log(this.state.style.height);
     this.setBackgroundColor();
   }
 

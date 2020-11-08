@@ -16,8 +16,25 @@ export default class StarCluster extends React.Component {
       count: 10,
       style: {
         top: props.yAxis,
-      }
+        display: 'block'
+      },
     };
+  }
+
+  componentDidMount() {
+    this.setStyles();
+  }
+
+  // https://dev.to/walecloud/updating-react-nested-state-properties-ga6
+  setStyle(attr, value) {
+    const { style } = { ...this.state };
+    const currentStyle = style;
+    currentStyle[attr] = value;
+    this.setState({ style: currentStyle });
+  }
+
+  setStyles() {
+    if (this.props.hideCluster ) this.setStyle("display", 'none');
   }
 
   setColor(index, colorState) {
@@ -37,7 +54,7 @@ export default class StarCluster extends React.Component {
               key={id}
               id={id}
               top={this.state.yAxis}
-              color={"gold" || color}
+              color={color}
             />
           );
         })}

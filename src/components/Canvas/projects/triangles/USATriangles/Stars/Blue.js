@@ -1,7 +1,5 @@
 import React from "react";
-// import Styles from "../../../../../utils/Styles";
 import Styles from '../../../../../../utils/Styles'
-import Maths from "../../../../../../utils/Maths";
 import Arrays from "../../../../../../utils/Arrays";
 import Distance from "../../../../../../utils/Distance";
 import styled from "styled-components";
@@ -13,7 +11,6 @@ const BlueComponent = styled.div`
   width: 100%;
   top: 0;
   left: 0;
-  background: green;
 `;
 
 export default class Blue extends React.Component {
@@ -21,7 +18,7 @@ export default class Blue extends React.Component {
     super(props);
     this.state = {
       attributes: ["none", "shade", "tint"],
-      count: 100,
+      count: 4000,
       style: {
         top: props.yAxis,
       },
@@ -29,33 +26,21 @@ export default class Blue extends React.Component {
   }
 
   getStripeYAxis(height, stripeIndex, stripeCount, top) {
-    const stripePosition = Distance.positionAtIndex(
-      height,
-      stripeIndex,
-      stripeCount
-    );
+    const stripePosition = Distance.positionAtIndex(height, stripeIndex, stripeCount);
     const yAxis = stripePosition + top;
     return yAxis + "%";
   }
 
   render() {
-    const count = this.state.count;
-
     return(
       <BlueComponent id="container-blue-background">
         {Array.from(Array(this.state.count), (e, index) => {
-          // inside absolute position container
-          const top = Maths.randomNumber(100, 0) + '%';
-          const left = Maths.randomNumber(100, 0) + '%';
-
           // shade/tint stripe triangles
           const attribute = Arrays.rotateNextIndex(this.state.attributes, index);
           const color = Styles.setColor(this.props.blue, attribute);
 
           return <Triangle
             key={`blue-${index}`}
-            // top={top}
-            // left={left}
             lowerWidth={10}
             upperWidth={20}
             color={color}

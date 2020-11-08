@@ -11,7 +11,6 @@ const StripeComponent = styled.div`
   width: 100%;
   top: 0;
   left: 0;
-  background: blue;
 `;
 
 export default class Stripes extends React.Component {

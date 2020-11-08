@@ -1,6 +1,5 @@
 import React from "react";
 import StarClusterLine from "./StarClusterLine";
-import Styles from "../../../../../../utils/Styles";
 import Maths from "../../../../../../utils/Maths";
 import Distance from "../../../../../../utils/Distance";
 import styled from "styled-components";
@@ -15,7 +14,6 @@ const StarClusterLinesComponent = styled.div`
   width: 100%;
   top: 0;
   left: 0;
-  background: turquoise;
 `;
 
 export default class StarClusterLines extends React.Component {
@@ -47,8 +45,6 @@ export default class StarClusterLines extends React.Component {
     this.setStyle("width", paddedLength + "%");
     this.setStyle("top", padding + "%");
     this.setStyle("left", padding + "%");
-    this.setStyle("outline", "5px solid red");
-
   }
 
   getXAxis(length, index, count) {
@@ -71,6 +67,7 @@ export default class StarClusterLines extends React.Component {
               xAxis={xAxis}
               colorState={this.props.colorState}
               starCount={starCount}
+              fourStarPadding={this.state.padding}
             />
           );
         })}

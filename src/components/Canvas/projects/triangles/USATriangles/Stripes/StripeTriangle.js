@@ -8,6 +8,7 @@ export default class StripeTriangle extends React.Component {
     super(props);
     this.state = {
       style: {},
+      stripeCount: 11
     };
   }
 
@@ -28,11 +29,12 @@ export default class StripeTriangle extends React.Component {
   }
 
   render() {
+    const stripeCount = this.props.stripeCount;
     return (
       <Triangle
         top={this.props.top}
-        lowerWidth={10}
-        upperWidth={20}
+        lowerWidth={20 / stripeCount * 100}
+        upperWidth={10 / stripeCount * 100}
         color={this.props.color}
       />
     );
