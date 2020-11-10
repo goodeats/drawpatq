@@ -11,12 +11,16 @@ const StarsComponent = styled.div`
 `;
 
 export default class Stars extends React.Component {
+
+  STRIPE_COUNT = 13;
+  BLUE_HEIGHT_STRIPE_INDEX = 7;
+
   constructor(props) {
     super(props);
     this.state = {
       stripeCountBlueIndex: 7,
       stripeCount: 13,
-      style: {}
+      style: {},
     };
   }
 
@@ -32,9 +36,14 @@ export default class Stars extends React.Component {
     this.setState({ style: currentStyle });
   }
 
+  // https://www.inchcalculator.com/american-flag-size-proportions-calculator/
   setStyles() {
-    const height = this.state.stripeCountBlueIndex / this.state.stripeCount * 100 + "%";
+    const height =
+      (this.BLUE_HEIGHT_STRIPE_INDEX / this.STRIPE_COUNT) * 100 + "%";
     this.setStyle("height", height);
+
+    const width = (0.76 / 1.9) * 100 + "%";
+    this.setStyle("width", width);
   }
 
   render() {

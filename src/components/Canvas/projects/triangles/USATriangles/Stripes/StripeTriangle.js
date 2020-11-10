@@ -8,33 +8,15 @@ export default class StripeTriangle extends React.Component {
     super(props);
     this.state = {
       style: {},
-      stripeCount: 11
     };
   }
 
-  componentDidMount() {
-    this.setStyles();
-  }
-
-  // https://dev.to/walecloud/updating-react-nested-state-properties-ga6
-  setStyle(attr, value) {
-    const { style } = { ...this.state };
-    const currentStyle = style;
-    currentStyle[attr] = value;
-    this.setState({ style: currentStyle });
-  }
-
-  setStyles() {
-    this.setStyle("top", this.props.yAxis);
-  }
-
   render() {
-    const stripeCount = this.props.stripeCount;
     return (
       <Triangle
         top={this.props.top}
-        lowerWidth={20 / stripeCount * 100}
-        upperWidth={10 / stripeCount * 100}
+        lowerWidth={this.props.lowerWidth}
+        upperWidth={this.props.upperWidth}
         color={this.props.color}
       />
     );

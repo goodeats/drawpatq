@@ -11,16 +11,17 @@ const StripeComponent = styled.div`
   background: gold;
 `;
 
-
 export default class Stripe extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       attributes: ["none", "shade", "tint"],
       count: 300,
+      flagHeight: 60 / 1.9,
+      stripeCount: 13,
       style: {
-        top: props.yAxis
-      }
+        top: props.yAxis,
+      },
     };
   }
 
@@ -29,8 +30,18 @@ export default class Stripe extends React.Component {
     return Styles.setColor(colorState, attribute);
   }
 
+  setTriangleWidths() {
+    const flagHeightToPx = window.innerHeight * (this.state.flagHeight / 100);
+    const baseHeight = flagHeightToPx / this.state.stripeCount;
+    const buffer = 5;
+    const lowerWidth = baseHeight - buffer;
+    const upperWidth = baseHeight + buffer;
+    return { lowerWidth: lowerWidth, upperWidth: upperWidth };
+  }
+
   render() {
     const yAxis = this.props.yAxis;
+    const triangleWidths = this.setTriangleWidths()
 
     return (
       <StripeComponent id={this.props.id} style={this.state.style}>
@@ -43,6 +54,8 @@ export default class Stripe extends React.Component {
               key={`stripe-tri-${index}`}
               top={yAxis}
               color={color}
+              lowerWidth={triangleWidths.lowerWidth}
+              upperWidth={triangleWidths.upperWidth}
             />
           );
         })}

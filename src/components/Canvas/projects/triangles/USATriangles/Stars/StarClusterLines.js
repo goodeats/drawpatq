@@ -21,8 +21,8 @@ export default class StarClusterLines extends React.Component {
     super(props);
     this.state = {
       count: 11,
-      padding: 10,
-      style: {}
+      padding: 5.4, // https://www.inchcalculator.com/american-flag-size-proportions-calculator/
+      style: {},
     };
   }
 
@@ -67,7 +67,6 @@ export default class StarClusterLines extends React.Component {
               xAxis={xAxis}
               colorState={this.props.colorState}
               starCount={starCount}
-              fourStarPadding={this.state.padding}
             />
           );
         })}
