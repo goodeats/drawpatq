@@ -4,6 +4,7 @@ import Stripe from "./Stripe";
 import Maths from "../../../../../../utils/Maths";
 import Distance from "../../../../../../utils/Distance";
 import styled from "styled-components";
+import Arrays from "../../../../../../utils/Arrays";
 
 const StripeComponent = styled.div`
   position: absolute;
@@ -14,6 +15,10 @@ const StripeComponent = styled.div`
 `;
 
 export default class Stripes extends React.Component {
+
+  // must go by height to set horizontal line widths
+  STRIPE_HEIGHT = 60 / 1.9;
+
   constructor(props) {
     super(props);
     this.state = {
@@ -28,18 +33,15 @@ export default class Stripes extends React.Component {
     return yAxis + "%";
   }
 
-  getStripeColor(isRed){
-    return isRed ? this.props.red : this.props.white;
+  getStripeColor(index){
+    return Arrays.rotateNextIndex(this.props.colors, index);
   }
 
   // fill triangles to give line a width
   setTriangleWidths() {
-    const flagHeightToPx = window.innerHeight * (this.state.flagHeight / 100);
+    const flagHeightToPx = window.innerHeight * (this.STRIPE_HEIGHT / 100);
     const baseHeight = flagHeightToPx / this.state.count;
-    const buffer = 5;
-    const lowerWidth = baseHeight - buffer;
-    const upperWidth = baseHeight + buffer;
-    return { lowerWidth: lowerWidth, upperWidth: upperWidth };
+    return Distance.setRandomTriangleWidths(baseHeight, { buffer: 5 })
   }
 
   render() {
@@ -50,7 +52,7 @@ export default class Stripes extends React.Component {
       <StripeComponent id="stripes">
         {Array.from(Array(count), (e, stripeIndex) => {
           const yAxis = this.getStripeYAxis(100, stripeIndex, count, 0);
-          const colorState = this.getStripeColor(Maths.isEven(stripeIndex))
+          const colorState = this.getStripeColor(stripeIndex)
 
           return (
             <Stripe

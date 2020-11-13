@@ -19,6 +19,12 @@ const Distance = {
   setRandomTrianglePos: function(length, max = 100, min = 0, denomination = 'px'){
     return "calc(" + Maths.randomNumber(max, min) + "% - " + length / 2 + denomination + ")";
   },
+  // fill triangles to give line a width
+  setRandomTriangleWidths(baseHeight, options) {
+    const lowerWidth = baseHeight - options.buffer;
+    const upperWidth = baseHeight + options.buffer;
+    return { lowerWidth: lowerWidth, upperWidth: upperWidth };
+  },
 
   paddedLength: function(length, padding){
     return length - padding * 2;
