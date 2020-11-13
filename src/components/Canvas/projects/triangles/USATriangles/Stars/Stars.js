@@ -67,6 +67,7 @@ export default class Stars extends React.Component {
           colorAttributes={this.props.colorAttributes}
         />
         <StarClusterLines
+          maxStars={5}
           starWidth={starWidth}
           colorState={this.props.white}
           colorAttributes={this.props.colorAttributes}

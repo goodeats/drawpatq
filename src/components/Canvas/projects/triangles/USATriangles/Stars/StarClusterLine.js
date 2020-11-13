@@ -12,49 +12,40 @@ const StarClusterLineComponent = styled.div`
   top: 0;
 `;
 
-export default class StarClusterLine extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      count: 5,
-      fourStars: props.starCount === 4,
-      style: {
-        left: props.xAxis,
-      },
-    };
-  }
+const StarClusterLine = (props) => {
+
+  const count = props.maxStars;
+  const fourStars = props.fourStars;
+  const starWidth = props.starWidth;
+  const clusterTriangleCount = props.clusterTriangleCount;
 
   // napkin math will do
-  padFourStars(){
-    return this.state.fourStars ? (1 / 4 * 100 / 2) : 0;
+  const padFourStars = () => {
+    return fourStars ? (1 / 4 * 100 / 2) : 0;
   }
 
-  render() {
-    const count = this.state.count;
-    const fourStars = this.state.fourStars;
-    const starWidth = this.props.starWidth;
+  return (
+    <StarClusterLineComponent id={props.id} style={{ left: props.xAxis}}>
+      {Array.from(Array(count), (e, index) => {
+        const yAxis = Distance.positionAtIndexOnAxis(index, count, 100, padFourStars());
+        const hideCluster = fourStars && index === count - 1;
+        const id = `star-cluster-${index}`;
 
-    return (
-      <StarClusterLineComponent id={this.props.id} style={this.state.style}>
-        {Array.from(Array(count), (e, index) => {
-          const yAxis = Distance.positionAtIndexOnAxis(index, count, 100, this.padFourStars());
-          const id = `star-cluster-${index}`;
-
-          const hideCluster = fourStars && index === count - 1;
-          return (
-            <StarCluster
-              key={id}
-              id={id}
-              count={10}
-              yAxis={yAxis}
-              starWidth={starWidth}
-              colorState={this.props.colorState}
-              colorAttributes={this.props.colorAttributes}
-              hideCluster={hideCluster}
-            />
-          );
-        })}
-      </StarClusterLineComponent>
-    );
-  }
+        return (
+          <StarCluster
+            key={id}
+            id={id}
+            count={clusterTriangleCount}
+            yAxis={yAxis}
+            starWidth={starWidth}
+            colorState={props.colorState}
+            colorAttributes={props.colorAttributes}
+            hideCluster={hideCluster}
+          />
+        );
+      })}
+    </StarClusterLineComponent>
+  );
 }
+
+export default StarClusterLine;

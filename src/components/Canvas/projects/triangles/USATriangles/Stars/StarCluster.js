@@ -11,6 +11,11 @@ const StarCluster = (props) => {
 
   // upper/lower widths of triangles upon star cluster
   const starWidth = props.starWidth;
+  const lowerWidth = starWidth.lowerWidth;
+  const upperWidth = starWidth.upperWidth;
+
+  const colorState = props.colorState;
+  const colorAttributes = props.colorAttributes;
 
   const setStyle = () => {
     const style = { top: props.yAxis }
@@ -21,7 +26,7 @@ const StarCluster = (props) => {
   return (
     <StarClusterComponent id={props.id} style={setStyle()}>
       {Array.from(Array(props.count), (e, index) => {
-        const color = Styles.setColorByAttributeIndex(props.colorState, index, props.colorAttributes);
+        const color = Styles.setColorByAttributeIndex(colorState, index, colorAttributes);
         const id = `star-cluster-tri-${index}`;
 
         return (
@@ -29,8 +34,8 @@ const StarCluster = (props) => {
             key={id}
             id={id}
             color={color}
-            lowerWidth={starWidth.lowerWidth}
-            upperWidth={starWidth.upperWidth}
+            lowerWidth={lowerWidth}
+            upperWidth={upperWidth}
           />
         );
       })}

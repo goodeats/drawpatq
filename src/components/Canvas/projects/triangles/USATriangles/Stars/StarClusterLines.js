@@ -56,7 +56,7 @@ export default class StarClusterLines extends React.Component {
     return (
       <StarClusterLinesComponent id="star-lines" style={this.state.style}>
         {Array.from(Array(count), (e, index) => {
-          const starCount = Maths.isEven(index) ? 5 : 4;
+          // const clusterCount = Maths.isEven(index) ? this.props.maxStars : this.props.maxStars - 1;
           const xAxis = Distance.positionAtIndexOnAxis(index, count);
           const id = `star-cluster-line-${index}`;
 
@@ -67,8 +67,10 @@ export default class StarClusterLines extends React.Component {
               xAxis={xAxis}
               starWidth={starWidth}
               colorState={this.props.colorState}
-              starCount={starCount}
+              maxStars={this.props.maxStars}
+              fourStars={Maths.isOdd(index)}
               colorAttributes={this.props.colorAttributes}
+              clusterTriangleCount={5}
             />
           );
         })}
