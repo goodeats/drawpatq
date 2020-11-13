@@ -1,9 +1,9 @@
 import React from "react";
-import Styles from '../../../../../../utils/Styles'
-import Arrays from "../../../../../../utils/Arrays";
-import Distance from "../../../../../../utils/Distance";
 import styled from "styled-components";
+import Styles from '../../../../../../utils/Styles'
 import Triangle from '../../../../shapes/Triangle';
+
+// randomly placed blue triangles to fill the background of the stars
 
 const BlueComponent = styled.div`
   position: absolute;
@@ -13,34 +13,29 @@ const BlueComponent = styled.div`
   left: 0;
 `;
 
-export default class Blue extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      attributes: ["none", "shade", "tint"],
-      count: 4000,
-      style: {
-        top: props.yAxis,
-      },
-    };
-  }
+const Blue = (props) => {
+  const starWidth = props.starWidth;
+  const lowerWidth = starWidth.lowerWidth;
+  const upperWidth = starWidth.upperWidth;
 
-  render() {
-    return(
-      <BlueComponent id="container-blue-background">
-        {Array.from(Array(this.state.count), (e, index) => {
-          // shade/tint stripe triangles
-          const attribute = Arrays.rotateNextIndex(this.state.attributes, index);
-          const color = Styles.setColor(this.props.blue, attribute);
+  const colorState = props.color;
+  // have option to flatten colors
+  const colorAttributes = props.colorAttributes || [];
 
-          return <Triangle
-            key={`blue-${index}`}
-            lowerWidth={10}
-            upperWidth={20}
-            color={color}
-          />
-        })}
-      </BlueComponent>
-    )
-  }
+  return(
+    <BlueComponent id="container-blue-background">
+      {Array.from(Array(props.count), (e, index) => {
+        const color = Styles.setColorByAttributeIndex(colorState, index, colorAttributes);
+
+        return <Triangle
+          key={`blue-${index}`}
+          lowerWidth={lowerWidth}
+          upperWidth={upperWidth}
+          color={color}
+        />
+      })}
+    </BlueComponent>
+  )
 }
+
+export default Blue;

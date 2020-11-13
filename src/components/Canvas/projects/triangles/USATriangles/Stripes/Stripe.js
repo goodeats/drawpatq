@@ -13,9 +13,12 @@ const Stripe = (props) => {
 
   // upper/lower widths of triangles along stripe line
   const stripeWidth = props.stripeWidth;
+  const lowerWidth = stripeWidth.lowerWidth;
+  const upperWidth = stripeWidth.upperWidth;
 
   // colors will rotate evenly among the attributes passed in
   const colorState = props.colorState;
+  // have option to flatten colors
   const colorAttributes = props.colorAttributes || [];
 
   return (
@@ -28,8 +31,8 @@ const Stripe = (props) => {
           <StripeTriangle
             key={`stripe-tri-${index}`}
             color={color}
-            lowerWidth={stripeWidth.lowerWidth}
-            upperWidth={stripeWidth.upperWidth}
+            lowerWidth={lowerWidth}
+            upperWidth={upperWidth}
           />
         );
       })}

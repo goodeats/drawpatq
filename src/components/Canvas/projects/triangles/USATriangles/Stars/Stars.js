@@ -46,11 +46,31 @@ export default class Stars extends React.Component {
     this.setStyle("width", width);
   }
 
+  getStarWidth(){
+    return {lowerWidth: 5, upperWidth: 10}
+  }
+
+  getBlueStarWidth(){
+    return {lowerWidth: 10, upperWidth: 20}
+  }
+
   render() {
+    const starWidth = this.getStarWidth();
+    const blueStarWidth = this.getBlueStarWidth();
+
     return (
       <StarsComponent id="stars" style={this.state.style}>
-        <Blue blue={this.props.blue} />
-        <StarClusterLines colorState={this.props.white} />
+        <Blue
+          count={4000}
+          color={this.props.blue}
+          starWidth={blueStarWidth}
+          colorAttributes={this.props.colorAttributes}
+        />
+        <StarClusterLines
+          starWidth={starWidth}
+          colorState={this.props.white}
+          colorAttributes={this.props.colorAttributes}
+        />
       </StarsComponent>
     );
   }

@@ -51,6 +51,8 @@ export default class StarClusterLines extends React.Component {
 
   render() {
     const count = this.state.count;
+    const starWidth = this.props.starWidth;
+
     return (
       <StarClusterLinesComponent id="star-lines" style={this.state.style}>
         {Array.from(Array(count), (e, index) => {
@@ -63,8 +65,10 @@ export default class StarClusterLines extends React.Component {
               key={id}
               id={id}
               xAxis={xAxis}
+              starWidth={starWidth}
               colorState={this.props.colorState}
               starCount={starCount}
+              colorAttributes={this.props.colorAttributes}
             />
           );
         })}

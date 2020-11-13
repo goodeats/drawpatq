@@ -30,6 +30,8 @@ export default class USATriangles extends React.Component {
   COLOR_STATE_WHITE = Styles.buildColor(this.WHITE, { includeDefaultStyle: true });
   COLOR_STATE_BLUE = Styles.buildColor(this.BLUE, { includeDefaultStyle: true });
 
+  COLOR_ATTRIBUTES = ['none', 'shade', 'tint'];
+
   constructor(props) {
     super(props);
     this.state = {
@@ -86,7 +88,11 @@ export default class USATriangles extends React.Component {
           white={this.COLOR_STATE_WHITE}
           stripeWidth={this.stripeWidth()}
         />
-        <Stars blue={this.COLOR_STATE_BLUE} white={this.COLOR_STATE_WHITE} />
+        <Stars
+          blue={this.COLOR_STATE_BLUE}
+          white={this.COLOR_STATE_WHITE}
+          colorAttributes={this.COLOR_ATTRIBUTES}
+        />
       </USAComponent>
     );
   }
