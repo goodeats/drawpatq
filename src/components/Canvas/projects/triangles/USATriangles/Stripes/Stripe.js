@@ -18,7 +18,6 @@ export default class Stripe extends React.Component {
     super(props);
     this.state = {
       attributes: ["none", "shade", "tint"],
-      count: 300,
       style: {
         top: props.yAxis,
       },
