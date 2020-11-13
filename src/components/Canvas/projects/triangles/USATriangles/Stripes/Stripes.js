@@ -17,7 +17,8 @@ export default class Stripes extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      count: 13
+      count: 13,
+      flagHeight: 60 / 1.9,
     };
   }
 
@@ -31,8 +32,19 @@ export default class Stripes extends React.Component {
     return isRed ? this.props.red : this.props.white;
   }
 
+  // fill triangles to give line a width
+  setTriangleWidths() {
+    const flagHeightToPx = window.innerHeight * (this.state.flagHeight / 100);
+    const baseHeight = flagHeightToPx / this.state.count;
+    const buffer = 5;
+    const lowerWidth = baseHeight - buffer;
+    const upperWidth = baseHeight + buffer;
+    return { lowerWidth: lowerWidth, upperWidth: upperWidth };
+  }
+
   render() {
     const count = this.state.count;
+    const triangleWidths = this.setTriangleWidths();
 
     return (
       <StripeComponent id="stripes">
@@ -46,6 +58,7 @@ export default class Stripes extends React.Component {
               id={`stripe-${stripeIndex}`}
               yAxis={yAxis}
               colorState={colorState}
+              triangleWidths={triangleWidths}
             />
           );
         })}

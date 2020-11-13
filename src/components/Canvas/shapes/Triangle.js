@@ -32,19 +32,14 @@ export default class Triangle extends React.Component {
 
   // need state width before these can be set
   setTriangleStyles(){
+    const height = this.state.height;
     this.setState({
       arrangement: this.setArrangement(),
 
       // placement
-      top: this.props.top || this.setRandomPos(),
-      left: this.props.left || this.setRandomPos(),
+      top: this.props.top || Distance.setRandomTrianglePos(height),
+      left: this.props.left || Distance.setRandomTrianglePos(height),
     });
-  }
-
-  // this calc works to fill the triangles on the edges of the whole view
-  // the furthest off the view can only be half
-  setRandomPos(){
-    return "calc(" + Maths.randomNumber(100, 0) + "% - " + this.state.height / 2 + "px)";
   }
 
   // setting to equilateral
