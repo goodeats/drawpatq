@@ -2,6 +2,7 @@ import React from "react";
 import Triangle from "../../../../shapes/Triangle";
 
 // the many triangles that fill in a red or white stripe
+// left defaults to random (along stripe line)
 
 const StripeTriangle = (props) => {
 
