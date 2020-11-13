@@ -66,7 +66,7 @@ export default class USATriangles extends React.Component {
     return (
       <USAComponent id="usa" style={this.state.style}>
         <Stripes
-          position={this.state.position}
+          count={13}
           colors={[this.COLOR_STATE_RED, this.COLOR_STATE_WHITE]}
           red={this.COLOR_STATE_RED}
           white={this.COLOR_STATE_WHITE}

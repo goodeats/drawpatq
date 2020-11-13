@@ -1,7 +1,6 @@
 import React from "react";
 import StripeTriangle from "./StripeTriangle";
 import Styles from "../../../../../../utils/Styles";
-import Arrays from "../../../../../../utils/Arrays";
 import styled from "styled-components";
 
 const StripeComponent = styled.div`
@@ -10,47 +9,31 @@ const StripeComponent = styled.div`
   left: 0;
 `;
 
-export default class Stripe extends React.Component {
+const Stripe = (props) => {
 
-  TRIANGLE_COUNT = this.props.triangleCount;
+  // upper/lower widths of triangles along stripe line
+  const triangleWidths = props.triangleWidths;
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      attributes: ["none", "shade", "tint"],
-      style: {
-        top: props.yAxis,
-      },
-    };
-  }
+  const colorState = props.colorState;
+  const colorAttributes = props.colorAttributes || []
 
-  setColor(index, colorState) {
-    const attribute = Arrays.rotateNextIndex(this.state.attributes, index);
-    return Styles.setColor(colorState, attribute);
-  }
+  return (
+    <StripeComponent id={props.id} style={{top: props.yAxis}}>
+      {Array.from(Array(props.triangleCount), (e, index) => {
+        // shade/tint stripe triangles
+        const color = Styles.setColorByAttributeIndex(colorState, index, colorAttributes)
 
-  render() {
-    const yAxis = this.props.yAxis;
-    const colorState = this.props.colorState;
-    const triangleWidths = this.props.triangleWidths;
-
-    return (
-      <StripeComponent id={this.props.id} style={this.state.style}>
-        {Array.from(Array(this.TRIANGLE_COUNT), (e, index) => {
-          // shade/tint stripe triangles
-          const color = this.setColor(index, colorState);
-
-          return (
-            <StripeTriangle
-              key={`stripe-tri-${index}`}
-              top={yAxis}
-              color={color}
-              lowerWidth={triangleWidths.lowerWidth}
-              upperWidth={triangleWidths.upperWidth}
-            />
-          );
-        })}
-      </StripeComponent>
-    );
-  }
+        return (
+          <StripeTriangle
+            key={`stripe-tri-${index}`}
+            color={color}
+            lowerWidth={triangleWidths.lowerWidth}
+            upperWidth={triangleWidths.upperWidth}
+          />
+        );
+      })}
+    </StripeComponent>
+  );
 }
+
+export default Stripe;

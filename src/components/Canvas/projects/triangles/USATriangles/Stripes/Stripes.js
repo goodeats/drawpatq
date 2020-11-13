@@ -18,12 +18,11 @@ export default class Stripes extends React.Component {
 
   // must go by height to set horizontal line widths
   STRIPE_HEIGHT = 60 / 1.9;
+  STRIPE_COUNT = this.props.count;
 
   constructor(props) {
     super(props);
     this.state = {
-      count: 13,
-      flagHeight: 60 / 1.9,
     };
   }
 
@@ -40,12 +39,12 @@ export default class Stripes extends React.Component {
   // fill triangles to give line a width
   setTriangleWidths() {
     const flagHeightToPx = window.innerHeight * (this.STRIPE_HEIGHT / 100);
-    const baseHeight = flagHeightToPx / this.state.count;
+    const baseHeight = flagHeightToPx / this.STRIPE_COUNT;
     return Distance.setRandomTriangleWidths(baseHeight, { buffer: 5 })
   }
 
   render() {
-    const count = this.state.count;
+    const count = this.STRIPE_COUNT;
     const triangleWidths = this.setTriangleWidths();
 
     return (
@@ -60,6 +59,7 @@ export default class Stripes extends React.Component {
               id={`stripe-${stripeIndex}`}
               triangleCount={300}
               yAxis={yAxis}
+              colorAttributes={['none', 'shade', 'tint']}
               colorState={colorState}
               triangleWidths={triangleWidths}
             />

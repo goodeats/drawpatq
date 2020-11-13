@@ -6,9 +6,13 @@ import Triangle from "../../../../shapes/Triangle";
 
 const StripeTriangle = (props) => {
 
+  // prevent calc effort by Triangle for random top
+  // it won't matter when absolute positioned on a line
+  const top = 0;
+
   return (
     <Triangle
-      top={props.top}
+      top={top}
       lowerWidth={props.lowerWidth}
       upperWidth={props.upperWidth}
       color={props.color}

@@ -1,3 +1,4 @@
+import Arrays from './Arrays';
 import Colors from './Colors'
 import Maths from './Maths'
 
@@ -18,8 +19,15 @@ const Styles = {
     return steez;
   },
 
+  defaultEffects: ['none', 'shade', 'tint'],
+
   buildColor: function (styleBuild, options = {}) {
     return Object.assign(this.defaultStyle(), styleBuild);
+  },
+
+  setColorByAttributeIndex(colorState, index, attributes = this.defaultEffects){
+    const attribute = Arrays.rotateNextIndex(attributes, index);
+    return Styles.setColor(colorState, attribute);
   },
 
   setColor: function (colorState, effect){
