@@ -58,6 +58,7 @@ export default class Stripes extends React.Component {
             <Stripe
               key={`stripe-${stripeIndex}`}
               id={`stripe-${stripeIndex}`}
+              triangleCount={300}
               yAxis={yAxis}
               colorState={colorState}
               triangleWidths={triangleWidths}

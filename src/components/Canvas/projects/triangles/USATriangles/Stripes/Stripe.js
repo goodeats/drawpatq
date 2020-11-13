@@ -11,6 +11,9 @@ const StripeComponent = styled.div`
 `;
 
 export default class Stripe extends React.Component {
+
+  TRIANGLE_COUNT = this.props.triangleCount;
+
   constructor(props) {
     super(props);
     this.state = {
@@ -34,7 +37,7 @@ export default class Stripe extends React.Component {
 
     return (
       <StripeComponent id={this.props.id} style={this.state.style}>
-        {Array.from(Array(this.state.count), (e, index) => {
+        {Array.from(Array(this.TRIANGLE_COUNT), (e, index) => {
           // shade/tint stripe triangles
           const color = this.setColor(index, colorState);
 
