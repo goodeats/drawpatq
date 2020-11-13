@@ -16,65 +16,50 @@ const StarClusterLinesComponent = styled.div`
   left: 0;
 `;
 
-export default class StarClusterLines extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      count: 11,
-      padding: 5.4, // https://www.inchcalculator.com/american-flag-size-proportions-calculator/
-      paddedWidth: 6.3, // https://www.inchcalculator.com/american-flag-size-proportions-calculator/
-      paddedHeight: 5.4, // https://www.inchcalculator.com/american-flag-size-proportions-calculator/
-      style: {},
-    };
+const StarClusterLines = (props) => {
+
+  const count = 11; // columns of stars
+
+  // https://www.inchcalculator.com/american-flag-size-proportions-calculator/
+  const paddedWidth = 6.3;
+  const paddedHeight = 5.4;
+
+  const setStyle = () => {
+    return {
+      height: Distance.paddedLength(100, paddedHeight) + "%",
+      width: Distance.paddedLength(100, paddedWidth) + "%",
+      top: paddedHeight + "%",
+      left: paddedWidth + "%"
+    }
   }
 
-  componentDidMount() {
-    this.setStyles();
-  }
+  const starWidth = props.starWidth;
+  const maxStars = props.maxStars;
+  const colorState = props.colorState;
+  const colorAttributes = props.colorAttributes;
 
-  // https://dev.to/walecloud/updating-react-nested-state-properties-ga6
-  setStyle(attr, value) {
-    const { style } = { ...this.state };
-    const currentStyle = style;
-    currentStyle[attr] = value;
-    this.setState({ style: currentStyle });
-  }
+  return (
+    <StarClusterLinesComponent id="star-lines" style={setStyle()}>
+      {Array.from(Array(count), (e, index) => {
+        const xAxis = Distance.positionAtIndexOnAxis(index, count);
+        const id = `star-cluster-line-${index}`;
 
-  setStyles() {
-    const paddedWidth = this.state.paddedWidth;
-    const paddedHeight = this.state.paddedHeight;
-    this.setStyle("height", Distance.paddedLength(100, paddedHeight) + "%");
-    this.setStyle("width", Distance.paddedLength(100, paddedWidth) + "%");
-    this.setStyle("top", paddedHeight + "%");
-    this.setStyle("left", paddedWidth + "%");
-  }
-
-  render() {
-    const count = this.state.count;
-    const starWidth = this.props.starWidth;
-
-    return (
-      <StarClusterLinesComponent id="star-lines" style={this.state.style}>
-        {Array.from(Array(count), (e, index) => {
-          // const clusterCount = Maths.isEven(index) ? this.props.maxStars : this.props.maxStars - 1;
-          const xAxis = Distance.positionAtIndexOnAxis(index, count);
-          const id = `star-cluster-line-${index}`;
-
-          return (
-            <StarClusterLine
-              key={id}
-              id={id}
-              xAxis={xAxis}
-              starWidth={starWidth}
-              colorState={this.props.colorState}
-              maxStars={this.props.maxStars}
-              fourStars={Maths.isOdd(index)}
-              colorAttributes={this.props.colorAttributes}
-              clusterTriangleCount={5}
-            />
-          );
-        })}
-      </StarClusterLinesComponent>
-    );
-  }
+        return (
+          <StarClusterLine
+            key={id}
+            id={id}
+            xAxis={xAxis}
+            starWidth={starWidth}
+            colorState={colorState}
+            maxStars={maxStars}
+            fourStars={Maths.isOdd(index)}
+            colorAttributes={colorAttributes}
+            clusterTriangleCount={5}
+          />
+        );
+      })}
+    </StarClusterLinesComponent>
+  );
 }
+
+export default StarClusterLines;
