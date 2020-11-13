@@ -30,11 +30,11 @@ const Distance = {
     return length - padding * 2;
   },
 
-  positionAtIndex: function (length, index, count){
+  positionAtIndex: function (index, count, length = 100){
     return length * (index / count);
   },
-  positionAtIndexOnAxis: function(length, index, count, padding = 0){
-    const position = this.positionAtIndex(length, index, count)
+  positionAtIndexOnAxis: function(index, count, length = 100, padding = 0){
+    const position = this.positionAtIndex(index, count - 1, length);
     const axis = position + padding;
     return axis + '%';
   }

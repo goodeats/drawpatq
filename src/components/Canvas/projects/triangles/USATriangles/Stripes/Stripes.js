@@ -1,12 +1,10 @@
 import React from "react";
 import Stripe from "./Stripe";
-// import Styles from "../../../../../utils/Styles";
-import Maths from "../../../../../../utils/Maths";
 import Distance from "../../../../../../utils/Distance";
 import styled from "styled-components";
 import Arrays from "../../../../../../utils/Arrays";
 
-const StripeComponent = styled.div`
+const StripesComponent = styled.div`
   position: absolute;
   height: 100%;
   width: 100%;
@@ -14,58 +12,35 @@ const StripeComponent = styled.div`
   left: 0;
 `;
 
-export default class Stripes extends React.Component {
+const Stripes = (props) => {
 
-  // must go by height to set horizontal line widths
-  STRIPE_HEIGHT = 60 / 1.9;
-  STRIPE_COUNT = this.props.count;
+  const count = props.count;
+  const stripeWidth = props.stripeWidth;
 
-  constructor(props) {
-    super(props);
-    this.state = {
-    };
+  const getStripeColor = (index) => {
+    return Arrays.rotateNextIndex(props.colors, index);
   }
 
-  getStripeYAxis(height, stripeIndex, stripeCount, top) {
-    const stripePosition = Distance.positionAtIndex(height, stripeIndex, stripeCount);
-    const yAxis = stripePosition + top;
-    return yAxis + "%";
-  }
+  return (
+    <StripesComponent id="stripes">
+      {Array.from(Array(count), (e, index) => {
+        const yAxis = Distance.positionAtIndexOnAxis(index, count);
+        const colorState = getStripeColor(index)
 
-  getStripeColor(index){
-    return Arrays.rotateNextIndex(this.props.colors, index);
-  }
-
-  // fill triangles to give line a width
-  setTriangleWidths() {
-    const flagHeightToPx = window.innerHeight * (this.STRIPE_HEIGHT / 100);
-    const baseHeight = flagHeightToPx / this.STRIPE_COUNT;
-    return Distance.setRandomTriangleWidths(baseHeight, { buffer: 5 })
-  }
-
-  render() {
-    const count = this.STRIPE_COUNT;
-    const triangleWidths = this.setTriangleWidths();
-
-    return (
-      <StripeComponent id="stripes">
-        {Array.from(Array(count), (e, stripeIndex) => {
-          const yAxis = this.getStripeYAxis(100, stripeIndex, count, 0);
-          const colorState = this.getStripeColor(stripeIndex)
-
-          return (
-            <Stripe
-              key={`stripe-${stripeIndex}`}
-              id={`stripe-${stripeIndex}`}
-              triangleCount={300}
-              yAxis={yAxis}
-              colorAttributes={['none', 'shade', 'tint']}
-              colorState={colorState}
-              triangleWidths={triangleWidths}
-            />
-          );
-        })}
-      </StripeComponent>
-    );
-  }
+        return (
+          <Stripe
+            key={`stripe-${index}`}
+            id={`stripe-${index}`}
+            triangleCount={300}
+            yAxis={yAxis}
+            stripeWidth={stripeWidth}
+            colorState={colorState}
+            colorAttributes={['none', 'shade', 'tint']}
+          />
+        );
+      })}
+    </StripesComponent>
+  );
 }
+
+export default Stripes;

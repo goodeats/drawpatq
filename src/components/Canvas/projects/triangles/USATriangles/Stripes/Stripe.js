@@ -12,23 +12,24 @@ const StripeComponent = styled.div`
 const Stripe = (props) => {
 
   // upper/lower widths of triangles along stripe line
-  const triangleWidths = props.triangleWidths;
+  const stripeWidth = props.stripeWidth;
 
+  // colors will rotate evenly among the attributes passed in
   const colorState = props.colorState;
-  const colorAttributes = props.colorAttributes || []
+  const colorAttributes = props.colorAttributes || [];
 
   return (
     <StripeComponent id={props.id} style={{top: props.yAxis}}>
       {Array.from(Array(props.triangleCount), (e, index) => {
         // shade/tint stripe triangles
-        const color = Styles.setColorByAttributeIndex(colorState, index, colorAttributes)
+        const color = Styles.setColorByAttributeIndex(colorState, index, colorAttributes);
 
         return (
           <StripeTriangle
             key={`stripe-tri-${index}`}
             color={color}
-            lowerWidth={triangleWidths.lowerWidth}
-            upperWidth={triangleWidths.upperWidth}
+            lowerWidth={stripeWidth.lowerWidth}
+            upperWidth={stripeWidth.upperWidth}
           />
         );
       })}

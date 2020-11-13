@@ -25,12 +25,6 @@ export default class Blue extends React.Component {
     };
   }
 
-  getStripeYAxis(height, stripeIndex, stripeCount, top) {
-    const stripePosition = Distance.positionAtIndex(height, stripeIndex, stripeCount);
-    const yAxis = stripePosition + top;
-    return yAxis + "%";
-  }
-
   render() {
     return(
       <BlueComponent id="container-blue-background">

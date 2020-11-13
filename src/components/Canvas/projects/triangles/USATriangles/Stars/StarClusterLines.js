@@ -49,18 +49,14 @@ export default class StarClusterLines extends React.Component {
     this.setStyle("left", paddedWidth + "%");
   }
 
-  getXAxis(length, index, count) {
-    return Distance.positionAtIndex(length, index, count) + '%';
-  }
-
   render() {
     const count = this.state.count;
     return (
       <StarClusterLinesComponent id="star-lines" style={this.state.style}>
-        {Array.from(Array(count), (e, starClusterLineIndex) => {
-          const starCount = Maths.isEven(starClusterLineIndex) ? 5 : 4;
-          const xAxis = this.getXAxis(100, starClusterLineIndex, count - 1);
-          const id = `star-cluster-line-${starClusterLineIndex}`;
+        {Array.from(Array(count), (e, index) => {
+          const starCount = Maths.isEven(index) ? 5 : 4;
+          const xAxis = Distance.positionAtIndexOnAxis(index, count);
+          const id = `star-cluster-line-${index}`;
 
           return (
             <StarClusterLine

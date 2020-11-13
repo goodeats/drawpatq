@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Styles from '../../../../utils/Styles';
 import Stripes from "./USATriangles/Stripes/Stripes";
 import Stars from "./USATriangles/Stars/Stars";
+import Distance from '../../../../utils/Distance';
 
 // https://www.ushistory.org/betsy/flagetiq3.html
 
@@ -15,6 +16,11 @@ const USAComponent = styled.div`
 `;
 
 export default class USATriangles extends React.Component {
+
+  WIDTH = 60;
+  HEIGHT = 60 / 1.9;
+  STRIPE_COUNT = 13;
+
   // https://flagcolor.com/american-flag-colors/
   RED = { r: 191, g: 13, b: 62 };
   WHITE = { r: 255, g: 255, b: 255 };
@@ -62,6 +68,14 @@ export default class USATriangles extends React.Component {
     this.setStyle("left", `${position.minLeft}%`);
   }
 
+  // fill triangles to give line a width
+  // TODO: make configurable in case I want "extra thin/thick" for example
+  stripeWidth = () => {
+    const flagHeightToPx = window.innerHeight * (this.HEIGHT / 100);
+    const baseHeight = flagHeightToPx / this.STRIPE_COUNT;
+    return Distance.setRandomTriangleWidths(baseHeight, { buffer: 5 })
+  }
+
   render() {
     return (
       <USAComponent id="usa" style={this.state.style}>
@@ -70,6 +84,7 @@ export default class USATriangles extends React.Component {
           colors={[this.COLOR_STATE_RED, this.COLOR_STATE_WHITE]}
           red={this.COLOR_STATE_RED}
           white={this.COLOR_STATE_WHITE}
+          stripeWidth={this.stripeWidth()}
         />
         <Stars blue={this.COLOR_STATE_BLUE} white={this.COLOR_STATE_WHITE} />
       </USAComponent>

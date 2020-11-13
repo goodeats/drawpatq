@@ -17,18 +17,11 @@ export default class StarClusterLine extends React.Component {
     super(props);
     this.state = {
       count: 5,
-      starCount: props.starCount,
       fourStars: props.starCount === 4,
       style: {
         left: props.xAxis,
       },
     };
-  }
-
-  getYAxis(height, index, count) {
-    const stripePosition = Distance.positionAtIndex(height, index, count);
-    const yAxis = stripePosition + this.padFourStars();
-    return yAxis + "%";
   }
 
   // napkin math will do
@@ -42,11 +35,11 @@ export default class StarClusterLine extends React.Component {
 
     return (
       <StarClusterLineComponent id={this.props.id} style={this.state.style}>
-        {Array.from(Array(count), (e, clusterLineIndex) => {
-          const yAxis = this.getYAxis(100, clusterLineIndex, count - 1);
-          const id = `star-cluster-${clusterLineIndex}`;
+        {Array.from(Array(count), (e, index) => {
+          const yAxis = Distance.positionAtIndexOnAxis(index, count, 100, this.padFourStars());
+          const id = `star-cluster-${index}`;
 
-          const hideCluster = fourStars && count === clusterLineIndex + 1;
+          const hideCluster = fourStars && index === count - 1;
           return (
             <StarCluster
               key={id}
