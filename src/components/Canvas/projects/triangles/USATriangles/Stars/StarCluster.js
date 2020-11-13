@@ -55,6 +55,8 @@ export default class StarCluster extends React.Component {
               id={id}
               top={this.state.yAxis}
               color={color}
+              lowerWidth={5}
+              upperWidth={10}
             />
           );
         })}

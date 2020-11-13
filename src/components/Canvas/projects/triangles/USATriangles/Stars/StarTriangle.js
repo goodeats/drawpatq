@@ -8,8 +8,8 @@ const StarTriangle = (props) => {
     <Triangle
       top={props.top}
       left={props.left}
-      lowerWidth={5}
-      upperWidth={10}
+      lowerWidth={props.lowerWidth}
+      upperWidth={props.upperWidth}
       color={props.color}
     />
   );

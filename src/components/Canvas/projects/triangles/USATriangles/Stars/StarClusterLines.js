@@ -22,6 +22,8 @@ export default class StarClusterLines extends React.Component {
     this.state = {
       count: 11,
       padding: 5.4, // https://www.inchcalculator.com/american-flag-size-proportions-calculator/
+      paddedWidth: 6.3, // https://www.inchcalculator.com/american-flag-size-proportions-calculator/
+      paddedHeight: 5.4, // https://www.inchcalculator.com/american-flag-size-proportions-calculator/
       style: {},
     };
   }
@@ -39,12 +41,12 @@ export default class StarClusterLines extends React.Component {
   }
 
   setStyles() {
-    const padding = this.state.padding;
-    const paddedLength = Distance.paddedLength(100, padding);
-    this.setStyle("height", paddedLength + '%');
-    this.setStyle("width", paddedLength + "%");
-    this.setStyle("top", padding + "%");
-    this.setStyle("left", padding + "%");
+    const paddedWidth = this.state.paddedWidth;
+    const paddedHeight = this.state.paddedHeight;
+    this.setStyle("height", Distance.paddedLength(100, paddedHeight) + "%");
+    this.setStyle("width", Distance.paddedLength(100, paddedWidth) + "%");
+    this.setStyle("top", paddedHeight + "%");
+    this.setStyle("left", paddedWidth + "%");
   }
 
   getXAxis(length, index, count) {
