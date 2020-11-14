@@ -97,6 +97,31 @@ export default class USATriangles extends React.Component {
     return Distance.setRandomTriangleWidths(baseHeight, { buffer: 5 })
   }
 
+  triangleSizes(){
+    return {
+      stars: {
+        blue: {
+          lowerWidth: 10,
+          upperWidth: 20
+        },
+        stars: {
+          lowerWidth: 5,
+          upperWidth: 10
+        }
+      }
+    }
+  }
+
+  counts(){
+    return {
+      stars: {
+        blue: 4000,
+        stars: 5,
+        starColumns: 11
+      }
+    }
+  }
+
   styleStars = () => {
     // https://www.inchcalculator.com/american-flag-size-proportions-calculator/
     const paddedWidth = 6.3;
@@ -132,6 +157,8 @@ export default class USATriangles extends React.Component {
           colorAttributes={this.COLOR_ATTRIBUTES}
           style={this.styleStars()}
           countStarColumn={11}
+          sizes={this.triangleSizes().stars}
+          counts={this.counts().stars}
         />
       </USAComponent>
     );

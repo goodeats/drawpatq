@@ -10,53 +10,32 @@ const StarsComponent = styled.div`
   left: 0;
 `;
 
-export default class Stars extends React.Component {
+const Stars = (props) => {
 
-  STRIPE_COUNT = 13;
-  BLUE_HEIGHT_STRIPE_INDEX = 7;
+  const style = props.style;
+  const styleStars = style.stars;
+  const styleStarClusterLines = style.starClusterLines;
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      stripeCountBlueIndex: 7,
-      stripeCount: 13,
-      style: {},
-    };
-  }
+  const counts = props.counts;
 
-  getStarWidth(){
-    return {lowerWidth: 5, upperWidth: 10}
-  }
-
-  getBlueStarWidth(){
-    return {lowerWidth: 10, upperWidth: 20}
-  }
-
-  render() {
-    const starWidth = this.getStarWidth();
-    const blueStarWidth = this.getBlueStarWidth();
-
-    const style = this.props.style;
-    const styleStars = style.stars;
-    const styleStarClusterLines = style.starClusterLines;
-
-    return (
-      <StarsComponent id="stars" style={styleStars}>
-        <Blue
-          count={4000}
-          color={this.props.blue}
-          starWidth={blueStarWidth}
-          colorAttributes={this.props.colorAttributes}
-        />
-        <StarClusterLines
-          maxStars={5}
-          count={this.props.countStarColumn}
-          style={styleStarClusterLines}
-          starWidth={starWidth}
-          colorState={this.props.white}
-          colorAttributes={this.props.colorAttributes}
-        />
-      </StarsComponent>
-    );
-  }
+  return (
+    <StarsComponent id="stars" style={styleStars}>
+      <Blue
+        count={counts.blue}
+        color={props.blue}
+        starWidth={props.sizes.blue}
+        colorAttributes={props.colorAttributes}
+      />
+      <StarClusterLines
+        maxStars={counts.stars}
+        count={counts.starColumns}
+        style={styleStarClusterLines}
+        starWidth={props.sizes.stars}
+        colorState={props.white}
+        colorAttributes={props.colorAttributes}
+      />
+    </StarsComponent>
+  );
 }
+
+export default Stars;
