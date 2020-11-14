@@ -5,6 +5,14 @@ import Stripes from "./USATriangles/Stripes/Stripes";
 import Stars from "./USATriangles/Stars/Stars";
 import Distance from '../../../../utils/Distance';
 
+// lessons learned and things I got out of this:
+// * much more robust utils for extensible functions for future designs
+// * most components can really just be const's, not classes
+// ** aching refactor to break out of one file then convert to const
+// ** and that's ok, was very "startupy" about it; prototyping > method
+// ** classes might be good for interactive ideas
+
+
 // https://www.ushistory.org/betsy/flagetiq3.html
 
 const USAComponent = styled.div`
