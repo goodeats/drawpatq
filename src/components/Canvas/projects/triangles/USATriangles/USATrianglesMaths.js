@@ -1,6 +1,7 @@
 import Styles from '../../../../../utils/Styles';
 import Distance from '../../../../../utils/Distance';
 
+// "Utils" probably better, but I like "Maths" for now
 const USATrianglesMaths = {
   hello: function () {
     console.log("hi from USATrianglesMaths");
