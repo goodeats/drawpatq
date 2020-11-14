@@ -77,7 +77,7 @@ export default class USATriangles extends React.Component {
     const style = USATrianglesMaths.style(this.styleOptions());
 
     return (
-      <USAComponent id="usa" onClick={this.onClick}>
+      <USAComponent id="usa" style={style.flag} onClick={this.onClick}>
         <Stripes
           colors={colors.stripes}
           counts={counts.stripes}
