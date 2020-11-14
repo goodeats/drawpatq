@@ -18,20 +18,7 @@ const StarClusterLinesComponent = styled.div`
 
 const StarClusterLines = (props) => {
 
-  const count = 11; // columns of stars
-
-  // https://www.inchcalculator.com/american-flag-size-proportions-calculator/
-  const paddedWidth = 6.3;
-  const paddedHeight = 5.4;
-
-  const setStyle = () => {
-    return {
-      height: Distance.paddedLength(100, paddedHeight) + "%",
-      width: Distance.paddedLength(100, paddedWidth) + "%",
-      top: paddedHeight + "%",
-      left: paddedWidth + "%"
-    }
-  }
+  const count = props.count; // columns of stars
 
   const starWidth = props.starWidth;
   const maxStars = props.maxStars;
@@ -39,7 +26,7 @@ const StarClusterLines = (props) => {
   const colorAttributes = props.colorAttributes;
 
   return (
-    <StarClusterLinesComponent id="star-lines" style={setStyle()}>
+    <StarClusterLinesComponent id="star-lines" style={props.style}>
       {Array.from(Array(count), (e, index) => {
         const xAxis = Distance.positionAtIndexOnAxis(index, count);
         const id = `star-cluster-line-${index}`;

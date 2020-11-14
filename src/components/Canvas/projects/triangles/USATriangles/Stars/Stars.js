@@ -24,28 +24,6 @@ export default class Stars extends React.Component {
     };
   }
 
-  componentDidMount() {
-    this.setStyles();
-  }
-
-  // https://dev.to/walecloud/updating-react-nested-state-properties-ga6
-  setStyle(attr, value) {
-    const { style } = { ...this.state };
-    const currentStyle = style;
-    currentStyle[attr] = value;
-    this.setState({ style: currentStyle });
-  }
-
-  // https://www.inchcalculator.com/american-flag-size-proportions-calculator/
-  setStyles() {
-    const height =
-      (this.BLUE_HEIGHT_STRIPE_INDEX / this.STRIPE_COUNT) * 100 + "%";
-    this.setStyle("height", height);
-
-    const width = (0.76 / 1.9) * 100 + "%";
-    this.setStyle("width", width);
-  }
-
   getStarWidth(){
     return {lowerWidth: 5, upperWidth: 10}
   }
@@ -58,8 +36,12 @@ export default class Stars extends React.Component {
     const starWidth = this.getStarWidth();
     const blueStarWidth = this.getBlueStarWidth();
 
+    const style = this.props.style;
+    const styleStars = style.stars;
+    const styleStarClusterLines = style.starClusterLines;
+
     return (
-      <StarsComponent id="stars" style={this.state.style}>
+      <StarsComponent id="stars" style={styleStars}>
         <Blue
           count={4000}
           color={this.props.blue}
@@ -68,6 +50,8 @@ export default class Stars extends React.Component {
         />
         <StarClusterLines
           maxStars={5}
+          count={this.props.countStarColumn}
+          style={styleStarClusterLines}
           starWidth={starWidth}
           colorState={this.props.white}
           colorAttributes={this.props.colorAttributes}

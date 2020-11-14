@@ -11,6 +11,16 @@ import Distance from '../../../../utils/Distance';
 // ** aching refactor to break out of one file then convert to const
 // ** and that's ok, was very "startupy" about it; prototyping > method
 // ** classes might be good for interactive ideas
+// * put calculations in a separate file just like the components
+// ** with calcs' entry into components connecting on this file (the base project file)
+
+// demo styles:
+// brand the shade/tint/none style rotation
+// solid colors (no shade/tint)
+// random colors -- kaleidoscope effect (on stripes/stars/both)
+// grayscale
+// add signature
+// take screenshot
 
 
 // https://www.ushistory.org/betsy/flagetiq3.html
@@ -28,6 +38,7 @@ export default class USATriangles extends React.Component {
   WIDTH = 60;
   HEIGHT = 60 / 1.9;
   STRIPE_COUNT = 13;
+  BLUE_HEIGHT_STRIPE_INDEX = 7;
 
   // https://flagcolor.com/american-flag-colors/
   RED = { r: 191, g: 13, b: 62 };
@@ -86,6 +97,25 @@ export default class USATriangles extends React.Component {
     return Distance.setRandomTriangleWidths(baseHeight, { buffer: 5 })
   }
 
+  styleStars = () => {
+    // https://www.inchcalculator.com/american-flag-size-proportions-calculator/
+    const paddedWidth = 6.3;
+    const paddedHeight = 5.4;
+
+    return {
+      stars: {
+        height: this.BLUE_HEIGHT_STRIPE_INDEX / this.STRIPE_COUNT * 100 + "%",
+        width: 0.76 / 1.9 * 100 + "%"
+      },
+      starClusterLines: {
+        height: Distance.paddedLength(100, paddedHeight) + "%",
+        width: Distance.paddedLength(100, paddedWidth) + "%",
+        top: paddedHeight + "%",
+        left: paddedWidth + "%"
+      }
+    }
+  }
+
   render() {
     return (
       <USAComponent id="usa" style={this.state.style}>
@@ -100,6 +130,8 @@ export default class USATriangles extends React.Component {
           blue={this.COLOR_STATE_BLUE}
           white={this.COLOR_STATE_WHITE}
           colorAttributes={this.COLOR_ATTRIBUTES}
+          style={this.styleStars()}
+          countStarColumn={11}
         />
       </USAComponent>
     );
