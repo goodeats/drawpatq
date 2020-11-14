@@ -147,8 +147,6 @@ export default class USATriangles extends React.Component {
         <Stripes
           count={13}
           colors={[this.COLOR_STATE_RED, this.COLOR_STATE_WHITE]}
-          red={this.COLOR_STATE_RED}
-          white={this.COLOR_STATE_WHITE}
           stripeWidth={this.stripeWidth()}
         />
         <Stars
@@ -156,7 +154,6 @@ export default class USATriangles extends React.Component {
           white={this.COLOR_STATE_WHITE}
           colorAttributes={this.COLOR_ATTRIBUTES}
           style={this.styleStars()}
-          countStarColumn={11}
           sizes={this.triangleSizes().stars}
           counts={this.counts().stars}
         />
