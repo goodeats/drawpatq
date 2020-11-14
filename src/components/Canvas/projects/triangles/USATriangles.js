@@ -24,6 +24,7 @@ import Distance from '../../../../utils/Distance';
 
 // TODO:
 // * a11y 👏
+// * change Distance to Sizes (maybe)
 
 
 // https://www.ushistory.org/betsy/flagetiq3.html
@@ -160,8 +161,6 @@ export default class USATriangles extends React.Component {
           stripeWidth={this.stripeWidth()}
         />
         <Stars
-          // blue={this.COLOR_STATE_BLUE}
-          // white={this.COLOR_STATE_WHITE}
           colors={{ blue: this.COLOR_STATE_BLUE, white: this.COLOR_STATE_WHITE }}
           colorAttributes={this.COLOR_ATTRIBUTES}
           style={this.styleStars()}
