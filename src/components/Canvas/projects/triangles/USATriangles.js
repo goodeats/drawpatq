@@ -22,6 +22,9 @@ import Distance from '../../../../utils/Distance';
 // add signature
 // take screenshot
 
+// TODO:
+// * a11y 👏
+
 
 // https://www.ushistory.org/betsy/flagetiq3.html
 
@@ -118,6 +121,10 @@ export default class USATriangles extends React.Component {
         blue: 4000,
         stars: 5,
         starColumns: 11
+      },
+      stripes: {
+        stripes: 13,
+        stripeTriangles: 300
       }
     }
   }
@@ -142,20 +149,24 @@ export default class USATriangles extends React.Component {
   }
 
   render() {
+    const counts = this.counts();
+
     return (
       <USAComponent id="usa" style={this.state.style}>
         <Stripes
+          counts={counts.stripes}
           count={13}
           colors={[this.COLOR_STATE_RED, this.COLOR_STATE_WHITE]}
           stripeWidth={this.stripeWidth()}
         />
         <Stars
-          blue={this.COLOR_STATE_BLUE}
-          white={this.COLOR_STATE_WHITE}
+          // blue={this.COLOR_STATE_BLUE}
+          // white={this.COLOR_STATE_WHITE}
+          colors={{ blue: this.COLOR_STATE_BLUE, white: this.COLOR_STATE_WHITE }}
           colorAttributes={this.COLOR_ATTRIBUTES}
           style={this.styleStars()}
           sizes={this.triangleSizes().stars}
-          counts={this.counts().stars}
+          counts={counts.stars}
         />
       </USAComponent>
     );

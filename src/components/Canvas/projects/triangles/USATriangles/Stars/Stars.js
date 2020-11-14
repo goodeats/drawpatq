@@ -17,12 +17,13 @@ const Stars = (props) => {
   const styleStarClusterLines = style.starClusterLines;
 
   const counts = props.counts;
+  const colors = props.colors;
 
   return (
     <StarsComponent id="stars" style={styleStars}>
       <Blue
         count={counts.blue}
-        color={props.blue}
+        color={colors.blue}
         starWidth={props.sizes.blue}
         colorAttributes={props.colorAttributes}
       />
@@ -31,7 +32,7 @@ const Stars = (props) => {
         count={counts.starColumns}
         style={styleStarClusterLines}
         starWidth={props.sizes.stars}
-        colorState={props.white}
+        colorState={colors.white}
         colorAttributes={props.colorAttributes}
       />
     </StarsComponent>

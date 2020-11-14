@@ -14,7 +14,10 @@ const StripesComponent = styled.div`
 
 const Stripes = (props) => {
 
-  const count = props.count;
+  const counts = props.counts;
+  const stripes = counts.stripes;
+  const stripeTriangles = counts.stripeTriangles
+
   const stripeWidth = props.stripeWidth;
 
   const getStripeColor = (index) => {
@@ -23,15 +26,15 @@ const Stripes = (props) => {
 
   return (
     <StripesComponent id="stripes">
-      {Array.from(Array(count), (e, index) => {
-        const yAxis = Distance.positionAtIndexOnAxis(index, count);
+      {Array.from(Array(stripes), (e, index) => {
+        const yAxis = Distance.positionAtIndexOnAxis(index, stripes);
         const colorState = getStripeColor(index)
 
         return (
           <Stripe
             key={`stripe-${index}`}
             id={`stripe-${index}`}
-            triangleCount={300}
+            triangleCount={stripeTriangles}
             yAxis={yAxis}
             stripeWidth={stripeWidth}
             colorState={colorState}
