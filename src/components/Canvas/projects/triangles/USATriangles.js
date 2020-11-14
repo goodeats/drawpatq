@@ -1,9 +1,8 @@
 import React from 'react';
 import styled from "styled-components";
-import Styles from '../../../../utils/Styles';
 import Stripes from "./USATriangles/Stripes/Stripes";
 import Stars from "./USATriangles/Stars/Stars";
-import Distance from '../../../../utils/Distance';
+import USATrianglesMaths from './USATriangles/USATrianglesMaths';
 
 // lessons learned and things I got out of this:
 // * much more robust utils for extensible functions for future designs
@@ -25,6 +24,7 @@ import Distance from '../../../../utils/Distance';
 // TODO:
 // * a11y 👏
 // * change Distance to Sizes (maybe)
+// * click change theme
 
 
 // https://www.ushistory.org/betsy/flagetiq3.html
@@ -39,133 +39,55 @@ const USAComponent = styled.div`
 
 export default class USATriangles extends React.Component {
 
-  WIDTH = 60;
   HEIGHT = 60 / 1.9;
   STRIPE_COUNT = 13;
   BLUE_HEIGHT_STRIPE_INDEX = 7;
 
-  // https://flagcolor.com/american-flag-colors/
-  RED = { r: 191, g: 13, b: 62 };
-  WHITE = { r: 255, g: 255, b: 255 };
-  BLUE = { r: 10, g: 49, b: 97 };
-
-  COLOR_STATE_RED = Styles.buildColor(this.RED, { includeDefaultStyle: true });
-  COLOR_STATE_WHITE = Styles.buildColor(this.WHITE, { includeDefaultStyle: true });
-  COLOR_STATE_BLUE = Styles.buildColor(this.BLUE, { includeDefaultStyle: true });
-
-  COLOR_ATTRIBUTES = ['none', 'shade', 'tint'];
-
   constructor(props) {
     super(props);
     this.state = {
-      width: 60,
-      position: {
-        height: 60, // make equal to diff of min/max top
-        width: 60, // make equal to diff of min/max left
-        minTop: 20,
-        maxTop: 80,
-        minLeft: 20,
-        maxLeft: 80,
-      },
-      style: {}
+      currentStyle: 'default' // see demo styles above
     };
   }
 
-  componentDidMount() {
-    this.setStyles();
-  }
-
-  // https://dev.to/walecloud/updating-react-nested-state-properties-ga6
-  setStyle(attr, value) {
-    const { style } = { ...this.state };
-    const currentStyle = style;
-    currentStyle[attr] = value;
-    this.setState({ style: currentStyle });
-  }
-
-  setStyles() {
-    const width = this.state.width;
-    const height = 60 || width / 1.9; // real height looks really weird
-    const position = this.state.position;
-    this.setStyle("height", `${height}%`);
-    this.setStyle("width", `${width}%`);
-    this.setStyle("top", `${(100 - height) / 2}%`);
-    this.setStyle("left", `${position.minLeft}%`);
-  }
-
-  // fill triangles to give line a width
-  // TODO: make configurable in case I want "extra thin/thick" for example
-  stripeWidth = () => {
-    const flagHeightToPx = window.innerHeight * (this.HEIGHT / 100);
-    const baseHeight = flagHeightToPx / this.STRIPE_COUNT;
-    return Distance.setRandomTriangleWidths(baseHeight, { buffer: 5 })
-  }
-
-  triangleSizes(){
+  sizeOptions(){
     return {
-      stars: {
-        blue: {
-          lowerWidth: 10,
-          upperWidth: 20
-        },
-        stars: {
-          lowerWidth: 5,
-          upperWidth: 10
-        }
-      }
+      stripeCount: this.STRIPE_COUNT,
+      usaHeight: this.HEIGHT
     }
   }
 
-  counts(){
+  styleOptions(){
     return {
-      stars: {
-        blue: 4000,
-        stars: 5,
-        starColumns: 11
-      },
-      stripes: {
-        stripes: 13,
-        stripeTriangles: 300
-      }
+      stripeCount: this.STRIPE_COUNT,
+      blueHeightStripeIndex: this.BLUE_HEIGHT_STRIPE_INDEX
     }
   }
 
-  styleStars = () => {
-    // https://www.inchcalculator.com/american-flag-size-proportions-calculator/
-    const paddedWidth = 6.3;
-    const paddedHeight = 5.4;
-
-    return {
-      stars: {
-        height: this.BLUE_HEIGHT_STRIPE_INDEX / this.STRIPE_COUNT * 100 + "%",
-        width: 0.76 / 1.9 * 100 + "%"
-      },
-      starClusterLines: {
-        height: Distance.paddedLength(100, paddedHeight) + "%",
-        width: Distance.paddedLength(100, paddedWidth) + "%",
-        top: paddedHeight + "%",
-        left: paddedWidth + "%"
-      }
-    }
+  onClick = () => {
+    console.log('🇺🇸');
+    USATrianglesMaths.hello()
+    // * TODO: click change theme
   }
 
   render() {
-    const counts = this.counts();
+    const colors = USATrianglesMaths.colors();
+    const counts = USATrianglesMaths.counts();
+    const sizes = USATrianglesMaths.sizes(this.sizeOptions());
+    const style = USATrianglesMaths.style(this.styleOptions());
 
     return (
-      <USAComponent id="usa" style={this.state.style}>
+      <USAComponent id="usa" onClick={this.onClick}>
         <Stripes
+          colors={colors.stripes}
           counts={counts.stripes}
-          count={13}
-          colors={[this.COLOR_STATE_RED, this.COLOR_STATE_WHITE]}
-          stripeWidth={this.stripeWidth()}
+          sizes={sizes.stripes}
         />
         <Stars
-          colors={{ blue: this.COLOR_STATE_BLUE, white: this.COLOR_STATE_WHITE }}
-          colorAttributes={this.COLOR_ATTRIBUTES}
-          style={this.styleStars()}
-          sizes={this.triangleSizes().stars}
+          colors={colors.stars}
           counts={counts.stars}
+          sizes={sizes.stars}
+          style={style.stars}
         />
       </USAComponent>
     );

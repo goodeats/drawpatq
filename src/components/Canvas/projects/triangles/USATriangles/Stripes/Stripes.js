@@ -18,10 +18,12 @@ const Stripes = (props) => {
   const stripes = counts.stripes;
   const stripeTriangles = counts.stripeTriangles
 
-  const stripeWidth = props.stripeWidth;
+  const sizes = props.sizes;
+  const colors = props.colors;
+  const colorAttributes = colors.attributes;
 
   const getStripeColor = (index) => {
-    return Arrays.rotateNextIndex(props.colors, index);
+    return Arrays.rotateNextIndex(colors.stripeColors, index);
   }
 
   return (
@@ -36,9 +38,9 @@ const Stripes = (props) => {
             id={`stripe-${index}`}
             triangleCount={stripeTriangles}
             yAxis={yAxis}
-            stripeWidth={stripeWidth}
+            sizes={sizes}
             colorState={colorState}
-            colorAttributes={['none', 'shade', 'tint']}
+            colorAttributes={colorAttributes}
           />
         );
       })}

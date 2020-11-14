@@ -12,9 +12,7 @@ const StripeComponent = styled.div`
 const Stripe = (props) => {
 
   // upper/lower widths of triangles along stripe line
-  const stripeWidth = props.stripeWidth;
-  const lowerWidth = stripeWidth.lowerWidth;
-  const upperWidth = stripeWidth.upperWidth;
+  const sizes = props.sizes;
 
   // colors will rotate evenly among the attributes passed in
   const colorState = props.colorState;
@@ -31,8 +29,8 @@ const Stripe = (props) => {
           <StripeTriangle
             key={`stripe-tri-${index}`}
             color={color}
-            lowerWidth={lowerWidth}
-            upperWidth={upperWidth}
+            lowerWidth={sizes.lowerWidth}
+            upperWidth={sizes.upperWidth}
           />
         );
       })}

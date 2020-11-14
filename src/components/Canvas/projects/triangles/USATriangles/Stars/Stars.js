@@ -25,7 +25,7 @@ const Stars = (props) => {
         count={counts.blue}
         color={colors.blue}
         starWidth={props.sizes.blue}
-        colorAttributes={props.colorAttributes}
+        colorAttributes={colors.attributes}
       />
       <StarClusterLines
         maxStars={counts.stars}
@@ -33,7 +33,7 @@ const Stars = (props) => {
         style={styleStarClusterLines}
         starWidth={props.sizes.stars}
         colorState={colors.white}
-        colorAttributes={props.colorAttributes}
+        colorAttributes={colors.attributes}
       />
     </StarsComponent>
   );

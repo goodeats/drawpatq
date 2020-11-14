@@ -37,7 +37,14 @@ const Distance = {
     const position = this.positionAtIndex(index, count - 1, length);
     const axis = position + padding;
     return axis + '%';
-  }
+  },
+
+  percentageWindowHeightToPx(height){
+    return window.innerHeight * (height / 100);
+  },
+  percentageWindowWidthToPx(width){
+    return window.innerWidth * (width / 100);
+  },
 
 };
 
