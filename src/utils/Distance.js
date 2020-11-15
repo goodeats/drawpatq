@@ -19,6 +19,9 @@ const Distance = {
   setRandomTrianglePos: function(length, max = 100, min = 0, denomination = 'px'){
     return "calc(" + Maths.randomNumber(max, min) + "% - " + length / 2 + denomination + ")";
   },
+  setRandomTrianglePosByPercentage: function(length){
+    return Maths.randomNumber() - length / 2;
+  },
   // fill triangles to give line a width
   setRandomTriangleWidths(baseHeight, options) {
     const lowerWidth = baseHeight - options.buffer;

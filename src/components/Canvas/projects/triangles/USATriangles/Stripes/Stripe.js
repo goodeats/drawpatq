@@ -31,6 +31,7 @@ const Stripe = (props) => {
             color={color}
             lowerWidth={sizes.lowerWidth}
             upperWidth={sizes.upperWidth}
+            sizes={sizes}
           />
         );
       })}

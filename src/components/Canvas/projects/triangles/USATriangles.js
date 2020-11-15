@@ -35,33 +35,19 @@ const USAComponent = styled.div`
   width: 60%;
   top: 20%;
   left: 20%;
+  background: fuchsia;
 `;
 
 export default class USATriangles extends React.Component {
 
   HEIGHT = 60 / 1.9;
   STRIPE_COUNT = 13;
-  BLUE_HEIGHT_STRIPE_INDEX = 7;
 
   constructor(props) {
     super(props);
     this.state = {
       currentStyle: 'default' // see demo styles above
     };
-  }
-
-  sizeOptions(){
-    return {
-      stripeCount: this.STRIPE_COUNT,
-      usaHeight: this.HEIGHT
-    }
-  }
-
-  styleOptions(){
-    return {
-      stripeCount: this.STRIPE_COUNT,
-      blueHeightStripeIndex: this.BLUE_HEIGHT_STRIPE_INDEX
-    }
   }
 
   onClick = () => {
@@ -73,8 +59,8 @@ export default class USATriangles extends React.Component {
   render() {
     const colors = USATrianglesMaths.colors();
     const counts = USATrianglesMaths.counts();
-    const sizes = USATrianglesMaths.sizes(this.sizeOptions());
-    const style = USATrianglesMaths.style(this.styleOptions());
+    const sizes = USATrianglesMaths.sizes();
+    const style = USATrianglesMaths.style();
 
     return (
       <USAComponent id="usa" style={style.flag} onClick={this.onClick}>

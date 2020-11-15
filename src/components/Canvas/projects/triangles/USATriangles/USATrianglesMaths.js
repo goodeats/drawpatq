@@ -6,7 +6,6 @@ import Distance from '../../../../../utils/Distance';
 // https://flagcolor.com/american-flag-colors/
 // https://www.ushistory.org/betsy/flagetiq3.html
 
-const HEIGHT = 60 / 1.9;
 const STRIPE_COUNT = 13;
 const BLUE_HEIGHT_STRIPE_INDEX = 7;
 const HEIGHT_UNION = BLUE_HEIGHT_STRIPE_INDEX / STRIPE_COUNT;
@@ -26,6 +25,7 @@ const DIMENSIONS = {
 }
 
 const FLAG_WIDTH = 60;
+// const FLAG_HEIGHT = 60 / 1.9;
 // 60 / 1.9 doesn't work if it's a vertical phone
 // get width px / length ratio
 // convert to height px
@@ -81,15 +81,18 @@ const USATrianglesMaths = {
     }
   },
 
-  sizes(options){
-    const stripeWidth = this.stripeWidth(options);
+  sizes(){
+    const stripeWidth = this.stripeWidth();
+    stripeWidth.flagHeight = FLAG_HEIGHT;
+    stripeWidth.flagHeightPx = FLAG_HEIGHT_PX;
+    const starSize = DIMENSIONS.starSize;
 
     return {
       stars: {
         blue: stripeWidth,
         stars: {
-          lowerWidth: stripeWidth.lowerWidth / 2,
-          upperWidth: stripeWidth.upperWidth / 2
+          lowerWidth: starSize * 105, // + 5%
+          upperWidth: starSize * 95 // - 5%
         }
       },
       stripes: stripeWidth
@@ -98,34 +101,27 @@ const USATrianglesMaths = {
 
   // fill triangles to give line a width
   // TODO: make configurable in case I want "extra thin/thick" for example
-  stripeWidth: (options) => {
-    const flagHeightToPx = Distance.percentageWindowHeightToPx(options.usaHeight);
-    const baseHeight = flagHeightToPx / options.stripeCount;
-    // console.log(baseHeight)
-    return Distance.setRandomTriangleWidths(baseHeight, { buffer: options.buffer || 5 })
+  stripeWidth: () => {
+    // const baseHeight = 1 / STRIPE_COUNT * 100;
+    const flagHeightToPx = Distance.percentageWindowHeightToPx(FLAG_WIDTH / DIMENSIONS.width);
+    const baseHeight = flagHeightToPx / STRIPE_COUNT;
+    return Distance.setRandomTriangleWidths(baseHeight, { buffer: 5 })
   },
 
-  style: (options) => {
+  style: () => {
     // https://www.inchcalculator.com/american-flag-size-proportions-calculator/
     // TODO: set DIMENSIONS here from options
     const unionPaddedWidth = DIMENSIONS.paddingUnionWidth * 10;
     const unionPaddedHeight = DIMENSIONS.paddingUnionHeight * 10;
 
-    const stripeCount = options.stripeCount;
-
-    const flagHeight = Distance.percentageWindowWidthToPx(60) * 0.6 / DIMENSIONS.height;
-    const flagTop = (window.innerHeight - flagHeight) / 2;
-
     return {
       flag: {
-        // height: flagHeight + 'px',
         height: FLAG_HEIGHT + '%',
-        // top: flagTop + 'px'
         top: FLAG_TOP + '%'
       },
       stars: {
         stars: {
-          height: BLUE_HEIGHT_STRIPE_INDEX / stripeCount * 100 + "%",
+          height: BLUE_HEIGHT_STRIPE_INDEX / STRIPE_COUNT * 100 + "%",
           width: 0.76 / 1.9 * 100 + "%"
         },
         starClusterLines: {
@@ -136,7 +132,7 @@ const USATrianglesMaths = {
         }
       },
       stripes: {
-        stripeCount: stripeCount
+        stripeCount: STRIPE_COUNT
       }
     }
   }
