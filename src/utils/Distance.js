@@ -45,6 +45,12 @@ const Distance = {
   percentageWindowWidthToPx(width){
     return window.innerWidth * (width / 100);
   },
+  pxToPercentageWindowHeight(px){
+    return px / window.innerHeight * 100;
+  },
+  pxToPercentageWindowWidth(px){
+    return px / window.innerWidth * 100;
+  }
 
 };
 

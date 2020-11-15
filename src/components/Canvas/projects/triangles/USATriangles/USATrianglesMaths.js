@@ -25,6 +25,17 @@ const DIMENSIONS = {
   widthStripe: 1 / STRIPE_COUNT // L. width of stripe
 }
 
+const FLAG_WIDTH = 60;
+// 60 / 1.9 doesn't work if it's a vertical phone
+// get width px / length ratio
+// convert to height px
+// convert to window height percentage
+// easier to modify inner components by % than
+const FLAG_WIDTH_PX = Distance.percentageWindowWidthToPx(FLAG_WIDTH);
+const FLAG_HEIGHT_PX = FLAG_WIDTH_PX / DIMENSIONS.width;
+const FLAG_HEIGHT = Distance.pxToPercentageWindowHeight(FLAG_HEIGHT_PX);
+const FLAG_TOP = (100 - FLAG_HEIGHT) / 2;
+
 const USATrianglesMaths = {
   hello: function () {
     console.log("hi from USATrianglesMaths");
@@ -90,6 +101,7 @@ const USATrianglesMaths = {
   stripeWidth: (options) => {
     const flagHeightToPx = Distance.percentageWindowHeightToPx(options.usaHeight);
     const baseHeight = flagHeightToPx / options.stripeCount;
+    // console.log(baseHeight)
     return Distance.setRandomTriangleWidths(baseHeight, { buffer: options.buffer || 5 })
   },
 
@@ -106,8 +118,10 @@ const USATrianglesMaths = {
 
     return {
       flag: {
-        height: flagHeight + 'px',
-        top: flagTop + 'px'
+        // height: flagHeight + 'px',
+        height: FLAG_HEIGHT + '%',
+        // top: flagTop + 'px'
+        top: FLAG_TOP + '%'
       },
       stars: {
         stars: {
