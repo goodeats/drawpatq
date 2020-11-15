@@ -15,7 +15,7 @@ const DIMENSIONS = {
   height: 1.0, //  A. hoist (width) of flag
   width: 1.9, // B. fly (length) of flag
   heightUnion: HEIGHT_UNION, // C. hoist (width) of union
-  widthUnion: 0.76, // D. fly (length) of union
+  widthUnion: 0.76, // D. fly (length) of union // side note: this is 40% of width
   paddingUnionHeight: 0.054, // E.
   starRowInterval: 0.054, // F. (not used, same as E)
   paddingUnionWidth: 0.063, // G.
@@ -111,9 +111,8 @@ const USATrianglesMaths = {
   style: () => {
     // https://www.inchcalculator.com/american-flag-size-proportions-calculator/
     // TODO: set DIMENSIONS here from options
-    const unionPaddedWidth = DIMENSIONS.paddingUnionWidth * 10;
-    const unionPaddedHeight = DIMENSIONS.paddingUnionHeight * 10;
-
+    const unionPaddedWidth = DIMENSIONS.paddingUnionWidth * 100;
+    const unionPaddedHeight = DIMENSIONS.paddingUnionHeight * 100;
     return {
       flag: {
         height: FLAG_HEIGHT + '%',
@@ -121,8 +120,8 @@ const USATrianglesMaths = {
       },
       stars: {
         stars: {
-          height: BLUE_HEIGHT_STRIPE_INDEX / STRIPE_COUNT * 100 + "%",
-          width: 0.76 / 1.9 * 100 + "%"
+          height: HEIGHT_UNION * 100 + "%",
+          width: DIMENSIONS.widthUnion / DIMENSIONS.width * 100 + "%"
         },
         starClusterLines: {
           height: Distance.paddedLength(100, unionPaddedHeight) + "%",

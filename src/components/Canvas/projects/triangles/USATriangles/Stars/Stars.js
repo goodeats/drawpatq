@@ -14,6 +14,11 @@ const Stars = (props) => {
 
   const style = props.style;
   const styleStars = style.stars;
+  const sizes = props.sizes;
+
+  // quick and dirty way to flush union to upper left
+  // noticed that setting left like this was unneccessary
+  styleStars.top = sizes.blue.upperWidth / -2 + 'px';
   const styleStarClusterLines = style.starClusterLines;
 
   const counts = props.counts;
@@ -24,14 +29,14 @@ const Stars = (props) => {
       <Blue
         count={counts.blue}
         color={colors.blue}
-        starWidth={props.sizes.blue}
+        starWidth={sizes.blue}
         colorAttributes={colors.attributes}
       />
       <StarClusterLines
         maxStars={counts.stars}
         count={counts.starColumns}
         style={styleStarClusterLines}
-        starWidth={props.sizes.stars}
+        starWidth={sizes.stars}
         colorState={colors.white}
         colorAttributes={colors.attributes}
       />
