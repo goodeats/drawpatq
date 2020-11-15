@@ -60,18 +60,22 @@ export default class Triangle extends React.Component {
     return 'rotate(' + rotation + 'deg)';
   }
 
+  styles(){
+    return {
+      top: this.state.top,
+      left: this.state.left,
+      borderWidth: this.state.arrangement,
+      borderColor: this.state.color,
+      opacity: this.state.opacity,
+      transform: this.state.transform,
+    }
+  }
+
   render(){
     return (
       <TriangleComponent
         className="Triangle Triangle-equilateral"
-        style={{
-          top: this.state.top,
-          left: this.state.left,
-          borderWidth: this.state.arrangement,
-          borderColor: this.state.color,
-          opacity: this.state.opacity,
-          transform: this.state.transform,
-        }}
+        style={this.styles()}
       />
     );
   }
