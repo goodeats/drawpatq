@@ -35,7 +35,6 @@ const USAComponent = styled.div`
   width: 60%;
   top: 20%;
   left: 20%;
-  background: fuchsia;
 `;
 
 export default class USATriangles extends React.Component {

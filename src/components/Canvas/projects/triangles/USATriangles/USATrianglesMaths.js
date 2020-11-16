@@ -82,30 +82,32 @@ const USATrianglesMaths = {
   },
 
   sizes(){
-    const stripeWidth = this.stripeWidth();
-    stripeWidth.flagHeight = FLAG_HEIGHT;
-    stripeWidth.flagHeightPx = FLAG_HEIGHT_PX;
-    const starSize = DIMENSIONS.starSize;
+    const stripeSize = this.stripeSize();
+    const starSize = this.starSize();
 
     return {
       stars: {
-        blue: stripeWidth,
-        stars: {
-          lowerWidth: starSize * 105, // + 5%
-          upperWidth: starSize * 95 // - 5%
-        }
+        blue: stripeSize,
+        stars: starSize
       },
-      stripes: stripeWidth
+      stripes: stripeSize
     }
   },
 
   // fill triangles to give line a width
   // TODO: make configurable in case I want "extra thin/thick" for example
-  stripeWidth: () => {
-    // const baseHeight = 1 / STRIPE_COUNT * 100;
-    const flagHeightToPx = Distance.percentageWindowHeightToPx(FLAG_WIDTH / DIMENSIONS.width);
-    const baseHeight = flagHeightToPx / STRIPE_COUNT;
-    return Distance.setRandomTriangleWidths(baseHeight, { buffer: 5 })
+  stripeSize: () => {
+    // "2 / 3" is by trial and error
+    // leaving that out makes bottom line too prominent (last drawn, new triangles on top)
+    const stripeSize = DIMENSIONS.widthStripe * FLAG_HEIGHT_PX * (2 / 3);
+    const buff = stripeSize / 5;
+    return Distance.setRandomTriangleWidths(stripeSize - buff, { buffer: buff })
+  },
+
+  starSize: () => {
+    const starSize = DIMENSIONS.starSize * FLAG_HEIGHT_PX / 2;
+    const buff = starSize / 5;
+    return Distance.setRandomTriangleWidths(starSize - buff, { buffer: buff })
   },
 
   style: () => {

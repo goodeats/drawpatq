@@ -1,5 +1,4 @@
 import React from "react";
-import Distance from "../../../../../../utils/Distance";
 import Triangle from "../../../../shapes/Triangle";
 
 // the many triangles that fill in a red or white stripe
