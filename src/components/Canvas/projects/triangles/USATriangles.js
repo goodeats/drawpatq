@@ -35,31 +35,35 @@ const USAComponent = styled.div`
   width: 60%;
   top: 20%;
   left: 20%;
+  cursor: pointer;
 `;
 
 export default class USATriangles extends React.Component {
 
-  HEIGHT = 60 / 1.9;
-  STRIPE_COUNT = 13;
-
   constructor(props) {
     super(props);
     this.state = {
+      colors: USATrianglesMaths.colors(),
+      counts: USATrianglesMaths.counts(),
+      sizes: USATrianglesMaths.sizes(),
+      style: USATrianglesMaths.style(),
       currentStyle: 'default' // see demo styles above
     };
   }
 
   onClick = () => {
     console.log('🇺🇸');
-    USATrianglesMaths.hello()
+    const colors = USATrianglesMaths.colors('solid')
+    this.setState({colors})
     // * TODO: click change theme
   }
 
   render() {
-    const colors = USATrianglesMaths.colors();
-    const counts = USATrianglesMaths.counts();
-    const sizes = USATrianglesMaths.sizes();
-    const style = USATrianglesMaths.style();
+    const state = this.state;
+    const colors = state.colors;
+    const counts = state.counts;
+    const sizes = state.sizes;
+    const style = state.style;
 
     return (
       <USAComponent id="usa" style={style.flag} onClick={this.onClick}>

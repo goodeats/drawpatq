@@ -22,7 +22,9 @@ const Styles = {
   defaultEffects: ['none', 'shade', 'tint'],
 
   buildColor: function (styleBuild, options = {}) {
-    return Object.assign(this.defaultStyle(), styleBuild);
+    const buildOptions = options.defaultStyle ? this.defaultStyle() : options;
+
+    return Object.assign(buildOptions, styleBuild);
   },
 
   setColorByAttributeIndex(colorState, index, attributes = this.defaultEffects){

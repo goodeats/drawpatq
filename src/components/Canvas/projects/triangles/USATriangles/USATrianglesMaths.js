@@ -41,16 +41,25 @@ const USATrianglesMaths = {
     console.log("hi from USATrianglesMaths");
   },
 
-  colors(){
+  setColorAttributes(theme){
+    switch (theme) {
+      case 'solid':
+        return ['none'];
+      default:
+        return ['none', 'shade', 'tint'];
+    }
+  },
+
+  colors(theme){
     const RED = { r: 191, g: 13, b: 62 };
     const WHITE = { r: 255, g: 255, b: 255 };
     const BLUE = { r: 10, g: 49, b: 97 };
 
-    const COLOR_STATE_RED = Styles.buildColor(RED, { includeDefaultStyle: true });
-    const COLOR_STATE_WHITE = Styles.buildColor(WHITE, { includeDefaultStyle: true });
-    const COLOR_STATE_BLUE = Styles.buildColor(BLUE, { includeDefaultStyle: true });
+    const COLOR_STATE_RED = Styles.buildColor(RED, { defaultStyle: true });
+    const COLOR_STATE_WHITE = Styles.buildColor(WHITE, { defaultStyle: true });
+    const COLOR_STATE_BLUE = Styles.buildColor(BLUE, { defaultStyle: true });
 
-    const COLOR_ATTRIBUTES = ['none', 'shade', 'tint'];
+    const COLOR_ATTRIBUTES = this.setColorAttributes(theme);
 
     return {
       stars: {
@@ -70,7 +79,7 @@ const USATrianglesMaths = {
   counts(){
     return {
       stars: {
-        blue: 4000,
+        blue: 2000,
         stars: 5,
         starColumns: 11
       },
