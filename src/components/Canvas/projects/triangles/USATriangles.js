@@ -43,7 +43,7 @@ export default class USATriangles extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      colors: USATrianglesMaths.colors(),
+      colors: USATrianglesMaths.colors(this.props.theme),
       counts: USATrianglesMaths.counts(),
       sizes: USATrianglesMaths.sizes(),
       style: USATrianglesMaths.style(),
@@ -53,9 +53,7 @@ export default class USATriangles extends React.Component {
 
   onClick = () => {
     console.log('🇺🇸');
-    const colors = USATrianglesMaths.colors('solid')
-    this.setState({colors})
-    // * TODO: click change theme
+    this.props.onThemeChange('solid')
   }
 
   render() {
