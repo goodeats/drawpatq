@@ -40,20 +40,23 @@ const USAComponent = styled.div`
 
 export default class USATriangles extends React.Component {
 
+  THEMES = ['default', 'solid']
+
   constructor(props) {
     super(props);
     this.state = {
       colors: USATrianglesMaths.colors(this.props.theme),
       counts: USATrianglesMaths.counts(),
       sizes: USATrianglesMaths.sizes(),
-      style: USATrianglesMaths.style(),
-      currentStyle: 'default' // see demo styles above
+      style: USATrianglesMaths.style()
     };
   }
 
   onClick = () => {
     console.log('🇺🇸');
-    this.props.onThemeChange('solid')
+    const currentThemeIndex = this.THEMES.indexOf(this.props.theme);
+    const theme = this.THEMES[currentThemeIndex + 1]
+    this.props.onThemeChange(theme)
   }
 
   render() {
