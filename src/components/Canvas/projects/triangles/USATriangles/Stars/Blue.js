@@ -19,13 +19,15 @@ const Blue = (props) => {
   const upperWidth = starWidth.upperWidth;
 
   const colorState = props.color;
+  const randomColor = colorState.random;
   // have option to flatten colors
   const colorAttributes = props.colorAttributes || [];
 
   return(
     <BlueComponent id="container-blue-background">
       {Array.from(Array(props.count), (e, index) => {
-        const color = Styles.setColorByAttributeIndex(colorState, index, colorAttributes);
+        const randomColorState = randomColor ? Styles.getRandomColorState() : null;
+        const color = Styles.setColorByAttributeIndex(randomColorState || colorState, index, colorAttributes);
 
         return <Triangle
           key={`blue-${index}`}

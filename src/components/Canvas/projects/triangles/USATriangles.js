@@ -40,7 +40,7 @@ const USAComponent = styled.div`
 
 export default class USATriangles extends React.Component {
 
-  THEMES = ['default', 'solid']
+  THEMES = ['default', 'solid', 'rainbow']
 
   constructor(props) {
     super(props);

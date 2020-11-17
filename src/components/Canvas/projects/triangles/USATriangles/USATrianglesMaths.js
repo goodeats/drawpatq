@@ -1,10 +1,15 @@
 import Styles from '../../../../../utils/Styles';
 import Distance from '../../../../../utils/Distance';
+import Colors from '../../../../../utils/Colors';
 
 // "Utils" probably better, but I like "Maths" for now
 
 // https://flagcolor.com/american-flag-colors/
 // https://www.ushistory.org/betsy/flagetiq3.html
+
+const RED = { r: 191, g: 13, b: 62 };
+const WHITE = { r: 255, g: 255, b: 255 };
+const BLUE = { r: 10, g: 49, b: 97 };
 
 const STRIPE_COUNT = 13;
 const BLUE_HEIGHT_STRIPE_INDEX = 7;
@@ -50,27 +55,39 @@ const USATrianglesMaths = {
     }
   },
 
+  setColorStates(theme){
+    let red = Styles.buildColor(RED, { defaultStyle: true });
+    let white = Styles.buildColor(WHITE, { defaultStyle: true });
+    let blue = Styles.buildColor(BLUE, { defaultStyle: true });
+
+    if (theme === 'rainbow') {
+      red.random = true;
+      white.maxShade = 0.1;
+      white.minShade = 0.1;
+      white.maxTint = 0.1;
+      white.minTint = 0.1;
+      blue.random = true;
+    }
+
+    return {
+      red: red,
+      white: white,
+      blue: blue,
+    }
+  },
+
   colors(theme){
-    const RED = { r: 191, g: 13, b: 62 };
-    const WHITE = { r: 255, g: 255, b: 255 };
-    const BLUE = { r: 10, g: 49, b: 97 };
-
-    const COLOR_STATE_RED = Styles.buildColor(RED, { defaultStyle: true });
-    const COLOR_STATE_WHITE = Styles.buildColor(WHITE, { defaultStyle: true });
-    const COLOR_STATE_BLUE = Styles.buildColor(BLUE, { defaultStyle: true });
-
     const COLOR_ATTRIBUTES = this.setColorAttributes(theme);
+    const COLOR_STATES = this.setColorStates(theme);
 
     return {
       stars: {
-        blue: COLOR_STATE_BLUE,
-        white: COLOR_STATE_WHITE,
+        blue: COLOR_STATES.blue,
+        white: COLOR_STATES.white,
         attributes: COLOR_ATTRIBUTES
       },
       stripes: {
-        red: COLOR_STATE_RED,
-        white: COLOR_STATE_WHITE,
-        stripeColors: [COLOR_STATE_RED, COLOR_STATE_WHITE], // to rotate
+        stripeColors: [COLOR_STATES.red, COLOR_STATES.white], // to rotate
         attributes: COLOR_ATTRIBUTES
       }
     }

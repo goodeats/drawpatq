@@ -27,6 +27,12 @@ const Styles = {
     return Object.assign(buildOptions, styleBuild);
   },
 
+  getRandomColorState(){
+    const rgba = Colors.buildColor();
+    const rgbaStyle = this.buildColor(rgba, { defaultStyle: true });
+    return rgbaStyle;
+  },
+
   setColorByAttributeIndex(colorState, index, attributes = this.defaultEffects){
     const attribute = Arrays.rotateNextIndex(attributes, index);
     return Styles.setColor(colorState, attribute);

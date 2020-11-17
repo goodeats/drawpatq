@@ -16,6 +16,17 @@ const Colors = {
     return `${title} -- r: ${color.r}, g: ${color.g}, b: ${color.b}`
   },
 
+  buildColor: function(options = {}){
+    const r = options.r || this.getRandomColorValue()
+    const g = options.g || this.getRandomColorValue()
+    const b = options.b || this.getRandomColorValue()
+    return {
+      r: r,
+      g: g,
+      b: b
+    }
+  },
+
   // https://www.paulirish.com/2009/random-hex-color-code-snippets/
   getRandomHex: function () {
     return '#' + Math.floor(Math.random() * 16777215).toString(16);

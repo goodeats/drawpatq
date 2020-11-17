@@ -2,6 +2,7 @@ import React from "react";
 import StripeTriangle from "./StripeTriangle";
 import Styles from "../../../../../../utils/Styles";
 import styled from "styled-components";
+import Colors from "../../../../../../utils/Colors";
 
 const StripeComponent = styled.div`
   position: absolute;
@@ -16,6 +17,7 @@ const Stripe = (props) => {
 
   // colors will rotate evenly among the attributes passed in
   const colorState = props.colorState;
+  const randomColor = colorState.random;
   // have option to flatten colors
   const colorAttributes = props.colorAttributes || [];
 
@@ -23,7 +25,8 @@ const Stripe = (props) => {
     <StripeComponent id={props.id} style={{top: props.yAxis}}>
       {Array.from(Array(props.triangleCount), (e, index) => {
         // shade/tint stripe triangles
-        const color = Styles.setColorByAttributeIndex(colorState, index, colorAttributes);
+        const randomColorState = randomColor ? Styles.getRandomColorState() : null;
+        const color = Styles.setColorByAttributeIndex(randomColorState || colorState, index, colorAttributes);
 
         return (
           <StripeTriangle
