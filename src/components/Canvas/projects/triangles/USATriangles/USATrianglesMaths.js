@@ -36,10 +36,14 @@ const FLAG_WIDTH = 60;
 // convert to height px
 // convert to window height percentage
 // easier to modify inner components by % than
-const FLAG_WIDTH_PX = Distance.percentageWindowWidthToPx(FLAG_WIDTH);
-const FLAG_HEIGHT_PX = FLAG_WIDTH_PX / DIMENSIONS.width;
-const FLAG_HEIGHT = Distance.pxToPercentageWindowHeight(FLAG_HEIGHT_PX);
-const FLAG_TOP = (100 - FLAG_HEIGHT) / 2;
+
+// also commenting out these and now using flagDimensions() down below
+// the problem was on window resize these const's would not change when the project reloads
+// const FLAG_WIDTH_PX = Distance.percentageWindowWidthToPx(FLAG_WIDTH);
+// const FLAG_HEIGHT_PX = FLAG_WIDTH_PX / DIMENSIONS.width;
+// console.log(FLAG_HEIGHT_PX)
+// const FLAG_HEIGHT = Distance.pxToPercentageWindowHeight(FLAG_HEIGHT_PX);
+// const FLAG_TOP = (100 - FLAG_HEIGHT) / 2;
 
 const USATrianglesMaths = {
   hello: function () {
@@ -122,29 +126,48 @@ const USATrianglesMaths = {
 
   // fill triangles to give line a width
   // TODO: make configurable in case I want "extra thin/thick" for example
-  stripeSize: () => {
+  stripeSize(){
     // "2 / 3" is by trial and error
     // leaving that out makes bottom line too prominent (last drawn, new triangles on top)
-    const stripeSize = DIMENSIONS.widthStripe * FLAG_HEIGHT_PX * (2 / 3);
+    const stripeSize = DIMENSIONS.widthStripe * this.flagDimensions().FLAG_HEIGHT_PX * (2 / 3);
     const buff = stripeSize / 5;
     return Distance.setRandomTriangleWidths(stripeSize - buff, { buffer: buff })
   },
 
-  starSize: () => {
-    const starSize = DIMENSIONS.starSize * FLAG_HEIGHT_PX / 2;
+  starSize(){
+    const starSize = DIMENSIONS.starSize * this.flagDimensions().FLAG_HEIGHT_PX / 2;
     const buff = starSize / 5;
     return Distance.setRandomTriangleWidths(starSize - buff, { buffer: buff })
   },
 
-  style: () => {
+  // need to reset these values on window resize
+  // see comments on these values at the top
+  flagDimensions(){
+    const FLAG_WIDTH_PX_new = Distance.percentageWindowWidthToPx(FLAG_WIDTH);
+    const FLAG_HEIGHT_PX_new = FLAG_WIDTH_PX_new / DIMENSIONS.width;
+    const FLAG_HEIGHT_new = Distance.pxToPercentageWindowHeight(FLAG_HEIGHT_PX_new);
+    const FLAG_TOP_new = (100 - FLAG_HEIGHT_new) / 2;
+    return {
+      FLAG_WIDTH_PX: FLAG_WIDTH_PX_new,
+      FLAG_HEIGHT_PX: FLAG_HEIGHT_PX_new,
+      FLAG_HEIGHT: FLAG_HEIGHT_new,
+      FLAG_TOP: FLAG_TOP_new
+    }
+  },
+
+  style(){
+    const flagDimensions = this.flagDimensions();
+    const flagHeight = flagDimensions.FLAG_HEIGHT
+    const flagTop = flagDimensions.FLAG_TOP
+
     // https://www.inchcalculator.com/american-flag-size-proportions-calculator/
     // TODO: set DIMENSIONS here from options
     const unionPaddedWidth = DIMENSIONS.paddingUnionWidth * 100;
     const unionPaddedHeight = DIMENSIONS.paddingUnionHeight * 100;
     return {
       flag: {
-        height: FLAG_HEIGHT + '%',
-        top: FLAG_TOP + '%'
+        height: flagHeight + '%',
+        top: flagTop + '%'
       },
       stars: {
         stars: {

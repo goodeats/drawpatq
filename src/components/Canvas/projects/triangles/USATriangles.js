@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Stripes from "./USATriangles/Stripes/Stripes";
 import Stars from "./USATriangles/Stars/Stars";
 import USATrianglesMaths from './USATriangles/USATrianglesMaths';
+import Arrays from '../../../../utils/Arrays';
 
 // lessons learned and things I got out of this:
 // * much more robust utils for extensible functions for future designs
@@ -55,8 +56,8 @@ export default class USATriangles extends React.Component {
   onClick = () => {
     console.log('🇺🇸');
     const currentThemeIndex = this.THEMES.indexOf(this.props.theme);
-    const theme = this.THEMES[currentThemeIndex + 1]
-    this.props.onThemeChange(theme)
+    const newTheme = Arrays.rotateNextIndex(this.THEMES, currentThemeIndex + 1)
+    this.props.onThemeChange(newTheme)
   }
 
   render() {
