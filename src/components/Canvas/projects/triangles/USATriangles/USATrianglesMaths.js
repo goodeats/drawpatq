@@ -155,7 +155,7 @@ const USATrianglesMaths = {
     }
   },
 
-  style(){
+  style(theme){
     const flagDimensions = this.flagDimensions();
     const flagHeight = flagDimensions.FLAG_HEIGHT
     const flagTop = flagDimensions.FLAG_TOP
@@ -164,7 +164,7 @@ const USATrianglesMaths = {
     // TODO: set DIMENSIONS here from options
     const unionPaddedWidth = DIMENSIONS.paddingUnionWidth * 100;
     const unionPaddedHeight = DIMENSIONS.paddingUnionHeight * 100;
-    return {
+    const style = {
       flag: {
         height: flagHeight + '%',
         top: flagTop + '%'
@@ -185,6 +185,12 @@ const USATrianglesMaths = {
         stripeCount: STRIPE_COUNT
       }
     }
+
+    if (theme === 'grayscale'){
+      style.flag.filter = 'grayscale(1)'
+    }
+
+    return style;
   }
 };
 

@@ -61,7 +61,8 @@ export default class Triangle extends React.Component {
   }
 
   styles(){
-    return {
+    const propsStyle = this.props.style || {};
+    const triangleStyle = {
       top: this.state.top,
       left: this.state.left,
       borderWidth: this.state.arrangement,
@@ -69,6 +70,7 @@ export default class Triangle extends React.Component {
       opacity: this.state.opacity,
       transform: this.state.transform,
     }
+    return Object.assign(propsStyle, triangleStyle);
   }
 
   render(){
