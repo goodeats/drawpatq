@@ -27,7 +27,32 @@ export default class Canvas extends React.Component {
   }
 
   componentDidMount() {
+    // this.sendYo()
     window.addEventListener('resize', Throttle.throttle(this.reload, 100));
+    window.addEventListener('orientationchange', function() {
+      // After orientationchange, add a one-time resize event
+      var afterOrientationChange = function() {
+          // YOUR POST-ORIENTATION CODE HERE
+          Throttle.throttle(this.reload, 100);
+          // Remove the resize event listener after it has executed
+          window.removeEventListener('resize', afterOrientationChange);
+      };
+      window.addEventListener('resize', afterOrientationChange);
+    });
+  }
+
+  sendYo(){
+    // Simple POST request with a JSON body using fetch
+    const requestOptions = {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Credentials': true
+       },
+    };
+    fetch('http://localhost:3001/api/v1/yo/2', requestOptions)
+        .then(response => console.log(response.json()))
+        .then(data => console.log(data));
   }
 
   componentWillUnmount() {
