@@ -4,6 +4,7 @@ import Title from './Title';
 import Throttle from '../utils/Throttle';
 import Navigation from '../utils/Navigation';
 import USATriangles from "./Canvas/projects/triangles/USATriangles";
+import XmasTreeTriangles from "./Canvas/projects/triangles/XmasTreeTriangles";
 
 const CanvasComponent = styled.main`
   display: flex;
@@ -48,8 +49,16 @@ export default class Canvas extends React.Component {
     this.setState({ reload: true, theme: theme }, this.reloaded)
   }
 
+  currentProjects = () => {
+    return [
+      <USATriangles theme={this.state.theme} onThemeChange={this.onThemeChange} />,
+      <XmasTreeTriangles theme={this.state.theme} onThemeChange={this.onThemeChange} />
+    ]
+
+  }
+
   currentProject = () => {
-    return <USATriangles theme={this.state.theme} onThemeChange={this.onThemeChange} />;
+    return this.currentProjects()[1];
   }
 
   render() {

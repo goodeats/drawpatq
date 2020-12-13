@@ -9,6 +9,7 @@ import ShadedAndTintedTriangles from '../components/Canvas/projects/triangles/Sh
 import AlignedTriangles from "../components/Canvas/projects/triangles/AlignedTriangles";
 import ClusteredTriangles from "../components/Canvas/projects/triangles/ClusteredTriangles";
 import USATriangles from '../components/Canvas/projects/triangles/USATriangles';
+import XmasTreeTriangles from '../components/Canvas/projects/triangles/XmasTreeTriangles';
 
 const Navigation = {
   hello: function () {
@@ -26,6 +27,7 @@ const Navigation = {
     ['in a row', <AlignedTriangles />],
     ['clustered', <ClusteredTriangles />],
     ['usa', <USATriangles />],
+    ['xmas', <XmasTreeTriangles />],
     // groups of colors
     // rainbow
     // moving random absolute positions
