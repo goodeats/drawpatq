@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from "styled-components";
-import Stripes from "./USATriangles/Stripes/Stripes";
 import Attributes from './XmasTreeTriangles/Attributes'
 import Arrays from '../../../../utils/Arrays';
+import Tree from './XmasTreeTriangles/Tree/Tree';
 
 // lessons learned and things I got out of this:
 
@@ -15,7 +15,7 @@ import Arrays from '../../../../utils/Arrays';
 
 // https://www.ushistory.org/betsy/flagetiq3.html
 
-const USAComponent = styled.div`
+const XmasTreeComponent = styled.div`
   position: absolute;
   height: 60%;
   width: 60%;
@@ -34,7 +34,7 @@ export default class USATriangles extends React.Component {
       colors: Attributes.colors(this.props.theme),
       counts: Attributes.counts(),
       sizes: Attributes.sizes(),
-      style: Attributes.style(this.props.theme)
+      dimensions: Attributes.dimensions(this.props.theme)
     };
   }
 
@@ -50,16 +50,16 @@ export default class USATriangles extends React.Component {
     const colors = state.colors;
     const counts = state.counts;
     const sizes = state.sizes;
-    const style = state.style;
+    const dimensions = state.dimensions;
 
     return (
-      <USAComponent id="usa" style={style.flag} onClick={this.onClick}>
-        <Stripes
-          colors={colors.stripes}
-          counts={counts.stripes}
-          sizes={sizes.stripes}
+      <XmasTreeComponent id="xmastree" style={dimensions.container} onClick={this.onClick}>
+        <Tree
+          colors={colors.tree}
+          counts={counts.tree}
+          sizes={sizes.tree}
         />
-      </USAComponent>
+      </XmasTreeComponent>
     );
   }
 }

@@ -2,9 +2,15 @@ import Styles from '../../../../../../utils/Styles'
 
 // copied from src/components/Canvas/projects/triangles/USATriangles/USATrianglesMaths.js
 
-const RED = { r: 1, g: 13, b: 62 };
+// TODO: https://stackoverflow.com/questions/1664140/js-function-to-calculate-complementary-colour
+// search for ways to build my own functions to calculate all the different hexes on here:
+// https://www.color-hex.com/color/075f38
+
+// https://www.picmonkey.com/colors/green/evergreen
+const EVERGREEN = { r: 5, g: 71, b: 42 };
+const EVERGREEN_LIGHT = { r: 9, g: 119, b: 70 };
+const COMPLMENTARY = { r: 71, g: 5, b: 34 }
 const WHITE = { r: 255, g: 255, b: 255 };
-const BLUE = { r: 10, g: 49, b: 97 };
 
 const Color = {
   hello: function () {
@@ -21,23 +27,20 @@ const Color = {
   },
 
   setColorStates(theme){
-    let red = Styles.buildColor(RED, { defaultStyle: true });
-    let white = Styles.buildColor(WHITE, { defaultStyle: true });
-    let blue = Styles.buildColor(BLUE, { defaultStyle: true });
+    let green = Styles.buildColor(EVERGREEN, { defaultStyle: true });
+    let greenLight = Styles.buildColor(EVERGREEN_LIGHT, { defaultStyle: true });
 
     if (theme === 'rainbow') {
-      red.random = true;
-      white.maxShade = 0.1;
-      white.minShade = 0.1;
-      white.maxTint = 0.1;
-      white.minTint = 0.1;
-      blue.random = true;
+      green.random = true;
+      greenLight.maxShade = 0.1;
+      greenLight.minShade = 0.1;
+      greenLight.maxTint = 0.1;
+      greenLight.minTint = 0.1;
     }
 
     return {
-      red: red,
-      white: white,
-      blue: blue,
+      green: green,
+      greenLight: greenLight,
     }
   },
 
@@ -46,13 +49,8 @@ const Color = {
     const COLOR_STATES = this.setColorStates(theme);
 
     return {
-      stars: {
-        blue: COLOR_STATES.blue,
-        white: COLOR_STATES.white,
-        attributes: COLOR_ATTRIBUTES
-      },
-      stripes: {
-        stripeColors: [COLOR_STATES.red, COLOR_STATES.white], // to rotate
+      tree: {
+        lineColors: [COLOR_STATES.green, COLOR_STATES.greenLight], // to rotate
         attributes: COLOR_ATTRIBUTES
       }
     }
