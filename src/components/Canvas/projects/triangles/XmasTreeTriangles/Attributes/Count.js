@@ -6,8 +6,8 @@ const Count = {
   counts(){
     return {
       tree: {
-        lines: 12,
-        lineTriangles: 300
+        lines: 8,
+        lineTriangles: 600
       }
     }
   },

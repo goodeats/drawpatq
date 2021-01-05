@@ -58,7 +58,7 @@ export default class Canvas extends React.Component {
   }
 
   currentProject = () => {
-    return this.currentProjects()[1];
+    return this.currentProjects()[0];
   }
 
   render() {

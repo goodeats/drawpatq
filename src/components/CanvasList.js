@@ -74,7 +74,7 @@ export default class CanvasList extends React.Component {
 
   componentDidMount(){
     // preload => uncomment when in dev
-    this.props.onSelect('xmas')
+    this.props.onSelect('usa')
   }
 
   handleClick(e){

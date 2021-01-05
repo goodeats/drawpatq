@@ -56,7 +56,7 @@ const Dimension = {
         // top: '10%'
       },
       tree: {
-        lineCount: 12
+        lineCount: 8
       }
     }
 
