@@ -3,6 +3,8 @@ import './App.css';
 import Canvas from "./components/Canvas";
 import CanvasList from "./components/CanvasList";
 import Watermark from "./components/Watermark";
+import Title from './components/Title';
+import ProjectList from './components/ProjectLIst';
 
 export default class App extends React.Component {
 
@@ -31,14 +33,16 @@ export default class App extends React.Component {
     return (
       <div className="App">
         {selectedCanvas && <Watermark onClick={this.goHome} />}
-        {selectedCanvas ?
+        <Title title="PPPAAATTT" />
+        <ProjectList />
+        {/* {selectedCanvas ?
           <Canvas
             title={selectedCanvas}
             theme={this.state.theme}
             onThemeChange={this.changeTheme}
           /> :
           <CanvasList onSelect={this.selectCanvas} />
-        }
+        } */}
       </div>
     );
   }

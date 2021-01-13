@@ -166,8 +166,8 @@ const USATrianglesMaths = {
     const unionPaddedHeight = DIMENSIONS.paddingUnionHeight * 100;
     const style = {
       flag: {
-        height: flagHeight + '%',
-        top: flagTop + '%'
+        height: '100%',
+        top: 0
       },
       stars: {
         stars: {

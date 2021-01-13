@@ -32,10 +32,10 @@ import Arrays from '../../../../utils/Arrays';
 
 const USAComponent = styled.div`
   position: absolute;
-  height: 60%;
-  width: 60%;
-  top: 20%;
-  left: 20%;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
   cursor: pointer;
 `;
 
