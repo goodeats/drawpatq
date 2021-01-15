@@ -7,6 +7,16 @@ import Arrays from '../utils/Arrays';
 import Distance from '../utils/Distance';
 import USATriangles from "./Canvas/projects/triangles/USATriangles";
 import XmasTreeTriangles from "./Canvas/projects/triangles/XmasTreeTriangles";
+import Projects from "../lib/Projects";
+import ManyTriangles from "./Canvas/projects/triangles/ManyTriangles";
+import TooManyTriangles from "./Canvas/projects/triangles/TooManyTriangles";
+import ShadedTriangles from "./Canvas/projects/triangles/ShadedTriangles";
+import ShadedAndTintedTriangles from "./Canvas/projects/triangles/ShadedAndTintedTriangles";
+import LittleTriangles from "./Canvas/projects/triangles/LittleTriangles";
+import ColorTriangles from "./Canvas/projects/triangles/ColorTriangles";
+import AlignedTriangles from "./Canvas/projects/triangles/AlignedTriangles";
+import ClusteredTriangles from "./Canvas/projects/triangles/ClusteredTriangles";
+import TintdTriangles from "./Canvas/projects/triangles/TintedTriangles";
 
 const ProjectComponent = styled.main`
   height: ${(props) => props.style.containerHeight || '300px'};
@@ -94,7 +104,7 @@ export default class Project extends React.Component {
 
   containerStyles(styles){
     const widthPx = Distance.percentageWindowWidthToPx(styles.widthPercent);
-    const heightPx = widthPx / styles.ratio.width;
+    const heightPx = widthPx / (styles.ratio.width / styles.ratio.height);
     const height = heightPx + styles.unit;
     const width = widthPx + styles.unit;
     return {
@@ -139,15 +149,24 @@ export default class Project extends React.Component {
     this.setState({ reload: true, theme: theme }, this.reloaded)
   }
 
-  currentProjects = () => {
+  currentProjects(){
     return [
-      <USATriangles themes={this.props.themes} theme={this.state.theme} onThemeChange={this.onThemeChange} />,
-      <XmasTreeTriangles theme={this.state.theme} onThemeChange={this.onThemeChange} />
+      ['usa', <USATriangles themes={this.props.themes} theme={this.state.theme} onThemeChange={this.onThemeChange}/>],
+      ['xmas', <XmasTreeTriangles theme={this.state.theme} onThemeChange={this.onThemeChange} />],
+      ['triangles', <ManyTriangles />],
+      ['little triangles', <LittleTriangles />],
+      ['too many triangles', <TooManyTriangles />],
+      ['transparent triangles', <ColorTriangles />],
+      ['shaded triangles', <ShadedTriangles />],
+      ['tinted triangles', <TintdTriangles />],
+      ['shades and tints', <ShadedAndTintedTriangles />],
+      ['in a row', <AlignedTriangles />],
+      ['clustered', <ClusteredTriangles />],
     ]
   }
 
-  currentProject = () => {
-    return !this.state.reload && this.currentProjects()[0];
+  currentProject(title){
+    return !this.state.reload && this.currentProjects().find((project) => { return project[0] === title })[1];
   }
 
   render() {
@@ -162,13 +181,13 @@ export default class Project extends React.Component {
           <MatteComponent className='matte' style={this.state.style} >
             <CanvasComponent className='canvas' style={this.state.style} >
               <CanvasContainerComponent className='canvasContainer' style={this.state.style} >
-                {this.currentProject()}
+                {this.currentProject(title)}
               </CanvasContainerComponent>
             </CanvasComponent>
           </MatteComponent>
         </Framecomponent>
         <ProjectButton text={'reload'} onClick={this.reload}/>
-        <ProjectButton text={'change'} onClick={this.onThemeChange}/>
+        {this.props.themes && <ProjectButton text={'change'} onClick={this.onThemeChange}/>}
 
         {/* {!this.state.reload && this.currentProject()} */}
       </ProjectComponent>
