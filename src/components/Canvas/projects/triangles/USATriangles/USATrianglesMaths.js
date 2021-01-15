@@ -29,7 +29,7 @@ const DIMENSIONS = {
   widthStripe: 1 / STRIPE_COUNT // L. width of stripe
 }
 
-const FLAG_WIDTH = 60;
+const FLAG_WIDTH = 80;
 // const FLAG_HEIGHT = 60 / 1.9;
 // 60 / 1.9 doesn't work if it's a vertical phone
 // get width px / length ratio

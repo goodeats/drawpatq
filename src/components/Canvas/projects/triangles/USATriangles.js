@@ -41,8 +41,6 @@ const USAComponent = styled.div`
 
 export default class USATriangles extends React.Component {
 
-  THEMES = ['default', 'solid', 'rainbow', 'grayscale']
-
   constructor(props) {
     super(props);
     this.state = {
@@ -55,9 +53,7 @@ export default class USATriangles extends React.Component {
 
   onClick = () => {
     console.log('🇺🇸');
-    const currentThemeIndex = this.THEMES.indexOf(this.props.theme);
-    const newTheme = Arrays.rotateNextIndex(this.THEMES, currentThemeIndex + 1)
-    this.props.onThemeChange(newTheme)
+    this.props.onThemeChange();
   }
 
   render() {

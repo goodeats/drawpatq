@@ -1,7 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import Title from './Title';
+import ProjectButton from './ProjectButton';
 import Throttle from '../utils/Throttle';
+import Arrays from '../utils/Arrays';
+import Distance from '../utils/Distance';
 import USATriangles from "./Canvas/projects/triangles/USATriangles";
 import XmasTreeTriangles from "./Canvas/projects/triangles/XmasTreeTriangles";
 
@@ -71,7 +74,7 @@ export default class Project extends React.Component {
     super(props);
     this.state = {
       reload: false,
-      theme: props.theme,
+      theme: props.theme || 'default',
       style: {}
     }
   }
@@ -89,13 +92,25 @@ export default class Project extends React.Component {
     this.setState({ style: currentStyle });
   }
 
+  containerStyles(styles){
+    const widthPx = Distance.percentageWindowWidthToPx(styles.widthPercent);
+    const heightPx = widthPx / styles.ratio.width;
+    const height = heightPx + styles.unit;
+    const width = widthPx + styles.unit;
+    return {
+      height: height,
+      width: width
+    }
+  }
+
   setStyles(){
     const container = this.props.container;
     const frame = container.frame;
     const matte = container.matte;
     const canvas = container.canvas;
-    this.setStyle('containerHeight', container.containerHeight || '300px');
-    this.setStyle('containerWidth', container.containerWidth || '300px');
+    const containerStyles = this.containerStyles(container.container);
+    this.setStyle('containerHeight', containerStyles.height);
+    this.setStyle('containerWidth', containerStyles.width);
     this.setStyle('frameWidth', frame.width || 30);
     this.setStyle('frameColor', frame.color || 'black');
     this.setStyle('matteWidth', matte.width || 50);
@@ -110,29 +125,29 @@ export default class Project extends React.Component {
   }
 
   reloaded = () => {
-    this.setState({ reload: false })
+    this.setState({ reload: false }, this.setStyles)
   }
 
   reload = () => {
     this.setState({ reload: true }, this.reloaded)
   }
 
-  onThemeChange = (theme) => {
-    // kick up props so theme change sticks when clicking watermark button
-    this.props.onThemeChange(theme)
+  onThemeChange = () => {
+    const themes = this.props.themes;
+    const currentThemeIndex = themes.indexOf(this.state.theme);
+    const theme = Arrays.rotateNextIndex(themes, currentThemeIndex + 1)
     this.setState({ reload: true, theme: theme }, this.reloaded)
   }
 
   currentProjects = () => {
     return [
-      <USATriangles theme={this.state.theme} onThemeChange={this.onThemeChange} />,
+      <USATriangles themes={this.props.themes} theme={this.state.theme} onThemeChange={this.onThemeChange} />,
       <XmasTreeTriangles theme={this.state.theme} onThemeChange={this.onThemeChange} />
     ]
-
   }
 
   currentProject = () => {
-    return this.currentProjects()[0];
+    return !this.state.reload && this.currentProjects()[0];
   }
 
   render() {
@@ -152,6 +167,8 @@ export default class Project extends React.Component {
             </CanvasComponent>
           </MatteComponent>
         </Framecomponent>
+        <ProjectButton text={'reload'} onClick={this.reload}/>
+        <ProjectButton text={'change'} onClick={this.onThemeChange}/>
 
         {/* {!this.state.reload && this.currentProject()} */}
       </ProjectComponent>
