@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Colors from '../utils/Colors'
+import Brand from "./Canvas/projects/brand/Brand000";
 
 const TitleComponent = styled.h1`
   flex-grow: 0;
@@ -21,7 +22,8 @@ export default class Title extends React.Component {
   render() {
     return (
       <TitleComponent>
-        {this.props.title}
+        {this.props.title && this.props.title}
+        {this.props.logo && <Brand height={100} />}
       </TitleComponent>
     );
   }
