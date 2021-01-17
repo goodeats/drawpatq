@@ -33,7 +33,7 @@ export default class App extends React.Component {
     return (
       <div className="App">
         {selectedCanvas && <Watermark onClick={this.goHome} />}
-        <Title title="PPPAAATTT" />
+        <Title logo />
         <ProjectList />
         {/* {selectedCanvas ?
           <Canvas

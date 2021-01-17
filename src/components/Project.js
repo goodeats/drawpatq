@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import Title from './Title';
-import ProjectButton from './ProjectButton';
+import ProjectButton from './Project/ProjectButton';
+import ProjectTitle from './Project/ProjectTitle';
 import Throttle from '../utils/Throttle';
 import Arrays from '../utils/Arrays';
 import Distance from '../utils/Distance';
@@ -173,7 +174,7 @@ export default class Project extends React.Component {
     const title = this.props.title;
     return (
       <ProjectComponent className='project' style={this.state.style} >
-        <Title title={title} />
+        <ProjectTitle title={title} />
 
         {/* https://seabergframing.com/framing-101/parts-custom-picture-frame/ */}
         <Framecomponent className='frame' style={this.state.style} >

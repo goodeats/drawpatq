@@ -26,7 +26,7 @@ export default class ProjectList extends React.Component {
     return (
       <ProjectListComponent>
         {/* <SubTitle title={'you can touch the art here'} /> */}
-        <SubTitle title={'a web experiment'} />
+        <SubTitle title={'an experiment'} />
         {Projects.all().map((project, key) => {
           return (
             <Project

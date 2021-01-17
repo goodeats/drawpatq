@@ -1,4 +1,5 @@
 import React from "react";
+import styled from 'styled-components';
 import Container from "../../Container";
 import Letter from "../../text/Letter";
 
@@ -13,6 +14,15 @@ import Letter from "../../text/Letter";
 // static randomized
 // animations
 // animations randomized
+
+const BrandContainerComponent = styled.div`
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+`;
 
 export default class Brand extends React.Component {
   BRAND_TEXT = "PPPAAATTT";
@@ -194,9 +204,9 @@ export default class Brand extends React.Component {
 
   render() {
     return (
-      <div>
+      <BrandContainerComponent>
         {this.renderBrand()}
-      </div>
+      </BrandContainerComponent>
     );
   }
 }
