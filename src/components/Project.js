@@ -8,6 +8,7 @@ import Arrays from '../utils/Arrays';
 import Distance from '../utils/Distance';
 import USATriangles from "./Canvas/projects/triangles/USATriangles";
 import XmasTreeTriangles from "./Canvas/projects/triangles/XmasTreeTriangles";
+import BrandTriangles from './Canvas/projects/triangles/BrandTriangles.js';
 import Projects from "../lib/Projects";
 import ManyTriangles from "./Canvas/projects/triangles/ManyTriangles";
 import TooManyTriangles from "./Canvas/projects/triangles/TooManyTriangles";
@@ -163,6 +164,7 @@ export default class Project extends React.Component {
       ['shades and tints', <ShadedAndTintedTriangles />],
       ['in a row', <AlignedTriangles />],
       ['clustered', <ClusteredTriangles />],
+      ['tacko', <BrandTriangles />],
     ]
   }
 
@@ -187,8 +189,13 @@ export default class Project extends React.Component {
             </CanvasComponent>
           </MatteComponent>
         </Framecomponent>
-        <ProjectButton text={'reload'} onClick={this.reload}/>
+        <ProjectButton text={'refresh'} onClick={this.reload}/>
         {this.props.themes && <ProjectButton text={'change'} onClick={this.onThemeChange}/>}
+        {this.props.tagline && <h5 style={{
+          margin: '20px',
+          float: 'right',
+          lineHeight: '50px'
+        }}>{this.props.tagline}</h5>}
 
         {/* {!this.state.reload && this.currentProject()} */}
       </ProjectComponent>

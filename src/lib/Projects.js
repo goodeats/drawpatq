@@ -5,7 +5,9 @@ const Projects = {
 
   all: function(){
     return [
-      {title: 'triangles', container: this.defaultContainer()},
+      // {title: 'tacko', container: this.defaultContainer()},
+      // {title: 'triangles', container: this.defaultContainer()},
+
       // {title: 'little triangles', container: this.defaultContainer()},
       // {title: 'too many triangles', container: this.defaultContainer()},
       // {title: 'transparent triangles', container: this.defaultContainer()},
@@ -14,7 +16,7 @@ const Projects = {
       // {title: 'shades and tints', container: this.defaultContainer()},
       // {title: 'in a row', container: this.defaultContainer()},
       // {title: 'clustered', container: this.defaultContainer()},
-      // this.usa()
+      this.usa()
     ];
 
     // return [
@@ -25,6 +27,7 @@ const Projects = {
   usa: function(){
     return {
       title: 'usa',
+      tagline: 'best viewed on desktop',
       container: {
         container: {
           widthPercent: 80,
@@ -36,7 +39,7 @@ const Projects = {
         },
         frame: {
           width: 10,
-          color: 'black'
+          color: '#333'
         },
         matte: {
           width: 20,

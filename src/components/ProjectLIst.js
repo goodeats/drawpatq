@@ -26,12 +26,13 @@ export default class ProjectList extends React.Component {
     return (
       <ProjectListComponent>
         {/* <SubTitle title={'you can touch the art here'} /> */}
-        <SubTitle title={'an experiment'} />
+        <SubTitle title={'an experiment in generative art'} />
         {Projects.all().map((project, key) => {
           return (
             <Project
               key={key}
               title={project.title}
+              tagline={project.tagline}
               container={project.container}
               themes={project.themes}
             />

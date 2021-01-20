@@ -37,7 +37,7 @@ export default class Title extends React.Component {
         <BrandContainerComponent>
           <Brand height={40} />
         </BrandContainerComponent>
-        <TaglineComponent>{"👨🏻‍💻"}</TaglineComponent>
+        {/* <TaglineComponent>{"👨🏻‍💻"}</TaglineComponent> */}
       </HeaderComponent>
     );
   }
