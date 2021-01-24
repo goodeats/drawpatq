@@ -60,8 +60,8 @@ const Projects = {
     const propsStyle = {
       container: {
         widthPercent: 80,
-        heightPx: 500,
-        widthPx: 500,
+        heightPx: 350,
+        widthPx: 350,
         ratio: {
           height: 1,
           width: 1

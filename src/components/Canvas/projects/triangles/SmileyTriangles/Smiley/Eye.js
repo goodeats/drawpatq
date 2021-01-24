@@ -34,7 +34,7 @@ const Eye = (props) => {
   const eyeLeftPos = (props) => {
     const leftFactor = props.side === 'left' ? 1 : 2;
     const leftPct = ( 100 * ( leftFactor / 3 )) + '%'
-    const widthPx = upperWidth * 2 + 'px';
+    const widthPx = containerHeight / 2 + 'px';
     return `calc(${leftPct} - ${widthPx})`;
   }
 

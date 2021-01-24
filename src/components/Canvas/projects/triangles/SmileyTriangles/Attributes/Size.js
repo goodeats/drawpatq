@@ -8,16 +8,16 @@ const Size = {
     // TODO: make dynamic sizes
     return {
       face: {
-        lowerWidth: 15,
-        upperWidth: 30
+        lowerWidth: 10,
+        upperWidth: 20
       },
       eye: {
-        containerHeight: 40,
+        containerHeight: 30,
         lowerWidth: 5,
         upperWidth: 10
       },
       mouth: {
-        containerHeight: 200,
+        containerHeight: 150,
         lowerWidth: 5,
         upperWidth: 10
       }

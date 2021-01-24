@@ -24,6 +24,8 @@ import TintdTriangles from "./Canvas/projects/triangles/TintedTriangles";
 const ProjectComponent = styled.main`
   height: ${(props) => props.style.containerHeight || '300px'};
   width: ${(props) => props.style.containerWidth || '300px' };
+  max-height: ${(props) => props.style.containerMaxHeight || 'initial'};
+  max-width: ${(props) => props.style.containerMaxWidth || 'initial' };
   display: block;
   margin: 0 auto 500px;
 `;
@@ -125,6 +127,8 @@ export default class Project extends React.Component {
     const containerStyles = this.containerStyles(container.container);
     this.setStyle('containerHeight', containerStyles.height);
     this.setStyle('containerWidth', containerStyles.width);
+    this.setStyle('containerMaxHeight', containerStyles.maxHeight);
+    this.setStyle('containerMaxWidth', containerStyles.maxWidth);
     this.setStyle('frameWidth', frame.width || 30);
     this.setStyle('frameColor', frame.color || 'black');
     this.setStyle('matteWidth', matte.width || 50);
