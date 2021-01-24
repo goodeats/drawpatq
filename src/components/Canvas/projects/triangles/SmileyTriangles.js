@@ -37,7 +37,6 @@ export default class USATriangles extends React.Component {
       colors: Attributes.colors(this.props.theme),
       counts: Attributes.counts(this.props),
       sizes: Attributes.sizes(this.props),
-      dimensions: Attributes.dimensions(this.props.theme)
     };
   }
 
@@ -53,10 +52,9 @@ export default class USATriangles extends React.Component {
     const colors = state.colors;
     const counts = state.counts;
     const sizes = state.sizes;
-    const dimensions = state.dimensions;
 
     return (
-      <SmileyComponent id="smiley" style={dimensions.container} onClick={this.onClick}>
+      <SmileyComponent id="smiley" onClick={this.onClick}>
         <Face
           colors={colors.face}
           counts={counts.face}

@@ -79,7 +79,7 @@ const Projects = {
     return {
       title: 'smiley',
       container: style,
-      themes: ['default']
+      themes: ['default', 'solid', 'rainbow', 'grayscale']
     }
   },
 
