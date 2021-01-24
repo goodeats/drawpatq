@@ -8,6 +8,7 @@ import Arrays from '../utils/Arrays';
 import Distance from '../utils/Distance';
 import USATriangles from "./Canvas/projects/triangles/USATriangles";
 import XmasTreeTriangles from "./Canvas/projects/triangles/XmasTreeTriangles";
+import SmileyTriangles from "./Canvas/projects/triangles/SmileyTriangles";
 import BrandTriangles from './Canvas/projects/triangles/BrandTriangles.js';
 import Projects from "../lib/Projects";
 import ManyTriangles from "./Canvas/projects/triangles/ManyTriangles";
@@ -30,8 +31,8 @@ const ProjectComponent = styled.main`
 // https://seabergframing.com/framing-101/parts-custom-picture-frame/
 
 const Framecomponent = styled.div`
-  height: 100%;
-  width: 100%;
+  height: ${(props) => props.style.frameHeight ? props.style.frameHeight + props.style.frameHeightUnit : '100%' || '100%'};
+  width: ${(props) => props.style.framewidth ? props.style.framewidth + props.style.framewidthUnit : '100%' || '100%'};
   position: relative;
   margin: 0 auto;
 
@@ -105,10 +106,11 @@ export default class Project extends React.Component {
   }
 
   containerStyles(styles){
-    const widthPx = Distance.percentageWindowWidthToPx(styles.widthPercent);
-    const heightPx = widthPx / (styles.ratio.width / styles.ratio.height);
+    const widthPx = styles.widthPx || Distance.percentageWindowWidthToPx(styles.widthPercent);
+    const heightPx = styles.heightPx || widthPx / (styles.ratio.width / styles.ratio.height);
     const height = heightPx + styles.unit;
     const width = widthPx + styles.unit;
+
     return {
       height: height,
       width: width
@@ -154,6 +156,7 @@ export default class Project extends React.Component {
   currentProjects(){
     return [
       ['usa', <USATriangles themes={this.props.themes} theme={this.state.theme} onThemeChange={this.onThemeChange}/>],
+      ['smiley', <SmileyTriangles theme={this.state.theme} onThemeChange={this.onThemeChange} />],
       ['xmas', <XmasTreeTriangles theme={this.state.theme} onThemeChange={this.onThemeChange} />],
       ['triangles', <ManyTriangles />],
       ['little triangles', <LittleTriangles />],

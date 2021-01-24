@@ -17,9 +17,9 @@ const Colors = {
   },
 
   buildColor: function(options = {}){
-    const r = options.r || this.getRandomColorValue()
-    const g = options.g || this.getRandomColorValue()
-    const b = options.b || this.getRandomColorValue()
+    const r = options.r !== undefined ? options.r : this.getRandomColorValue()
+    const g = options.g !== undefined ? options.g : this.getRandomColorValue()
+    const b = options.b !== undefined ? options.b : this.getRandomColorValue()
     return {
       r: r,
       g: g,
@@ -33,9 +33,9 @@ const Colors = {
   },
 
   getRandomRgba: function(options = {}){
-    const r = options.r || this.getRandomColorValue();
-    const g = options.g || this.getRandomColorValue();
-    const b = options.b || this.getRandomColorValue();
+    const r = options.r !== undefined ? options.r : this.getRandomColorValue();
+    const g = options.g !== undefined ? options.g : this.getRandomColorValue();
+    const b = options.b !== undefined ? options.b : this.getRandomColorValue();
     const a = options.a || this.getRandomTransparencyValue();
     return `rgba(${r}, ${g}, ${b}, ${a})`
   },
@@ -70,7 +70,6 @@ const Colors = {
   },
 
   getShadedColorValue: function (colorValue, shadeFactor) {
-    // debugger
     return colorValue * (1 - shadeFactor);
   },
   getTintedColorValue: function (colorValue, tintFactor) {

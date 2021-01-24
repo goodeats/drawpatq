@@ -30,6 +30,15 @@ export default class Triangle extends React.Component {
     this.setTriangleStyles()
   }
 
+  // don't forget value could be 0
+  getPropsTop(props, height){
+    return props !== undefined ? props : Distance.setRandomTrianglePos(height)
+  }
+
+  getPropsLeft(props, height){
+    return props !== undefined ? props : Distance.setRandomTrianglePos(height)
+  }
+
   // need state width before these can be set
   setTriangleStyles(){
     const height = this.state.height;
@@ -37,8 +46,8 @@ export default class Triangle extends React.Component {
       arrangement: this.setArrangement(),
 
       // placement
-      top: this.props.top || Distance.setRandomTrianglePos(height),
-      left: this.props.left || Distance.setRandomTrianglePos(height),
+      top: this.getPropsTop(this.props.top, height),
+      left: this.getPropsLeft(this.props.left, height),
     });
   }
 
