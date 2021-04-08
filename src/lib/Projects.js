@@ -6,18 +6,18 @@ const Projects = {
   all: function(){
     return [
       // {title: 'tacko', container: this.defaultContainer()},
-      // {title: 'triangles', container: this.defaultContainer()},
+      {title: 'triangles', container: this.defaultContainer()},
 
-      // {title: 'little triangles', container: this.defaultContainer()},
-      // {title: 'too many triangles', container: this.defaultContainer()},
+      {title: 'little triangles', container: this.defaultContainer()},
+      {title: 'too many triangles', container: this.defaultContainer()},
       // {title: 'transparent triangles', container: this.defaultContainer()},
-      // {title: 'shaded triangles', container: this.defaultContainer()},
-      // {title: 'tinted triangles', container: this.defaultContainer()},
-      // {title: 'shades and tints', container: this.defaultContainer()},
+      {title: 'shaded triangles', container: this.defaultContainer()},
+      {title: 'tinted triangles', container: this.defaultContainer()},
+      {title: 'shades and tints', container: this.defaultContainer()},
       // {title: 'in a row', container: this.defaultContainer()},
       // {title: 'clustered', container: this.defaultContainer()},
       this.smiley(),
-      this.usa()
+      // this.usa()
     ];
 
     // return [
