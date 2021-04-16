@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import SubTitle from './SubTitle';
 import Project from './Project';
 import Projects from "../lib/Projects";
 
@@ -25,8 +24,6 @@ export default class ProjectList extends React.Component {
   render() {
     return (
       <ProjectListComponent>
-        {/* <SubTitle title={'you can touch the art here'} /> */}
-        <SubTitle title={'an experiment in generative art'} />
         {Projects.all().map((project, key) => {
           return (
             <Project

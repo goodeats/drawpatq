@@ -2,8 +2,11 @@ import React from "react";
 import styled from "styled-components";
 import Colors from '../utils/Colors'
 
-const SubTitleComponent = styled.h5`
-  flex-grow: 0;
+const SubTitleComponent = styled.span`
+  max-width: 50%;
+  line-height: 100px;
+  float: right;
+  /* flex-grow: 0; */
   color: ${(props) => Colors.black};
   font-size: 14px;
   font-weight: 100;

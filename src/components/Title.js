@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Brand from "./Canvas/projects/brand/Brand000";
+import SubTitle from "./SubTitle";
 
 const HeaderComponent = styled.header`
   height: 150px;
@@ -36,6 +37,7 @@ export default class Title extends React.Component {
       <HeaderComponent>
         <BrandContainerComponent>
           <Brand height={40} />
+          <SubTitle title={'an experiment in generative art'} />
         </BrandContainerComponent>
         {/* <TaglineComponent>{"👨🏻‍💻"}</TaglineComponent> */}
       </HeaderComponent>
