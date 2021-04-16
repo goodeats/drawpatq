@@ -19,6 +19,7 @@ import LittleTriangles from "./Canvas/projects/triangles/LittleTriangles";
 import ColorTriangles from "./Canvas/projects/triangles/ColorTriangles";
 import AlignedTriangles from "./Canvas/projects/triangles/AlignedTriangles";
 import ClusteredTriangles from "./Canvas/projects/triangles/ClusteredTriangles";
+import NikeTriangles from "./Canvas/projects/triangles/NikeTriangles";
 import TintdTriangles from "./Canvas/projects/triangles/TintedTriangles";
 
 const ProjectComponent = styled.main`
@@ -172,6 +173,7 @@ export default class Project extends React.Component {
       ['in a row', <AlignedTriangles />],
       ['clustered', <ClusteredTriangles />],
       ['tacko', <BrandTriangles />],
+      ['nike', <NikeTriangles />],
     ]
   }
 

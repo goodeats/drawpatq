@@ -8,7 +8,8 @@ const Projects = {
       // {title: 'tacko', container: this.defaultContainer()},
       // {title: 'triangles', container: this.defaultContainer()},
 
-      {title: 'little triangles', container: this.defaultContainer()},
+      {title: 'nike', container: this.nike()},
+      // {title: 'little triangles', container: this.defaultContainer()},
       // {title: 'too many triangles', container: this.defaultContainer()},
       // {title: 'transparent triangles', container: this.defaultContainer()},
       // {title: 'shaded triangles', container: this.defaultContainer()},
@@ -80,6 +81,32 @@ const Projects = {
       title: 'smiley',
       container: style,
       themes: ['default', 'solid', 'rainbow', 'grayscale']
+    }
+  },
+
+  nike: function(){
+    return {
+      container: {
+        widthPercent: 80,
+        ratio: {
+          height: 1,
+          width: 1.5
+        },
+        unit: 'px'
+      },
+      frame: {
+        width: 10,
+        color: 'black'
+      },
+      matte: {
+        width: 0,
+        color: 'white'
+      },
+      canvas: {
+        padding: 0,
+        paddingUnit: 'px',
+        background: 'white'
+      }
     }
   },
 
