@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import Title from './Title';
-import Throttle from '../utils/Throttle';
-import Navigation from '../utils/Navigation';
-import USATriangles from "./Canvas/projects/triangles/USATriangles";
-import XmasTreeTriangles from "./Canvas/projects/triangles/XmasTreeTriangles";
+import Title from '../Title';
+import Throttle from '../../utils/Throttle';
+import Navigation from '../../utils/Navigation';
+import USATriangles from "../Canvas/projects/triangles/USATriangles";
+import XmasTreeTriangles from "../Canvas/projects/triangles/XmasTreeTriangles";
 
 const CanvasComponent = styled.main`
   display: flex;

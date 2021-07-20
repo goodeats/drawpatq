@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import Canvas from "./components/Canvas";
+import Canvas from "./components/v1/Canvas";
 import CanvasList from "./components/CanvasList";
 import Watermark from "./components/Watermark";
 import Title from './components/Title';

@@ -172,7 +172,7 @@ export default class Project extends React.Component {
       ['shades and tints', <ShadedAndTintedTriangles />],
       ['in a row', <AlignedTriangles />],
       ['clustered', <ClusteredTriangles />],
-      ['tacko', <BrandTriangles />],
+      ['a triangle', <BrandTriangles />],
       ['nike', <NikeTriangles />],
     ]
   }
